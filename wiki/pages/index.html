@@ -1,0 +1,187 @@
+{% extends "layout-index.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_content %}
+
+<!-- ======= Services Section ======= -->
+
+
+
+
+
+<section id="services" class="services">
+
+  <div class="container" data-aos="fade-up">
+
+    <header class="section-header">
+      </br></br>
+      <p>Learn more about different parts of our project</p>
+    </header>
+
+   
+
+   
+<div class="row justify-content-md-center">   
+  <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
+    <div class="home-btn text-center rounded p-3 py-4" >
+      <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a target="_blank" href="{{ url_for('pages', page='description') }}">
+        <img src="https://static.igem.wiki/teams/4179/wiki/home-page/icons/description.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+        <div class="content mt-3">
+            <h4 class="title mb-0">Description</h4>
+        </a>
+        </div>
+    </div>
+</div><!--end col-->
+    
+
+      
+<div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
+    <div class="home-btn text-center rounded p-3 py-4" >
+      <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a target="_blank" href="{{ url_for('pages', page='Design') }}">
+        <img src="https://static.igem.wiki/teams/4179/wiki/home-page/icons/design.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+        <div class="content mt-3">
+            <h4 class="title mb-0">Design</h4>
+        </a>
+        </div>
+    </div>
+</div><!--end col-->
+
+
+    
+<div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
+<div class="home-btn text-center rounded p-3 py-4" >
+  <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a target="_blank" href="{{ url_for('pages', page='model') }}">
+    <img src="https://static.igem.wiki/teams/4179/wiki/home-page/icons/model.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+    <div class="content mt-3">
+        <h4 class="title mb-0">Model</h4>
+    </a>
+    </div>
+</div>
+</div><!--end col-->
+
+
+      <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
+        <div class="home-btn text-center rounded p-3 py-4" >
+          <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a target="_blank" href="{{ url_for('pages', page='Measurement') }}">
+            <img src="https://static.igem.wiki/teams/4179/wiki/home-page/icons/measurement.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+            <div class="content mt-3">
+                <h4 class="title mb-0">Measurement</h4>
+            </a>
+            </div>
+        </div>
+    </div><!--end col-->
+          
+
+            
+                <div class="col-lg-2 col-md-6 col-12 mt-4 pt-2">
+            <div class="home-btn text-center rounded p-3 py-4" >
+              <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a target="_blank" href="{{ url_for('pages', page='Communication') }}">
+                <img src="https://static.igem.wiki/teams/4179/wiki/home-page/icons/education.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+                <div class="content mt-3">
+                    <h4 class="title mb-0">Education</h4>
+                </a>
+                </div>
+            </div>
+        </div><!--end col-->
+
+         
+
+
+</section><!-- End Services Section -->
+
+
+<!-- ======= About Section ======= -->
+<section id="about" class="about">
+
+  <div class="container" data-aos="fade-up">
+    <div class="row gx-0">
+      <div class="d-flex align-items-center justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <iframe title="Technion-Israel: Angel Roots (2022) - Project Promotion [English]" width="854" height="480" src="https://video.igem.org/videos/embed/d3fda106-18ee-48cc-87f3-b440955e9d15?start=0s&amp;subtitle=en&amp;warningTitle=0&amp;peertubeLink=0" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+      </div>
+    </div>
+<style>
+.full-img {
+  z-index:-1;
+}
+.full-btn {
+  z-index: 2;
+  margin-top: -17.5%; 
+  margin-left: 43%;
+  width: 25%;
+}
+</style>
+
+    <div class="row gx-0"></br></br></br></div>
+    <div class="row gx-0">
+      <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="content full-img"  style="margin-top: -11%;"><span class="align-middle"><img src="https://static.igem.wiki/teams/4179/wiki/meet-the-team-description.svg" width="170%"></span></div>
+        <div class="content full-btn"><span class="align-middle"> <a href="{{ url_for('pages', page='team') }}"><img src="https://static.igem.wiki/teams/4179/wiki/meet-the-team-button.svg"></a></span></div>
+      </div>
+
+      <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="300">
+        <span class="align-middle"><img src="https://static.igem.wiki/teams/4179/wiki/group-photo.jpg" class="img-fluid"></span>
+      </div>
+
+    </div>
+  </div>
+
+</section><!-- End About Section -->
+
+
+
+<!-- start of logo slier-->
+
+<div class="container" data-aos="fade-up" data-aos-delay="300">
+   <section class="customer-logos slider">
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/bfe-new.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/bme-logo.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/cs-logo.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/vikistudio.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/doron-scientific.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/ornat.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/snapgene-logo.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/tomachi-logo.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/logo-idt.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/color-logo-converted-copy.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/matlab.png"></div>
+    <div class="slide centerSponser"><img src=" https://static.igem.wiki/teams/4179/wiki/sponsors/roomescape.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/sigma-aldrich-logo.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/twistbios.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/lse.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/cellbiolab2.png"></div>
+    <div class="slide centerSponser"><img src="https://static.igem.wiki/teams/4179/wiki/sponsors/biorander.png"></div>
+   </section>
+</div>
+
+<link href="{{ url_for('static', filename='assets/css/sponsor.css') }}" rel="stylesheet">
+
+<script>$(document).ready(function(){
+    $('.customer-logos').slick({
+
+      slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        arrows: false,
+        dots: false,
+        pauseOnHover: false,
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 4
+            }
+        }, {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 3
+            }
+        }]
+    });
+});</script>
+
+
+  <!--end of logo slider-->
+
+
+{% endblock %}

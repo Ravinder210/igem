@@ -1,0 +1,208 @@
+{% extends "layout.html" %}
+  
+{% block title %}Design{% endblock %}
+{% block lead %}Let's talk genetic circuit designs! Before going into the lab, we needed to have a thorough plan regarding our circuit designs, for the purpose of facing minimal complications during the cloning process. In this page we explain the thought process behind each circuit design, and the reasoning for the decisions taken. {% endblock %}
+
+{% block page_content %}
+<link href="{{ url_for('static', filename='assets/css/fontawesome/css/all.css') }}" rel="stylesheet" />
+
+
+<h3>Intro</h3>
+<hr>
+<p>As explained in the project <a href="{{ url_for('pages', page='description') }}">Description page</a>, our team's mission is to biomanufacture decursin, for the purpose of decreasing its price, pave the way for it to become more widely used, and reach its full potential as a substance with an abundance of therapeutic properties, specifically to be used to treat CIA.  </p>
+<p>Umbelliferone, the fifth metabolite in the eight-step synthesis pathway of decursin in the plant Anglecia gigas (AG), is our starting point. From umbelliferone to decursin we need three enzymes; The first is <b>Umbelliferone-6 prenyltransferase</b> (U6PT), which mediates the reaction from umbelliferone to 7-demethylsuberosin (DMS). The second and third enzymes are <b>XimD</b> and <b>XimE</b>, which mediate the reaction from DMS to decursinol. And finally, through a simple esterification reaction on decursinol, we get decursin, our end product. </p>
+<img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/pathway-animation-1.gif" alt="firstAnimation" width="100%" style="imgcenter">
+<p>In this page we discuss in detail our circuit designs, and the thought process behind each one of them.</p>
+<h3>Umbelliferone-6 prenyltransferase (U6PT) </h3><hr>
+<p>Prenyltransferases (PTs) are a class of enzymes that mediate prenylation reactions, in which an isoprenoid moiety, most commonly a prenyl group, is transferred from a donor molecule to an acceptor<sup>[<a href="#ref1">1</a>]</sup>.  
+
+  In our project, we needed a PT with umbelliferone as the prenyl acceptor, and dimethylallyl diphosphate (DMAPP) as the prenyl donor, to yield our desired product, DMS, the sixth metabolite in the decursin anabolic pathway. </p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/u6pt-animations-2.gif" alt="SecondAnimation" width="50%" class="imgcenter">
+<div class="figure-text"> <p>U6PT example animation  </p></div>
+<p>A study by Reddy et al.<sup>[<a href="#ref2">2</a>]</sup> appraised for the first time the anabolic pathway of the major active pyranocoumarins in AG, and specifically decursin. However, they did not state the specific enzyme which catalyzes the prenylation reaction converting umbelliferone to DMS, as they only stated that the reaction was mediated by U6PT present natively in AG. 
+
+  Upon extensive review of the literature, we found four U6PT homologues, all from plant sources: </p>
+  <h5>PcPT </h5>
+  <p><b>Petroselium crispum prenyltransferase</b> (PcPT) was identified in parsley leaves and was found to have a strong substrate specificity to DMAPP as a prenyl donor. It showed dominant prenylation activity on the C6 position of umbelliferone, yielding DMS, and a minor activity on the C8 position, yielding the unwanted product, osthenol<sup>[<a href="#ref3">3</a>]</sup>.
+
+    PcPT had been successfully expressed in a transient expression system in Nicotiana benthamiana by Munakata et al., who also claimed that this enzyme cannot be functionally expressed in yeast, nor bacteria, due to the fact that all plant PTs, including PcPT, are membrane-bound proteins, localized at the plastid membrane. Bu et al. refuted the former and managed to express PcPT in <I>E. coli</I>, showing successful prenylation with it<sup>[<a href="#ref4">4</a>]</sup>.</p>
+<h5>PsPT1</h5>
+<p><b>P. sativa prenyltransferase 1</b> (PsPT1) was identified in parsnip and was shown to favor the production of DMS over osthenol, when umbelliferone and DMAPP were introduced into the system<sup>[<a href="#ref5">5</a>]</sup>.
+
+  PsPT1 had been previously expressed in N. benthamiana, in a transient expression system, by Karamat F et al. However, upon further research in the literature, we could not find a successful attempt to express this enzyme in a bacterial system. </p>
+<h5>FcPT1</h5>
+  <p><b>F. carica prenyl transgerase 1</b> (FcPT1) was identified in fig and was shown to have a high prenylation specificity to umbelliferone as the acceptor, and DMAPP as the donor<sup>[<a href="#ref6">6</a>]</sup>.  
+  
+  FcPT1 had been previously transiently expressed in an N. benthamiana system. We were unable to find in the literature, a successful attempt in cloning this enzyme's gene into a bacterial system.</p>
+
+  <h5>UDT </h5>
+  <p><b>Umbelliferone prenyltransferase</b> (UDT) is a member of the PT family of enzymes. Its gene was mined from the genome of Glehnia littoralis, based on the local Blast alignment with homologous sequences as described by Song et al. <sup>[<a href="#ref7">7</a>]</sup>. </p><br>
+  <p>As expressing PTs in bacterial or yeast systems was scarce in the literature, we turned to another approach. We designed two U6PTs using Blast sequence alignment and docking tools. Both U6PTs were designed using preexisting PTs that catalyze the reaction with either the right substrate and the wrong donor, or the right donor and the wrong substrate.  </p>
+
+  <h5>ChimeraI and ChimeraII</h5>
+  <p>The desired reaction is the prenylation of umbelliferone on the C6 position using DMAPP as a prenyl donor. 
+
+    We discovered <b>PT1a-Citrus limon</b> <sup>[<a href="#ref8">8</a>]</sup> that was successfully expressed in yeast, which prompted us to attempt expressing it in bacteria.  This enzyme uses the desired acceptor but not donor. We decided to identify the active prenylation site and change the donor binding site of PT1a for the purpose of increasing its affinity to DMAPP, the desired prenyl donor. </p>
+    <p>The UbiA domain is shared by a family of prenyltransferases, each catalyzing prenylation reaction <sup>[<a href="#ref9">9</a>]</sup>. For that reason, we deduced that this is the domain we should target. We used the Pfam database <sup>[<a href="#ref10">10</a>]</sup> to find the amino acids positions that constitute the UbiA domain and then turned to identify the specific site responsible for donor docking. We found two other enzymes, <b>G4DT</b> and <b>PT1L</b>, originating from soybean (Glycine max) <sup>[<a href="#ref11">11</a>]</sup> and hop (Humulus lupulus) <sup>[<a href="#ref12">12</a>]</sup>, respectively, that were expressed in yeast and use the correct donor, DMAPP, with the wrong substrate acceptor. We again located the UbiA domains and used a Blast algorithm to compare the two sequences expecting to find homology due to a shared donor. We found a site consisting of 16 amino acids having high homology. We also noticed that in the middle of the motif are two aspartate residues, a commonplace feature in UbiA domains of other PTs. Reviewing the literature revealed that aspartates are crucial for the action of the prenyltransferase as they interact with
+      Mg<sup>+2</sup> that is a cofactor for the enzyme <sup>[<a href="#ref13">13</a>]</sup>. All of the above led us to believe we identified the motif responsible for binding the desired donor (DMAPP). In order to identify the site in PT1a enzyme (Citrus limon) responsible for binding the donor, geranyl diphosphate, we used Blast to compare the UbiA of PT1a enzyme and PcPT. We saw several homologies and narrowed our search space for sequences containing aspartates. We found a smaller homologous sequence, which was expected due to the difference in the two enzymes’ donor molecule. We proceeded to assume that the motif size should be 16 amino acids long and identified the site to be the homologous part (10 amino acids) with an additional 6 amino acids upstream.  </p>
+<p>We switched between the identified sites to create two chimera enzymes: 
+
+  ChimeraI - PT1a enzyme - Citrus limon (right substrate, wrong donor) with the donor binding site from PT1L - hop  enzyme (wrong substrate, right donor) 
+  <img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/chimera-i.svg" alt="cycle" style="width: 30%" class="imgcenter">
+<style>.figure-text {text-align:center; font-size: 12px; color: #787277;}</style>
+<div class="figure-text"> <p><b>Figure 1 </b>: ChimeraI design</p></div>
+  ChimeraII - PT1a enzyme - Citrus limon (right substrate, wrong donor) with the donor binding site from G4DT - soybean enzyme (wrong substrate, right donor).</p>
+  <img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/chimera-ii-2.svg" alt="cycle" style="width: 30%" class="imgcenter">
+  <div class="figure-text"> <p><b>Figure 2 </b>: ChimeraII design</p></div>
+  
+  <!-- Table style-->
+   <style type="text/css">
+    .tg {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    
+    .tg td {
+      border-color: #b03b94  ;
+      border-style: solid;
+      border-width: 1px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      overflow: hidden;
+      padding: 10px 5px;
+      word-break: normal;
+    }
+    
+    .tg th {
+      border-color: #b03b94  ;
+      border-style: solid;
+      border-width: 1px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 14px;
+      font-weight: normal;
+      overflow: hidden;
+      padding: 10px 5px;
+      word-break: normal;
+    }
+    
+    .tg .tg-0lax {
+      text-align:center !important;
+      vertical-align: top
+    }
+    .tg-0lax .MathJax {font-size: 1.3em !important; }
+    </style>
+  
+  <div class="figure-text"> <p>Table.1-Donor, acceptor switch for ChimeraI: </p></div>
+  <center>
+    <table class="tg">
+      <tr><th></th><th>Acceptor</th><th>Donor</th></tr>
+      <tr><td>PT1a - Citrus lemon</td><td>V</td><td>X</td></tr>
+      <tr><td>PT1L - hop </td><td>X</td><td>V</td></tr>
+      <tr><td>G4DT - soybean </td><td>X</td><td>V</td></tr>
+    </table>
+  </center>
+<br><br>
+<center>
+<div class="figure-text"> <p>Table.2-Donor, acceptor switch for ChimeraII: </p></div>
+      <table class="tg">
+      <tr><th></th><th>Acceptor site</th><th>Donor site</th></tr>
+      <tr><td>CimeraI</td><td>PT1a- Citrus lemon</td><td>PT1L- hop</td></tr>
+      <tr><td>ChimeraII</td><td>PT1a- Citrus lemon</td><td>G4DT- soybean</td></tr>
+    </table>
+</center>
+    <br><br>
+    <p>We predicted a proper folding of our enzymes using Phyre2<sup>[<a href="#ref14">14</a>]</sup> and tested the chimeras' capability to bind the right donor, DMAPP, using Dockthor<sup>[<a href="#ref15">15</a>]</sup>. The results showed that our chimeras bind the prenyl group even better than the original enzyme bind the geranyl group.<br> For Blast results and docking parameters (<a href="#appendix"> see appendix</a>). </p>
+      <h4>U6PT genetic circuit </h4>
+      <p>With four native enzymes and two synthetic chimeras as candidates, we proceeded to design the genetic circuits for these enzymes, to be expressed in <I>E. coli</I>.  
+
+        First and foremost, we optimized the codons of all PT candidates to <I>E. coli</I> using Integrated DNA Technologies -IDT codon optimization tool. All PTs were ordered as DNA fragments except for PcPT which was amplified from a codon-optimized plasmid that was used in <I>E. coli</I><sup>[<a href="#ref4">4</a>]</sup>. 
+        We decided to express the enzyme under the rhlR-regulated promoter. Downstream to the U6PT gene we added a P2A sequence, a self-cleaving peptide element which induces ribosomal skipping during translation of a protein in the cell, upstream to an mCherry reporter gene. In such a manner, the mCherry expression is tied directly to the start codon of the U6PT candidates while not being covalently bound to the candidates themselves. As P2A has been shown to have the highest cleavage efficiency compared to other 2A sequences<sup>[<a href="#ref16">16</a>]</sup>, an mCherry signal corresponds to a 1:1 ratio, at the very least, which allows for a lower estimate of the candidates' expression. <br>
+        The A133_rhlR_tdPP7_mCherry plasmid we used as a backbone was a gift by Prof. Roee Amit's lab<sup>[<a href="#ref17">17</a>]</sup>. </p>
+        <img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/24-xime-ximd-plasmid-no-tetr-1.png" alt="u6pt" style="width: 30%" class="imgcenter">
+        <div class="figure-text"> <p><b>Figure 3 </b>: U6PT_mCherry circuit design </p></div>
+        <img src="https://static.igem.wiki/teams/4179/wiki/design/ezgif-com-gif-maker-2.png" alt="(p2a)thirdanimation" width="60%" class="imgcenter">
+        <div class="figure-text"> <p>P2a example animation </p></div>
+        <p>Plant aromatic PTs all belong to the UbiA superfamily of intramembrane PTs. Specifically, U6PTs are members of this family, which catalyze prenylation reactions with phenolic compounds as their substrates. Those enzymes possess similar characteristics, such as the two conserved aspartate-rich motifs which bind 
+          Mg<sup>+2</sup> resulting in the stabilization of the diphosphate moiety of the prenyl donor. Additionally, they all contain between 6 to 9 transmembrane helices, and possess a transit peptide sequence at their N-terminus region. Which leads us to the topic of transit peptides. </p>
+        
+          <h4>Transit peptides</h4>
+          <p>A transit peptide (TP) is a short peptide sequence, ranging between 16 to 30 amino acids long, that is usually present at the N-terminus of most newly synthesized proteins. This peptide sets the fate of the protein towards a certain organelle or the secretion pathways, or aids in the post-translational insertion of the protein into cellular as well as intracellular membranes.</p>
+            <p>As previously mentioned, U6PTs all contain a TP located at their N-terminus region. Multiple literature sources showed that expression of plant PTs in yeast systems without the TP sequence (truncated form) increases the efficiency of their expression and thus yields better metabolic results<sup>[<a href="#ref8">8</a>]</sup><sup>[<a href="#ref18">18</a>]</sup>, however the reason for this is not fully understood.</p>
+            
+             
+            
+           <p> Assuming adequate similarities between yeast and bacterial expression systems in comparison to plant expression systems, we will express the six PT candidates, without their TPs (delta TP-U6PT), and compare the results between the original and the truncated form of each enzyme. </p>
+
+           <h3>XimD & XimE </h3><hr>
+        <p>The <b>XimD</b> enzyme together with <b>XimE</b> enzyme are responsible for turning 7-demethylsuberosin (DMS) into decursinol. XimD is a flavin-dependent monooxygenase that mediates the oxygenation of DMS to give an epoxide intermediate. With the presence of XimE enzyme, which is a SnoaL-like cyclase, this intermediate undergoes cyclization to give decursinol<sup>[<a href="#ref19">19</a>]</sup>.The genes of both these enzymes are cloned into one plasmid. </p>
+        <center><img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/xim-reaction-animation.gif" alt="4Animation" width="50%" class="imgcenter">
+        <div class="figure-text"> <p>Xim example animation  </p></div></center>
+  <h4>XimD & XimE genetic circuit </h4>
+  <p>When designing the genetic circuit for XimD and XimE, we wanted to incorporate them in a regulatory system. The aim was to have each one of the two enzymes under a different regulation, XimD regulated by the Lac system, and XimE regulated by the Tet-On system. That way we can control the expression ratio between the two xim enzymes. </p>
+<p>According to this approach, we designed the genetic circuit to have XimD  and XimE , each one under T7 promoter, with LacO or TetO placed between the promoter and XimD or XimE, respectively. </p>
+<p>To complete the regulatory system, the repressor genes were added to the design as independent fragments, each one with its own promoter. pJ23119 promoter  for TetR, and pLac promoter for LacI. And with that our design ended.</p>  
+<img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/xim1.png" alt="cycle" style="width: 35%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 4 </b>: XimD & XimE genetic circuit</p></div> 
+<p>Relating on our modeling results, ximE enzyme should be expressed constitutively to approach a higher bio-manufacturing yield of the desired metabolite - decursinol (To read more about the impact of the model on the designs <a href="{{ url_for('pages', page='engineering') }}">click here</a>). So, to implement these results in our design, the endmost cloning step of the TetR repressor was denied (see fig.5-ximD & ximE final genetic circuit). </p>
+<img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/xim2.png" alt="cycle" style="width: 30.5%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 5 </b>: XimD & XimE final genetic circuit</p></div> 
+<h3>Final system- Decursinol Bio-Production Machine </h3><hr>
+<p>Both circuits  mentioned above (fig.2 and fig.4) will be transformed into <I>E. coli</I> BL21 DE3 strain (figure.6). This specific strain was chosen due to its ability to express T7 polymerase that employs the T7 promoter for transcription. Each plasmid has a different origin of replication and  antibiotic resistance, ensuring the maintenance of both plasmids after selection. </p>
+<img src="https://static.igem.wiki/teams/4179/wiki/design/12-final-system.png" alt="cycle" style="width: 40%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 6 </b>: Decursinol bio production machine </p></div> 
+<h3>Cloning Strategy</h3>
+<hr>
+<p>In the beginning stages of our project, when we were reviewing the literature on the topic of decursin, we saw that previous efforts were made to introduce the synthesis pathway of plant pyranocoumarins into microbial systems, and amongst those pyranocoumarin was decursin <sup>[<a href="#ref4">4</a>]</sup>. However, due to the fact that we were interested specifically in decursin, this is what we focused on.  
+  As the purpose of our project is biomanufacturing decursin on a large scale, we decided to use the information acquired from previous literature as our starting point and build upon it by focusing our efforts on optimizing the system using modelling tools and software. Thus, pETDuet-PcPT-XimD-XimE plasmid was utilized for this motive. It was the backbone for one of our genetic circuits; the Xim design.</p>
+  <h4>U6PT</h4>
+  <img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/u6pt-cloning-strategy.png" alt="cycle" style="width: 70%" >
+  <div class="figure-text"> <p><b>Figure 7 </b>: U6PT cloning Strategy</p></div> 
+  
+  <h4>XimD & XimE</h4>
+<img src="https://static.igem.wiki/teams/4179/wiki/design/u6pd/screen-shot-2022-10-12-at-16-21-55.png" style="width: 100%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 8 </b>: XimD & XimE cloning Strategy</p></div>
+
+  <div class="col-md-offset-6 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                             <p id="appendix">Appendix</p>
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/apendix.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+            {% endblock %}
+            {% block references %}
+            <ol class="reftext"> 
+              <li id="ref1">de Bruijn WJC, Levisson M, Beekwilder J, van Berkel WJH, Vincken J-P. Plant Aromatic Prenyltransferases: Tools for Microbial Cell Factories. 2020; </li>
+              <li id="ref2">Reddy CS, Kim SC, Hur M et al. Natural Korean medicine Dang-Gui: Biosynthesis, effective extraction and formulations of major active pyranocoumarins, their molecular action mechanism in cancer, and other biological activities. Molecules 22 2017. </li>
+              <li id="ref3">Karamat F, Olry A, Munakata R et al. A coumarin-specific prenyltransferase catalyzes the crucial biosynthetic reaction for furanocoumarin formation in parsley. The Plant Journal 2014; 77: 627-638.</li>
+              <li id="ref4">Bu X-L, He B-B, Weng J-Y et al. Constructing Microbial Hosts for the Production of Benzoheterocyclic Derivatives. ACS Synth Biol 2020; 9: 2282-2290. </li>
+              <li id="ref5">Munakata R, Olry A, Karamat F et al. Molecular evolution of parsnip (Pastinaca sativa) membrane-bound prenyltransferases for linear and/or angular furanocoumarin biosynthesis. New Phytologist 2016; 211: 332-344.  </li>
+              <li id="ref6">Munakata R, Kitajima S, Nuttens A et al. Convergent evolution of the UbiA prenyltransferase family underlies the independent acquisition of furanocoumarins in plants. New Phytologist 2020; 225: 2166-2182.</li>
+              <li id="ref7">Song J, Luo H, Xu Z et al. Mining genes associated with furanocoumarin biosynthesis in an endangered medicinal plant, Glehnia littoralis. J Genet 2041; </li>
+              <li id="ref8">Munakata R, Inoue T, Koeduka T et al. Molecular Cloning and Characterization of a Geranyl Diphosphate-Specific Aromatic Prenyltransferase from Lemon 1[W]. </li>
+              <li id="ref9">Li W. Bringing Bioactive Compounds into Membranes: The UbiA Superfamily of Intramembrane Aromatic Prenyltransferases. undefined 2016; 41: 356-370.  </li>
+              <li id="ref10">Mistry J, Chuguransky S, Williams L et al. Pfam: The protein families database in 2021. Nucleic Acids Res 2021; 49: D412-D419.  </li>
+              <li id="ref11">Akashi T, Sasaki K, Aoki T, Ayabe SI, Yazaki K. Molecular cloning and characterization of a cDNA for pterocarpan 4-dimethylallyltransferase catalyzing the key prenylation step in the biosynthesis of glyceollin, a soybean phytoalexin. Plant Physiol 2009; 149: 683-693.  </li>
+              <li id="ref12">Li H, Ban Z, Qin H, Ma L, King AJ, Wang G. A heteromeric membrane-bound prenyltransferase complex from hop catalyzes three sequential aromatic prenylations in the bitter acid pathway. Plant Physiol 2015; 167: 650-659. </li>
+              <li id="ref13">Bräuer L, Brandt W, Schulze D, Zakharova S, Wessjohann L. A Structural Model of the Membrane-Bound Aromatic Prenyltransferase UbiA from E. coli. undefined 2008; 9: 982-992.</li>
+              <li id="ref14">Kelley LA, Mezulis S, Yates CM, Wass MN, Sternberg MJE. The Phyre2 web portal for protein modeling, prediction and analysis. Nature Protocols 2015 10:6 2015; 10: 845-858. </li>
+              <li id="ref15">Guedes IA, Barreto AMS, Marinho D et al. New machine learning and physics-based scoring functions for drug discovery. Scientific Reports 2021 11:1 2021; 11: 1-19. </li>
+              <li id="ref16">Kim JH, Lee SR, Li LH et al. High cleavage efficiency of a 2A peptide derived from porcine teschovirus-1 in human cell lines, zebrafish and mice. PLoS One 2011; 6. </li>
+              <li id="ref17">Brunwasser-Meirom M. Studying Looping-Based Transcriptional Regulation Using Synthetic Biology Tools. </li>
+              <li id="ref18">Akashi T, Sasaki K, Aoki T, Ayabe S-I, Yazaki K. Molecular Cloning and Characterization of a cDNA for Pterocarpan 4-Dimethylallyltransferase Catalyzing the Key Prenylation Step in the Biosynthesis of Glyceollin, a Soybean Phytoalexin 1[W]. </li>
+              <li id="ref19">He, Bei Bei et al. 2019. “Enzymatic Pyran Formation Involved in Xiamenmycin Biosynthesis.” ACS Catalysis: 5391-99. </li>
+              {% endblock %}

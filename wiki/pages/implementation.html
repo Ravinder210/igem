@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+  
+{% block title %}Proposed Implementation{% endblock %}
+{% block lead %}To complete a well-rounded project, we must have a plan regarding our proposed implementation of our biomanufactured decursin. In this page we expand upon the way we envision decursin being integrated into the real world, and specifically being used in an ointment by patients undergoing chemotherapy. {% endblock %}
+
+{% block page_content %}
+<h3>Introduction</h3>
+<hr>
+<p>Mass production of decursin allows us not only to overcome the low productivity of the metabolite but also to exploit the beneficial qualities of decursin into an off-the-shelf product intended to treat chemotherapy-induced alopecia (CIA). 
+  As cancer patients undergoing chemotherapy are our end users, it is more than necessary to reach a well-thought-out solution, covering all aspects starting with safety, implementation, manufacturing facilities, and precise measuring tools.
+  In our proposed implementation we took into consideration the market effect, large-scale manufacturing, safety challenges, and our developed measuring assay to fulfill the full potential of our project.
+  </p>
+<br>
+
+<h3><img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/market-effect.svg" width="8%">Market Effect</h3>
+<hr>
+<p>The information we compiled from both the literature<sup>[<a href="#ref1">1</a>]</sup><sup>[<a href="#ref
+  2">2</a>]</sup> and the results of <a href="{{ url_for('pages', page='human-practices') }}">a survey</a> we conducted 
+  demonstrated that today's solutions for CIA are inadequate. As David G. Taylor<sup>[<a href="#ref3">3</a>]</sup> demonstrates, 
+  the lack of affordability of new drugs is a widely discussed concern. As a result, we took into consideration the financial 
+  aspect of the product, as it should be accessible to cancer patients from different social backgrounds. 
+  As indicated in the literature<sup>[<a href="#ref4">4</a>]</sup><sup>[<a href="#ref5">5</a>]</sup> bio-manufacturing and
+   fermentation in bacteria are more cost-efficient, and by producing decursin in a synthetic way in bacteria we will be
+    able to lower the market price for decursin in general and create an inexpensive solution for CIA in particular.
+  </p>
+
+  <br>
+<h3><img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/large-scale.svg" width="8%">Large-Scale Manufacturing</h3>
+<hr>
+<p>In practice, mass production of decursin will require large-scale bioreactors and suitable parameters to ensure optimal conditions for bacterial growth.
+In our <a href="{{ url_for('pages', page='Model') }}#ref">fermentation model</a> we calculated the predicted protein concentration (normalized to volume) and asses the necessary amounts of substrate needed on a large scale. </br>Regarding biofermentors, we intend to use <I>E. coli</I> as advised by Moti Rebhun, CTO of YDLabs and fermentation specialist.</p> 
+
+<br>
+<h3><img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/prospect.svg" width="8%">Prospects</h3>
+<hr>
+<p>After our public engagement and HP work, we concluded that CIA still lacks a sufficient treatment. As we were talking to experts, we were introduced to the difficulties hair loss adds to the disease itself. In fact, about 8% of women recommended for chemotherapy consider refusing the treatment because of the expected hair loss<sup>[<a href="#ref6">6</a>]</sup>. Due to this, our end users will be patients suffering CIA.</br> The final project will be accessible as a daily product such as shampoo or cream and will accommodate the patient in an easy form with a simple application. 
+  Because our end users are dealing with a sensitive matter, we consulted with a former social worker who accompanied children in the oncology department at Rambam hospital, regarding how to present our product to the patients. As our project will step into the implementation phase, we are planning on following his advice. For more details regarding his consultation visit our <a href="{{ url_for('pages', page='human-practices') }}">Human Practices</a> page. 
+   </p>
+
+<br>
+<h3><img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/safty.svg" width="8%">Safety and Challenges</h3>
+<hr>
+<p>Biomanufacturing carries its risks as bacterial materials can create an immune response.
+   For that reason, we defined an extraction process in which we separate between the bacteria 
+   and the culture medium and purify the metabolite using chloroform. Moreover, we consulted the 
+   Israeli standard and realized our product will be qualified as a designated cosmetic. That
+    means we must prove its efficacy and safety. We intend to guarantee the purity of our 
+    metabolite as well. For more details on how we will handle the safety of our proposed 
+    implementation visit our <a href="{{ url_for('pages', page='safety') }}">Safety</a> page.</p>
+
+ <br>   
+<h3><img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/oracell.svg" width="8%">OraCell: How can other scientists benefit from our project</h3>
+<hr>
+<p>Our project isn't complete without <a href="{{ url_for('pages', page='measurement') }}">OraCell</a>; the tool we developed to measure the metabolite we synthesize. The necessity we faced to measure the concentration of our outcome in a relatively high throughput way isn't unique to our team. Our answer to this need was OraCell, which was made with <b>synthetic biology</b> tools. We hope this could replace measurement tools like HPLC in our project, which require expertise and high costs.
+  In future use, we intend OraCell to be a pipeline to sift through a wide variety of molecules and detect the effectiveness of molecules in the Hippo pathway, which may be used to screen their effect on cell proliferation and cancer progression. Making this kind of data set could be potentially used to train machine-learning algorithms to virtually screen metabolites, molecules, and drugs in their effect on the Hippo pathway.
+  </p>
+
+<br>
+  <h3><img src="https://static.igem.wiki/teams/4179/wiki/home-page/angelroot-color.png" width="8%">Our Vision</h3>
+  <hr>
+  <p>As our product has therapeutical effects but is visioned as an off-the-shelf product, it is defined as a
+     cosmeceutical product, meaning it has its own regulation that differs from drug regulation. We’re planning 
+     on following the required regulation such as safety tests, efficiency, and dermatological examination<sup>[<a href="#ref7">7</a>]</sup>.
+      For the formulation, we asked CIA patients in which form they would like to see the final product (shampoo,
+       cream, or spray), and the majority chose a shampoo form.</p>
+<p>In the (hopefully not so far) future, we intend to found the Angel Roots company, which will consist of:</p>
+<p>1.	<b>R&D team:</b> For further research, development, and improvement<br>
+  2.	<b>Plant area:</b> Professional bioengineers will operate the bio-fermenters for mass production of decursinol (which will be esterified into decursin).<br>
+  3.	<b>Formulation:</b> There will be a department of pharmacists that will formulate the molecule into shampoo products<br>
+  4.	<b>Marketing team:</b> The connecting force between our product and the end users. The team will be in charge of marketing strategies, surveys, and accommodating the needs of the patients from our product.<br>
+  </p>
+  <p> For the vision of the product, we constructed the following chart flow:</p><br>
+       <img src="https://static.igem.wiki/teams/4179/wiki/proposed-implemintation/proposed-imp.svg" style="width:100%" class = "imgcenter" ></p>
+
+
+
+{% endblock %}
+
+{% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Munzone, E., Bagnardi, V., Campennì, G., Mazzocco, K., Pagan, E., Tramacere, A., ... & Veronesi, P. (2019). Preventing chemotherapy-induced alopecia: a prospective clinical trial on the efficacy and safety of a scalp-cooling system in early breast cancer patients treated with anthracyclines. British Journal of Cancer, 121(4), 325-331.</li>
+    <li id="ref2">Zannini, L., Verderame, F., Cucchiara, G., Zinna, B., Alba, A., & Ferrara, M. (2012). 'My wig has been my journey's companion': perceived effects of an aesthetic care programme for Italian women suffering from chemotherapy-induced alopecia. European Journal of Cancer Care, 21(5), 650-660.
+    <li id="ref3">Taylor, D. G. (2020). The political economics of cancer drug discovery and pricing. Drug Discovery Today, 25(12), 2149-2160</li>
+    <li id="ref4">Ferreira, R. D. G., Azzoni, A. R., & Freitas, S. (2018). Techno-economic analysis of the industrial production of a low-cost enzyme using E. coli: the case of recombinant β-glucosidase. Biotechnology for biofuels, 11(1), 1-13.</li>
+    <li id="ref5">GRĪGS, O. MODEL BASED BIOMASS YIELD OPTIMIZATION AND CONTROL FOR E. coli BL21 (DE3) HEPATITIS B CORE ANTIGEN (HBcAg) PRODUCER FED-BATCH FERMENTATION PROCESS.</li>
+    <li id="ref6">Lemieux, J., Maunsell, E., & Provencher, L. (2008). Chemotherapy‐induced alopecia and effects on quality of life among women with breast cancer: a literature review. Psycho‐Oncology: Journal of the Psychological, Social and Behavioral Dimensions of Cancer, 17(4), 317-328.</li>
+    <li id="ref7">Newburger, A. E. (2009). Cosmeceuticals: myths and misconceptions. Clinics in dermatology, 27(5), 446-452.</li>
+</ol>
+   
+
+
+{% endblock %}
+

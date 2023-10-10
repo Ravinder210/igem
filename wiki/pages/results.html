@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+  
+{% block title %}Results{% endblock %}
+{% block lead %}In this page we accumulated the results we got from all parts of the project, including cloning, transformation, transfection, and all various assay methods used along the way. {% endblock %}
+
+{% block page_content %}
+
+<h2>Introduction</h2>
+<hr>
+<p>In our project we had three different fronts of experimental efforts done simultaneously: biomanufacturing, measurement and efficacy tests.
+  <br>On this page, we present the results achieved thus far in each one of them.  </p>
+  <div class="row justify-content-md-center">   
+    <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
+      <div class="home-btn text-center rounded p-3 py-3" >
+        <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a  href="#bio">
+          <img src="https://static.igem.wiki/teams/4179/wiki/results/biomanufacturing.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+          <div class="content mt-3">
+              <h5 class="title mb-0">Biomanufacturing</h5>
+          </a>
+          </div>
+      </div>
+  </div><!--end col-->
+      
+  
+        
+  <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
+      <div class="home-btn text-center rounded p-3 py-3" >
+        <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a  href="#mes">
+          <img src="https://static.igem.wiki/teams/4179/wiki/results/measurement.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+          <div class="content mt-3">
+              <h5 class="title mb-0">Measurement</h5>
+          </a>
+          </div>
+      </div>
+  </div><!--end col-->
+  <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
+  <div class="home-btn text-center rounded p-3 py-3" >
+    <a href="#join" data-toggle="scroll-link" class="text-sm font-weight-bold"><i class="fa fa-chevron-right text-xs text-pink"></i> <a  href="#ef">
+      <img src="https://static.igem.wiki/teams/4179/wiki/results/efficacy.svg" class="img-fluid avatar avatar-medium shadow rounded-pill" alt="">
+      <div class="content mt-3">
+          <h5 class="title mb-0">Efficacy test</h5>
+      </a>
+      </div>
+  </div>
+  </div><!--end col-->
+  <style>.figure-text {text-align:left; font-size: 12px; color: #787277;}</style>
+  <h3 id="bio">Biomanufacturing</h3>
+  <hr>
+  <p>Our goal is to produce decursinol from umbelliferone using bacteria, which subsequently become decursin via a chemical
+     esterification.  
+  As detailed in the <a href="{{ url_for('pages', page='design') }}">design</a> page , we planned to clone three enzymes
+   into two separated circuits. We chose to work with <I>E. coli</I> BL21 DE3 strain as the bacterial cell factory that
+    will implement these plasmids, as it expresses the T7 polymerase and therefore employs the T7 promoter for transcription. </p>
+
+  <p><br></p>
+  <h4>Umbelliferone-6 Prenyltransferase</h4>
+
+
+  <p>As mentioned in the <a href="{{ url_for('pages', page='design') }}">design</a> page, to convert umbelliferone to DMS we
+     need the action of the mediating enzyme Umbelliferone-6 prenyltransferase (U6PT). We planned to clone six different
+      variants of U6PT enzymes to A133_rhlR_tdPP7_mCherry plasmid upstream to an mCherry gene with mediating P2A self-cleaving
+       peptide sequence. The cloning process contains two stages: a) cloning of the P2A sequence and,
+  <br>b) cloning of each one of the designed U6PT enzymes. </p>
+  <h5>Cloning</h5>
+<p>P2A was cloned between AgeI and NdeI restriction sites. The ligated plasmid was transformed into <I>E. coli</I> TOP10.</p>
+  <img src="https://static.igem.wiki/teams/4179/wiki/results/results-picture-3-new.png" alt="FirstPic" style="width: 90%" class="imgcenter"> 
+  <div class="figure-text"> <p><b>Figure 1: Colony PCR of first stage A133-P2A plasmid transformation.</b> Eight colonies from the transformed plate and
+     a single colony from no-insert control plate were picked and underwent colony PCR. A no colony reaction was measured as well (negative). Expected length 
+     for positive clones and no-insert control were 1305 and 1941 bp, respectively. Results were made with a 1% agarose gel and DNA stained with ethidium bromide (EtBr).</p></div>
+    <p>Apart from two sampled colonies, all colonies had the desired fragment length of 1305bp, indication for successful cloning.</p>
+<p> The subsequent cloning of U6PT enzymes was unsuccessful as of the time of the wiki-freeze deadline, despite many strategies that we have attempted. The enzyme was to be cloned between NdeI and NheI restriction sites, which sequencing results confirmed are present. To read more about our different strategies as part of the Design-Build-Test cycle refer to our <a href="{{ url_for('pages', page='engineering') }}">Engineering Success</a> page. <br><br></p>
+    <h4>XimD & XimE</h4>
+<h5>Cloning</h5>
+
+<p>The two enzymes are required to turn 7-dimethyl suberosin (DMS) into decursinol, as detailed in the <a href="{{ url_for('pages', page='design') }}">Design</a> page. After amplifying out XimE and PcPT from PetDuet plasmid in two stages, we have successfully cloned into the plasmid a new XimE sequence, which contains the desired regulation. </p>
+  <img src="https://static.igem.wiki/teams/4179/wiki/results/results-picture-1.png" alt="SecondPic" style="width: 85%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 2: Colony PCR final XimD and XimE plasmid transformation.</b> 16 colonies from the transformed plate and a single colony from no-insert control plate were picked and underwent colony PCR. A no colony reaction was measured as well (neg. control). Expected length for positive clones and no-insert control were 677 and 150 bp, respectively. Results were made with a 2% agarose gel and DNA stained with ethidium bromide (EtBr).</p></div>
+<p>Apart from one sampled colony, all colonies had the desired fragment length of 677bp, indication for successful cloning.</p>
+<h5>Quantitative PCR</h5>
+<p>Following the successful XimD+XimE design cloning process, the final plasmid was transformed into <I>E. coli</I> BL21 DE3 strain. The next step was conducting a qPCR assay for two main purposes: 1) evaluation of XimD and XimE transcription. 2) assessment of our LacI-based regulatory system effect.</p>
+  <img src="https://static.igem.wiki/teams/4179/wiki/results/qpcr-results.png" alt="SecondPic" style="width: 90%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 3: (A-C) Amplification curves of XimD, XimE and housekeeping gene transcripts.</b> 5ml <I>of E. coli</I> BL21 cells were allowed to grow over night in the presence (induced) or absence (non-induced) of 1mM IPTG, before RNA extraction. RNA was then subjected to 1h of DNase and converted to cDNA. Finally, samples underwent quantitative PCR with gene-specific primers. IPTG presence resulted in the induction of XimD (A) by 14-fold (D), while XimE transcription remains relatively unchanged (B, D). rssA was used as a housekeeping gene. The threshold for analysis was set at 0.3. Horizontal red line: threshold. Dashed lines: Ct value for each sample. NTC: non-template control. The XimD-XimE plasmid was used as a positive control. <b>D. Fold-change of XimD and XimE transcription.</b> The Ct values acquired correspond to the initial total RNA value levels. Hence, the values were normalized to the Ct values of endogenous housekeeping gene, rssA, a known housekeeping gene <sup>[<a href="#ref1">1</a>]</sup>. This figure was created with the assistance of user-created functions <sup>[<a href="#ref2">2</a>]</sup><sup>[<a href="#ref3">3</a>]</sup>.</p></div>
+  <p>Referring to each one of our set purposes: 
+    <br>1) Our assay confirmed both genes were transcribed.
+    <br>2) As described on our <a href="{{ url_for('pages', page='design') }}">design</a> page, the XimD gene was cloned under LacI regulation. Thus, when introducing IPTG to the system we expected transcription levels to rise. Induction level was revealed to be 14-fold after six h of incubation with a one mM of IPTG (figure 3D).<br>
+    Interestingly, XimE seemed to have also been affected in the IPTG-induced culture, marking a ~3-fold increase in transcription (figure 3D). A possible explanation is the proximity of the XimD and XimE genes in our construct. When we introduce IPTG to the system, the Lac repressor detach from the Lac operator regulating the XimD gene<sup>[<a href="#ref4">4</a>]</sup>. This in turn, permits the recruitment of T7 RNA polymerase to the XimD T7 promoter. Since the XimE promoter is compatible with T7 RNA polymerase as well, the IPTG induction might have allowed the T7 polymerase to bind to the relatively proximal XimE promoter, increasing its transcription levels.
+    <br><br>
+     </p>
+<h3 id="mes">Measurement</h3><hr>
+<h4 id="oraora">OraCell</h4>
+<h5>Cloning</h5>
+<p>To construct our new measurement tool, we planned to generate a stable clonal cell line, which harbors in its genome a commercially available system with a Luciferase reporter. The system is susceptible to perturbations in the Hippo pathway, a cascade which decursin was found to interact with <sup>[<a href="#ref4">4</a>]</sup><sup>[<a href="#ref5">5</a>]</sup>. To integrate the plasmid, we had to insert a selection marker gene that could pressure cells to randomly integrate the system into their genome. We chose the blasticidin resistance gene (BlastR), which confers resistance to a toxin for mammalian cells <sup>[<a href="#ref5">5</a>]</sup><sup>[<a href="#ref6">6</a>]</sup>.</p>
+<p>BlastR was cloned under a constitutive CMV promoter. We successfully assembled the Luc_blast_oracell plasmid from a backbone and 2 inserts simultaneously (promoter and BlastR).</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/results/results-picture-2.png" alt="SecondPic" style="width: 85%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 4:</b> Colony PCR of Luc_blast_oracell transformation</b>. 25 colonies from the transformed plate were picked and underwent colony PCR using a ready-to-use mix (Hylabs, #EZ3006/7/636). A no colony reaction was measured as well. Expected length for positive clones and no-insert control were 1781 and 450 bp, respectively. Results were made with a 1% agarose gel and DNA stained with ethidium bromide (EtBr). A commercial ladder (L) was used (NEB, #3232).</p></div>
+<p>Colonies 6,7,9,11,20,21 and 24 had the desired fragment length of 1781bp, indication for successful cloning.  Colonies 5,8,10,12,13,18,19,22,23 and 25 had expected self-ligation fragment length of 450bp. Rest of the colonies had no amplification.</p>
+
+<h5>Linear Polyethylenimine (PEI) Calibration</h5>
+<p>Before transfecting the cells, we calibrated the PEI transfection reagent, to find the best concentration that will show low cellular death and high transfection efficiency.</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/results/picture2-iser.png" style="width:45%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 5: PEI calibration.</b>CHO cells were transfected with a BFP-containing plasmid using increasing amounts of PEI. X h later cells were taken to a flow cytometer BD™ LSR II flow cytometer and gated for FSCxSSC (viability gate), out of which gated for SSC_AxSSC_H (single events gate, ~100% of viable events), and out of which gated for BFP (fluorescence gate). 7.2μg of PEI was chosen as the optimal condition for transfection (dotted line), yielding high viability and strong transfection efficiency. Viability percentages are of the total number of events, fluorescence percentages are of the total number of single events.
+  </p></div>
+<p>Cell viability dropped gradually until 7.5μg PEI that was tested. We chose 7.2μg as the working PEI amount based on optimal fluorescence signal with minimal drop in viability (Figure 5).
+<br><br></p>
+<h5>Luminescence of Transfected Cells</h5>
+  <br><br>
+<img src="https://static.igem.wiki/teams/4179/wiki/results/picture1-iser.png" style="width:45%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 6: Luminescence of transfected CHO cells</b>. CHO cells were transfected with plasmid containing Luciferase enzyme.  Following selection and proliferation, transfected cells were lysed and following the addition of luciferin, the cells were analyzed for bioluminescence in Synergy H1 Hybrid Multi-Mode Microplate Reader. Untransfected CHO cells and Buffer underwent the same process and were analyzed for bioluminescence, serving as negative controls. In addition, bacterial cells expressing Luciferase and producing luciferin were diluted 1:10 and analyzed for bioluminescence serving as a positive control. Transfected CHO cells show a clear bioluminescent signal, similar to the positive control, Luciferase expressing <I>E. coli</I> 10-beta, and clearly higher than the two negative controls, buffer with luciferin and untransfected CHO cells with luciferin.  From these results, we were able to conclude that the CHO cells retained the entire construct, both the blasticidine resistance gene and the Luciferase enzyme and successfully expressed both.  </p></div>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/results/decursin-time-calibration.png" style="width:45%" class="imgcenter">
+  <div class="figure-text"><p><b><br>Figure 7: A preliminary decursin incubation time calibration assay</b>. Cells were incubated with decursin with various time points ranging from 1-22 hours before being lysed. Then, luciferin was added and bioluminescence was measured. In addition, there were two types of negative control used, OraCell cells that were incubated without luciferin and CHO cells that do not express Luciferase. A control OraCell cells were incubated without decursin for 22h. Number of replicates = 1.</p></div>
+<p>OraCell cells showed a periodic behavior of decursin’s effect on Luciferase expression via the Hippo pathway over time. Additionally, following a 22-hour incubation time with decursin, the luminescence was markedly decreased compared to the same incubation time without decursin. This result also showed that the OraCell cells showed a clear bioluminescent signal compared to the negative controls, the same cells without the addition of luciferin and CHO cells that do not express Luciferase.</p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/results/decursin-16-hour-time-experiment.png" style="width:45%" class="imgcenter">
+  <div class="figure-text"><p><b><br>Figure 8: Decursin incubation time assay</b>. OraCell cells were incubated with and without decursin at various time points ranging from 1-16 hours, lysed, luciferin was added, and bioluminescence was measured. The cells without decursin served as the positive control, to see how much decursin impacted the cells’ bioluminescence.</p></div>
+<p>This result reinforced the trend shown previously (Figure 7), that there’s a periodic oscillation of decursin’s impact on the Hippo pathway over time. Interestingly, cells without decursin presented a decrease in luminescence between 10 and 16 hours of incubation. Number of replicates = 3. </p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/results/calibration-curve-decursin-3-and-16-hour-experiment.png" style="width:45%" class="imgcenter">
+  <div class="figure-text"><p><b><br>Figure 9: Decursin dose-response assay at 3 and 16 hours</b>. OraCell cells were incubated with increasing concentrations of decursin ranging from 0-240 µM for either 3 or 16 hours. The cells were then lysed, luciferin was added, and bioluminescence was measured. The luminescence was normalized to the no-decursin control for each time point. Number of replicates = 3.</p></div>
+
+<p>Following a 3-hour incubation with decursin, there was no clear trend to be discerned from the calibration curve. However, at the 16h assay, increasing the decursin concentration resulted in increase in luminescence. This result along with others (Figures 7 and 8), might suggest how decursin impact the Hippo pathway within the OraCell system, and by extension the Hippo pathway as a whole. Our working theory is that decursin is capable of increasing or decreasing Luciferase expression as explained on our <a href="{{ url_for('pages', page='measurement') }}">Measurement</a> page.</p>
+
+<h4>HPLC</h4>
+<p>As mentioned on our  <a href="{{ url_for('pages', page='measurement') }}">measurement page</a>, high-performance liquid chromatography (HPLC) is a sensitive method for the detection and quantification of chemical compounds. We plan to use HPLC to validate enzymes' functionality through detection of the different metabolites from the <a href="{{ url_for('pages', page='description') }}#opening">decursin pathway</a>.</p>
+<p></p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/results/calibrationn.png" style="width:100%" class="imgcenter">
+  <div class="figure-text"><p><b><br>Figure 10: (A-C) Calibration Curves of Umbelliferone, 7-Demethylsuberosin and Decursinol. </b>Samples of umbelliferone (A) at 0.25, 0.5, 0.75 and 1 mM, 7-demethylsuberosin (B) at 0.75, 1, 1.25 and 1.5 and decursinol (C) at 0.1, 0.2, 0.3, 0.4 and 0.5 mM were dissolved in 20% acetonitrile (ACN) and measured. Note that the value for 1.25 mM 7-demethylsuberosin was excluded. H2O (a) and ACN (b) were used as mobile phase with a gradient: zero min 20% b, five min 20% b, 30 min 80% b and 40 min 20% b. A linear regression was fitted to the values. Umbelliferone, 7-demethylsuberosin and decursinol samples were measured at wavelengths of 194, 332 and 205 nm, and showed an average retention time of 10.069, 23.86 and 15.475 min, respectively.</p></div>
+
+<p>As a part of our efforts to get large-scale production of decursin, we plan to detect and quantify decursinol production using the pETDuet-PcPT-XimD-XimE plasmid, mentioned on our <a href="{{ url_for('pages', page='design') }}">design page</a>. This will act as a positive control and as a baseline which we aim to improve. </p>
+
+<div style="padding-top: 70px;">
+<h3 id="ef">Efficacy Test</h3><hr>
+</div>
+<h5>PAMPA</h5>
+<p>The permeability of the decursin molecule was measured to assess the safety of our planned shampoo formulation.  For this purpose, we used the Parallel Artificial Membrane Permeability Assay, a cell-free, safe, inexpensive, and high throughput method that mimics passive diffusion through the main barrier to permeation through the scalp, the stratum corneum (SC).</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/poc/123.png" style="width:50%" class="imgcenter">
+<div class="figure-text"><p><b>Figure 11: Decursin’s low permeability.</b> Decursin's permeability was tested using a PAMPA kit, by introducing the metabolite to a system comprised of Skin Mimic solution and two plates with a membrane between them. Decursin was added to the donor well and absorbance was measured in the accpetor well following 18 h incubation at a 330 nm wavelength. The absorbance was converted to permeability by using a known equation provided by the kit. The controls used are the standards that are supplied with the PAMPA kit. Methyl Paraben’s, Propyl Paraben’s and Theophylline’s absorbance was measured following 18 h incubation at 260, 260 and 270 nm wavelength respectively<sup>[<a href="#ref10">10</a>]</sup>.</p></div>
+
+<p>This result showed that decursin has low permeability similar to theophylline. Following this result, we learned that the decursin has low permeability, meaning in our final formulation we could more easily optimize and adjust the formulation.  In addition, when comparing to the permeability of theophylline, which is delivered topically, we can see that decursin has the ability to penetrate to the necessary depth.</p>
+<p>As a part of the PAMPA assay, a calibration curve of decursin was also performed. The concentration of increasing amounts of decursin is plotted against absorbance, proving that the decursin that succeeded in permeating the membrane of the PAMPA was able to be quantified using absorbance measurements (Figure 12).</p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/results/calibration-curve.svg" style="width:50%">
+<div class="figure-text"><p><b>Figure 12: Calibration curve of decursin</b>. Increasing concentrations of decursin were added to the donor plate and measured after 18 h in the acceptor plate. Absorbance was measured at 330 nm.</p></div>
+
+
+<!-- NOT FINISHED -->
+
+{% endblock %}
+{% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Peng, S., Stephan, R., Hummerjohann, J., & Tasara, T. (2014). Evaluation of three reference genes of Escherichia coli for mRNA expression level normalization in view of salt and organic acid stress exposure in food. FEMS microbiology letters, 355(1), 78-82. </a></li>
+    <li id="ref2">Víctor Martínez-Cagigal (2022). Shaded area error bar plot (https://www.mathworks.com/matlabcentral/fileexchange/58262-shaded-area-error-bar-plot), MATLAB Central File Exchange. Retrieved October 8, 2022.</li>
+    <li id="ref3">Douglas Schwarz (2022). Fast and Robust Curve Intersections (https://www.mathworks.com/matlabcentral/fileexchange/11837-fast-and-robust-curve-intersections), MATLAB Central File Exchange. Retrieved October 8, 2022.</li> 
+    <li id="ref4">Marbach, A., & Bettenbrock, K. (2012). lac operon induction in Escherichia coli: Systematic comparison of IPTG and TMG induction and influence of the transacetylase LacA. Journal of biotechnology, 157(1), 82-88.</li>
+    <li id="ref5">Han, Y. (2019). Analysis of the role of the Hippo pathway in cancer. Journal of translational medicine, 17(1), 1-17.</li>
+    <li id="ref6">Kimura, M., Takatsuki, A., & Yamaguchi, I. (1994). Blasticidin S deaminase gene from Aspergillus terreus (BSD): a new drug resistance gene for transfection of mammalian cells. Biochimica et Biophysica Acta (BBA)-Gene Structure and Expression, 1219(3), 653-659</li></ol>
+ 
+        
+{% endblock %}

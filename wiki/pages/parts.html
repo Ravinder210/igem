@@ -1,0 +1,325 @@
+{% set ref = 'no' %}
+{% extends "layout.html" %}
+  
+{% block title %}Parts{% endblock %}
+{% block lead %}Our team added 20 new parts to the iGEM registry; 12 basics and 8 composites.
+ As mentioned on the <a href="{{ url_for('pages', page='Design') }}">Design page</a>,
+  our project is divided into three main designs: the U6PT design,
+  the Xim design, and lastly, OraCell. Thus, our parts are divided into three main groups,
+   corresponding to mentioned designs. {% endblock %}
+
+{% block page_content %}
+
+<div class="row mt-4">
+  <div class="col">
+    <h2>U6PT design</h2>
+    <hr>
+    <p>As our team decided to clone part of the biosynthesis pathway of decursin starting from umbelliferone,
+       the first enzyme needed was Umbelliferone-6 prenyltransferase (U6PT).
+        Due to the insufficiency of information regarding the cloning of plant aromatic prenyltransferases in bacterial systems,
+         we decided to expand our cloning efforts and work with six different U6PT genes; four of which are from a plant source,
+          and two were designed by our team based on other plant prenyltransferases, for more information go to our <a href="{{ url_for('pages', page='Design') }}">Design page</a>.</p>
+    <p>Our basic parts in this design include the six U6PTs we used.
+       All of those enzymes mediate prenylation reactions in which dimethylallyl diphosphate (DMAPP) is the prenyl donor, 
+       and umbelliferone is the acceptor, yielding 7-demethylsuberosin (DMS).
+        Moreover, each of them was part of a composite part, including our new P2A self-cleavage peptide sequence,
+         optimized for <i>E. coli</i> , along with a mCherry reporter gene.
+          The entire construct was planned to be cloned under the rhlR promoter.</p>
+    <p>The backbone used in this design was A133-rhlr-tdPP7-mCherry plasmid,
+       which contains a rhlR promoter along with a rlhR regulator operon, which was gifted by Prof. Roee Amit’s lab.</p>
+    <p>As we were not able to get results on these enzymes due to time restrictions,
+       we made sure to add their proper documentation from literature sources and we aim to update their pages with additional results once the registry opens again.</p>
+    <p><b>We have compiled all the new parts we added to the registry in the following table:</b></p>
+  </div>
+</div>
+
+<style type="text/css">
+  .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  .tg td {
+    border-color: #b03b94  ;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+  
+  .tg th {
+    border-color: #b03b94  ;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+  
+  .tg .tg-0lax {
+    text-align:center !important;
+    vertical-align: top
+  }
+  .tg-0lax .MathJax {font-size: 1.3em !important; }
+  </style>
+
+<center>
+
+
+  <table class="tg">
+  <thead>
+    <tr>
+      <th class="tg-0lax"><b>Part name</b></th>
+      <th class="tg-0lax"><b>Part number</b></th>
+      <th class="tg-0lax"><b>Part type</b></th>
+      <th class="tg-0lax"><b>Basic / Composite</b></th>
+      <th class="tg-0lax"><b>Length</b></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td class="tg-0lax">Petroselinum crispum prenyltransferase (PcPT)</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179000" target="_blank">BBa_K4179000</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1212</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">Pastinaca sativa prenyltransferase 1 (PsPT1)</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179001" target="_blank">BBa_K4179001</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1215</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">Ficus caricia prenyltransferase (FcPT1)</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179002" target="_blank">BBa_K4179002</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1284</td>
+    </tr>
+
+
+    <tr>
+      <td class="tg-0lax">Umbelliferone dimethylallyltransferase (UDT)</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179007" target="_blank">BBa_K4179007</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1200</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">PT1a with the donor docking domain switched to the domain of PT1L</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179011" target="_blank">BBa_K4179011</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1218</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">PT1a with the donor docking domain switched to the domain of G4DT</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179012" target="_blank">BBa_K4179012</a></td>
+      <td class="tg-0lax">Coding</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">1218</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">P2A self-cleaving peptide - Optimized for <i>E. coli</i></td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179005" target="_blank">BBa_K4179005</a></td>
+      <td class="tg-0lax">DNA</td>
+      <td class="tg-0lax">Basic</td>
+      <td class="tg-0lax">66</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">PcPT under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179003" target="_blank">BBa_K4179003</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2243</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">PsPT1 under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179008" target="_blank">BBa_K4179008</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2246</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">FcPT1 under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179009" target="_blank">BBa_K4179009</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2315</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">UDT under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179010" target="_blank">BBa_K4179010</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2231</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">ChimeraI under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179013" target="_blank">BBa_K4179013</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2249</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">ChimeraII under Rhlr promoter + P2A + mCherry reporter</td>
+      <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179014" target="_blank">BBa_K4179014</a></td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">Composite</td>
+      <td class="tg-0lax">2249</td>
+    </tr>
+    <br>
+    <br>
+  
+</table>
+</center>
+
+    <div class="row mt-4">
+      <div class="col">
+        <div style="padding-top: 70px;">
+        <h2 >Xim design</h2>
+        <hr>
+        <p>The next step in the decursin biosynthesis pathway is the conversion of DMS to decursinol.
+           This reaction is catalyzed by the pair of enzymes, XimD and XimE. </p>
+        <p>Our team was interested in the optimal ratio between the two enzymes,
+           and after multiple iterations of this design based on our <a href="{{ url_for('pages', page='engineering') }}">Design-Build-Test approach</a>,
+            the final genetic system of the Xim design contains XimE under a constitutive pT7 promoter, and XimD under a LacI-regulated pT7 promoter.</p>
+        <p>The new parts added to registry contain the two Xim enzymes, and
+           all other parts in this system were already in the iGEM registry.</p>
+        <p>The backbone used in this design is #172654 from AddGene.</p>
+        <p><b>The following list carries our new parts in the Xim design:</b></p>
+      </div>
+      </div>
+    </div>
+    
+    <center>
+    
+ 
+        <table class="tg">
+      <thead>
+        
+        <tr>
+          <th class="tg-0lax"><b>Part name</b></th>
+          <th class="tg-0lax"><b>Part number</b></th>
+          <th class="tg-0lax"><b>Part type</b></th>
+          <th class="tg-0lax"><b>Basic / Composite</b></th>
+          <th class="tg-0lax"><b>Length</b></th>
+        </tr>
+      </thead>
+      <tbody>
+    
+        <tr>
+          <td class="tg-0lax">flavin-dependent monooxygenase - XimD</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179016" target="_blank">BBa_K4179016</a></td>
+          <td class="tg-0lax">Coding</td>
+          <td class="tg-0lax">Basic</td>
+          <td class="tg-0lax">1422</td>
+        </tr>
+    
+        <tr>
+          <td class="tg-0lax">SnoaL-like cyclase - XimE</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179018" target="_blank">BBa_K4179018</a></td>
+          <td class="tg-0lax">Coding</td>
+          <td class="tg-0lax">Basic</td>
+          <td class="tg-0lax">375</td>
+        </tr>
+        
+        <tr>
+          <td class="tg-0lax">XimD + XimE under T7 promoters + LacI + Lac operator</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179019" target="_blank">BBa_K4179019</a></td>
+          <td class="tg-0lax">Composite</td>
+          <td class="tg-0lax">Composite</td>
+          <td class="tg-0lax">3288</td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+
+    <img src="https://static.igem.wiki/teams/4179/wiki/model/parts/parts-animation.gif"  width="100%" class ="imgcenter" >
+      <div class="figure-text"> <p>Regulation circuit of XimE</p></div>  
+
+    <div class="row mt-4">
+      <div class="col">
+        <h2>OraCell</h2>
+        <hr>
+        <p>This design is dedicated to our new measuring tool OraCell.
+           A system based on Luciferase assay, which takes advantage of the existing Hippo pathway in mammalian cells,
+            and can be used to detect and quantify not only decursin, but multiple other metabolites.
+             For more details about this system visit our <a href="{{ url_for('pages', page='measurement') }}">OraCell page</a>.</p>
+        <p>The system is comprised of two main segments; the first contains the Hippo pathway components that are affected by decursin,
+           those include eight GTIIC motifs with a high affinity for specific transcription factors which cause down-expression of the
+            Luciferase gene when decursin is present in the system. The second includes components for blasticidine resistance gene BlastR,
+             which is required for transfection of mammalian cells. </p>
+        <p>Most parts in this system already exist in the iGEM registry, however, we did add two basic parts that were missing.
+           In addition, we added the composite part of the whole system.</p>
+        <p>Results are shown on the OraCell page, as well as the composite part's registry page.</p>
+        <p><b>The list below holds all new parts our team added for OraCell design:</b></p>
+      </div>
+    </div>
+
+    
+    <center>
+    
+ 
+        <table class="tg">
+      <thead>
+        
+        <tr>
+          <th class="tg-0lax"><b>Part name</b></th>
+          <th class="tg-0lax"><b>Part number</b></th>
+          <th class="tg-0lax"><b>Part type</b></th>
+          <th class="tg-0lax"><b>Basic / Composite</b></th>
+          <th class="tg-0lax"><b>Length</b></th>
+        </tr>
+      </thead>
+      <tbody>
+    
+        <tr>
+          <td class="tg-0lax">8xGTIIC</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179017" target="_blank">BBa_K4179017</a></td>
+          <td class="tg-0lax">Protein domain</td>
+          <td class="tg-0lax">Basic</td>
+          <td class="tg-0lax">134</td>
+        </tr>
+    
+        <tr>
+          <td class="tg-0lax">cTNT promoter</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179021" target="_blank">BBa_K4179021</a></td>
+          <td class="tg-0lax">Regulatory</td>
+          <td class="tg-0lax">Basic</td>
+          <td class="tg-0lax">134</td>
+        </tr>
+        
+        <tr>
+          <td class="tg-0lax">Luc_Blast_Oracell</td>
+          <td class="tg-0lax"><a href="http://parts.igem.org/Part:BBa_K4179020" target="_blank">BBa_K4179020</a></td>
+          <td class="tg-0lax">Composite</td>
+          <td class="tg-0lax">Composite</td>
+          <td class="tg-0lax">3291</td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+      
+
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+  
+{% block title %}Inclusivity & Diversity{% endblock %}
+{% block lead %}Stemming from the diversity within our team members, we see great importance in incorporating as many population groups as possible in our project. We took upon ourselves the challenge of exposing the field of synthetic biology to marginalized groups, and in this page we expand upon our efforts in doing so. {% endblock %}
+
+
+{% block page_content %}
+
+<link href="{{ url_for('static', filename='assets/css/fontawesome/css/all.css') }}" rel="stylesheet" />
+
+<style>
+    div {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    </style>
+<h3>Intro</h3>
+
+<p>Nowadays, synthetic biology is not an approachable field to most Israelis, as it is not taught in most schools.
+   Even in our one group, some members have never heard about synthetic biology until the project was introduced.</p>
+<p><b>We took upon ourselves to investigate where the root of the problem lays</b>, and to do our best to make synthetic biology, and science in general, accessible to as many people as possible.
+    From our research, we concluded three main problems. </p>
+    <style>
+    table, th, td {
+  border: 18px solid white;
+}
+table {
+  border-spacing: 30px;
+}
+.centertxtt { text-align: center !important;}
+</style>
+<table valign="top"> 
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/inclusivity/lengueg.png"width="200" 
+        height="200" class = "imgcenter" ></th> <th><img src="https://static.igem.wiki/teams/4179/wiki/inclusivity/refugees.png"width="200" 
+            height="200" class = "imgcenter" ></th>
+        <th><img src="https://static.igem.wiki/teams/4179/wiki/inclusivity/adhd.png"width="200" 
+            height="200" class = "imgcenter" ></th></tr>
+
+            <tr><th valign="top"><p class="centertxtt">One main problem was <b>great gaps between different populations in
+                 Israel</b>.
+                In some cities in the periphery, the rate of graduation with Bagrut certificate (national
+                 matriculation examination) is up to 75% lower than cities in the center of the 
+                 country<sup>[<a href="#ref1">1</a>]</sup>.
+                This <b>originates from both budget and language gaps</b>, as those populations often 
+                don't speak Hebrew or English at a sufficient level.</p></th>
+
+            <th><p class="centertxtt"> As a group, we believe every person has the right to access fundamental education,
+                 and science is no exception. 
+                During our research, we also encountered other populations who didn't have access to
+                 science education.
+                One of them is <b>war refugees</b>. Because of global events, Israel is now home to over
+                 30,000 refugees from Ukraine- adults and children who were displaced from their homes
+                  and were <b>denied access to regular 
+                    education</b><sup>[<a href="#ref2">2</a>]</sup>.</p></th>
+
+        <th><p class="centertxtt">Another marginalized group is <b>children who have attention deficit hyperactivity 
+            disorder (ADHD)</b>, which are approximately 10% of the general 
+            population<sup>[<a href="#ref3">3</a>]</sup>. 
+            Children with ADHD experience more obstacles which often prevents them from pursuing 
+            academic education, despite many of them being highly intelligent.
+            <b>The cause for their "self- renunciation" is the lack of adjustment from the education
+                 system to fit their special needs.</b> </p></th></tr>
+    </table>
+
+<h3>Reducing the Gaps in Israeli Society</h3>
+<hr>
+<p>As we continued with our project, we tried to address the needs of each of these marginalized groups to improve their access to scientific education.
+    To help high schools in the periphery, we have prepared a synthetic biology lesson plan in Hebrew, Arabic, Russian and English, which are the most spoken languages in Israel, as well as a <a href="{{ url_for('pages', page='escape-room') }}">Virtual Escape Room</a>.
+     The lesson plan and a review of the escape room was taught to more than 50 teachers from all over the country via Zoom to allow easy access for as many teachers as possible.<b> We hope that by removing the language barrier and making content accessible, we can give a glimpse into the world of biology to people who might not have seen it otherwise</b>.</p>
+    <img src="https://static.igem.wiki/teams/4179/wiki/inclusivity/escaperoom-small.jpg"width="450" 
+    height="300" class = "imgcenter" ></p>
+    <style>.figure-text {text-align:center; font-size: 12px; color: #787277;}</style>
+    <div class="figure-text"> <p><b>Figure 1 </b>: Zoom workshop with teachers from all over Israel </p></div>
+
+    <h3>Virtual Escape Room Lesson Plan</h3></br>
+<div class="col-md-offset-6 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            Hebrew
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/inclusivity/escaperoomlesson-hebrew.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="heading2">
+                  <h3 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                          English
+                      </a>
+                  </h3>
+              </div>
+              <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                  <div class="panel-body">
+                      <embed src="https://static.igem.wiki/teams/4179/wiki/inclusivity/escaperoomlesson.pdf" width="800px" height="1200px" />
+                  </div>
+              </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading3">
+                <h3 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Arabic
+                    </a>
+                </h3>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                <div class="panel-body">
+                    <embed src="https://static.igem.wiki/teams/4179/wiki/inclusivity/escaperoomlesson-arabic.pdf" width="800px" height="1200px" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading4">
+              <h3 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                      Russian
+                  </a>
+              </h3>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+              <div class="panel-body">
+                  <embed src="https://static.igem.wiki/teams/4179/wiki/inclusivity/escaperoomlesson-russian.pdf" width="800px" height="1200px" />
+              </div>
+          </div>
+      </div>
+<p><br>
+<h3>Workshop for Refugees from Ukraine</h3>
+  <hr>
+  The next population we addressed are <b>refugees from Ukraine</b>. In our group we have two group members who speak Russian. Hoping to improve the refugees’ bleak situation and to introduce them both to science and to the friendly Israeli society, we decided to make a <b>workshop for refugee children and parents</b>.
+   The goal of the workshop was to make both parents and children feel welcomed and <b>expose them to science in general and synthetic biology in particular.</b> 
+<p>Read more about our <a href="{{ url_for('pages', page='educationworkshops') }}">Workshops</a>.</p>
+  </p>
+<img src="https://static.igem.wiki/teams/4179/wiki/inclusivity/308485262-156016157072007-3679228291174952794-n-optimized.jpg"width="450" 
+height="300" class = "imgcenter" >
+<style>.figure-text {text-align:center; font-size: 12px; color: #787277;}</style>
+       <div class="figure-text"> <p><b>Figure 2 </b>: Conducting a lesson in the Russian language for refugee children </p></div>
+<br>
+<h3>Content Adaptation for Students With ADHD</h3>
+ <hr>
+<p>
+  The last population we tried to include are <b>children and teenagers with ADHD</b>. To do so, we <b>consulted Revital Kirshberg</b>, a clinical social worker with a master's degree (MsW) as well as an individual, family and ADHD coach. 
+    Revital explained to us the various problems that children who have ADHD deal with and how it affects them. She gave us tools, rules, and guidelines for how to approach them and make them feel included, while giving them a fun glance into biology using different platforms. 
+    Following her advice,<b> we have made several adjustments to our education program.</b> One of the changes we made was our approach toward our TikTok videos- In our initial videos, a group member explained the material in a verbal way only, with background music. Later on, we removed the music and added sketches to help the viewer follow along. 
+    Revital also gave us the opportunity to make our classes friendly to students who have ADHD by creating interactive games such as our synthetic biology escape room. Another example for a teaching opportunity we built is our application, where kids can experiment with synthetic biology tools by building genes as well as improve their understanding using visual aids. Finally, we built a 3D puzzle of a DNA module so children can build the DNA and learn at the highest level possible and in the most interactive way.
+    Not only have we changed and expanded our project, but we also wanted to give the future groups the opportunity to include this under-represented population as well. Therefore, <b>we built a guide for future groups.</b> The guide is informative and explains the tips, rules, and guidelines Revital taught us in our meeting, and those which we have implemented. Everything we built to make the subject more accessible for children and teenagers with ADHD is available for future teams to use. </p>
+            
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading5">
+          <h3 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                How to Adjust Your Contents to People With ADHD
+              </a>
+          </h3>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+          <div class="panel-body">
+              <embed src="https://static.igem.wiki/teams/4179/wiki/inclusivity/how-to-adjust-your-contents-to-people-with-adhd1.pdf" width="800px" height="1200px" />
+          </div>
+      </div>
+  </div>
+<br>
+<h3>Inspired by Past Projects</h3>
+<hr>
+<p>In addition, after reading and delving into many past projects in iGEM, one group that left a noticeable mark on us is 
+    Rapidemic, Leiden 2020, which created tools and training for future iGEM groups with the goal of making wiki pages
+     accessible to the color blind. <b>We used the tools provided by this group to allow access for everyone who reads
+         our wiki page</b>.
+  To see Rapidemic page <a href="https://2020.igem.org/Team:Leiden" target="_blank"> click here</a>.</p>
+<p>Lastly, when talking about diversity, it is hard to ignore the fact that in Israel there are diverse ethnic groups
+     with various religious views. Our group is the perfect example of the Israeli mosaic, as it includes Arabs, 
+     religious Jews, and secular Jews - all working together in harmony. Moreover, throughout the process we advocated 
+     the values of giving equal and diverse opportunities to the group members. Our group contains students from a
+      variety of faculties: biotechnology and food engineering, biomedical engineering, computer science and medicine.
+       As a group, we decided that although each group member comes with knowledge in certain a area, it is important
+        that each of us has more than one area of responsibility, including ones they have no previous experience in.
+         Thus, every student will have the opportunity to expand their horizons and get experience in fields that are
+          new to them. <b>To make sure everyone feels heard and included throughout the project.</b></p>
+<p>Our group has followed the code of conduct published by iGEM Concordia 2020, which advocates the encouragement of 
+    diversity as well as appropriate and valuable behavior for all members of the group in all their shades. To see
+     AstroBio page <a href="https://2020.igem.org/Team:Concordia-Montreal" target="_blank"> click here</a>.</p>
+<p>To read more about our education projects <a href="{{ url_for('pages', page='communication') }}"> click here</a>.</p>
+{% endblock %}
+
+{% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Kadri-Ovadia ,SKO. (2022, September 13) דירוג הזכאות לבגרות. Website. <a href="https://www.haaretz.co.il/news/education/2022-09-13/ty-article/00000183-323a-de9f-afe7-777b5afe0000?utm_source=Web_Share&utm_medium=Whatsapp&utm_campaign=Share>"> https://www.haaretz.co.il/news/education/2022-09-13/ty-article/00000183-323a-de9f-afe7-777b5afe0000?utm_source=Web_Share&utm_medium=Whatsapp&utm_campaign=Share></a></li> 
+    <li id="ref2">Kumar ,NK. (2022, August 25). Statistics: How many Ukrainian refugees did Israel accept in six months?. Website. <a href="https://thetimeshub.in/statistics-how-many-ukrainian-refugees-did-israel-accept-in-six-months/31872/>"> https://thetimeshub.in/statistics-how-many-ukrainian-refugees-did-israel-accept-in-six-months/31872/></a></li>
+    <li id="ref3">National Center on Birth Defects and Developmental Disabilities (2022, August 9). Data and Statistics About ADHD. Website.  <a href="https://www.cdc.gov/ncbddd/adhd/data.html"> https://doi.org/10.1128/AAC.44.5.1209-1213.2000></a></li></ol>
+        
+{% endblock %}

@@ -1,0 +1,260 @@
+{% extends "layout.html" %}
+  
+{% block title %}Engineering Success{% endblock %}
+{% block lead %}The Design-Build-Test cycle is an engineering approach the iGEM strongly promotes and encourages teams
+ to use as a template throughout the advancement of their project, and this is what we did. This page presents the 
+ iterations that our team has gone through using this approach. {% endblock %}
+
+{% block page_content %}
+<h3 id="cycle">Intro</h3>
+<p>Every <b>engineering</b> process consists of multiple milestones that together build the final system. Engineering a 
+  biological system is not straightforward and often requires many customizations and fine tunings to achieve optimization. 
+  In Fig.1 you can see the <b>engineering cycle</b> that describes the main stages in every <b>engineering process</b>. In our
+   case, our end system is an <I>E. coli</I> BL21 strain which has two plasmids that express three enzymes: Umbelliferone-6-prenyl-transferase, XimD, and XimE.
+   Read more in our <a href="{{ url_for('pages', page='design') }}"> Design</a> page.</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic1.png" alt="cycle" style="width: 50%" class="imgcenter">
+<style>.figure-text {text-align:center; font-size: 12px; color: #787277;}</style>
+<div class="figure-text"> <p><b>Figure 1 </b>: Engineering success cycle</p></div>
+<br>
+<h3>U6PT plasmid</h3><hr>
+<p>In order to build our entire biological system, we worked on both plasmids in parallel.<b> Design, build, test, learn and 
+  re-design</b>. This was our strategy to tackle all the wet lab obstacles. Starting with the challenging cloning of the first 
+  enzyme Umbelliferone-6-prenyl-transferase (U6PT): <br> 
+  <!--Table-->
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);"
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>1st Design</h4></th>
+        </tr></table>
+  
+<!--<h4>1stDesign:</h4><hr><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png" alt="Design" style="width:15%" class="imgcenter"> <hr>-->
+  U6PT genes are plant sourced. Thus, in order to enlarge our chances of success, six different U6PT genes were used; four of which originate from different plant organisms
+   and two were constructed by us using BLAST and docking computational tool, for more details,
+    read in more in our <a href="{{ url_for('pages', page='design') }}"> Design</a> page.</a></p>  All were designed to be 
+    cloned into a plasmid that has mCherry reporter gene downstream to the P2A sequence (fig.2-fig7).</p>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 30%;
+    padding: 5px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  </style>
+  <style>.figure-text { font-size: 12px; color: #787277;}</style>
+  <div class="row justify-content-center">
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/3-untitled-slide.png" alt="Pcpt" style="width: 100%" class="imgcenter">
+    <div class="figure-text"> <p><b>Figure 2 </b>:A133-P2A-PcPT</p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/4-untitled-slide.png" alt="Pspt1" style="width:100%" class="imgcenter">
+    <div class="figure-text"> <p><b>Figure 3 </b>:A133-P2A-PsPT1</p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/5-untitled-slide.png" alt="Fcpt1" style="width:100%"class="imgcenter">
+    <div class="figure-text"> <p><b>Figure 4 </b>:A133-P2A-FcPT1</p></div></div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/6-untitled-slide.png" alt="Udt" style="width:100%">
+    <div class="figure-text"> <p><b>Figure 5 </b>:A133-P2A-UDT</p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/7-untitled-slide.png" alt="ChimeraI" style="width:100%">
+    <div class="figure-text"> <p><b>Figure 6 </b>:A133-P2A-ChimeraI</p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/8-untitled-slide.png" alt="ChimeraII" style="width:100%">
+    <div class="figure-text"> <p><b>Figure 7 </b>:A133-P2A-ChimeraII</p></div></div>
+  </div> 
+  </table>
+
+  <br>
+ 
+<table>
+  <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic8-build.png"width="70" 
+      height="70" class = "imgcenter" ></th
+      ><th><h4>1st Build</h4></th></tr></table>
+
+  <p>Step1: cloning the P2A sequence  upstream to the mCherry sequence into A133 plasmid. <br>Step2: cloning All U6PTs genes  upstream to the P2A sequence. </p>
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>1stTest</h4></th></tr></table>
+
+   <p> Each cloning was <b>verified using colony PCR</b>. The results have shown <b>positive insertion for the P2A sequence</b> (fig.8-Colony PCR gel for the verification of P2A cloning) but <b>negative results for all the U6PTs genes</b> (fig.9-Colony PCR gel for the verification of All U6PT cloning). 
+  </p>
+
+  <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pcr8.png" alt="cycle" style="width: 50%" class="imgcenter">
+  <div class="figure-text"> <p><b>Figure 8 </b>:-Colony PCR gel for the verification of P2A cloning (desired product-1300bp) </p></div>
+  <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pcr9.png" alt="cycle" style="width: 50%" class="imgcenter">
+<div class="figure-text"> <p> 
+
+  <b>Figure 8 </b>: Colony PCR gel for the verification of All U6PT cloning (desired product-2500bp, undesired product-1300bp) </p></div>
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic11-learn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>1st Learn</h4></th></tr></table>
+  <p>The ligation was not successful.</p>
+
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>2nd Re-design</h4></th></tr></table>
+
+  <!--Add picture-->
+  <p>We decided to tweak the ligation protocol, using different ligation <b>ratios</b> between the insert and the backbone (1:7 rather than 1:3).</p>
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>2nd Re-Test</h4></th></tr></table>
+
+  <p>Another negative Colony PCR results- Self ligation products</p>
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic11-learn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>2nd Re-Learn</h4></th></tr></table>
+
+  <p>The P2A sequence might hinder the ligation of the U6PT genes.</p>
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>3rd Rre-design</h4></th></tr></table>
+
+  <p>Ligation of three fragments: The digested backbone (A133), one of U6PT genes and the P2A sequence. Thus, the two inserts will be cloned simultaneously.</p>
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>3rd Re-Test</h4></th></tr></table>
+
+  <p>Colony PCR results have shown self-ligation products only. A digestion test also was conducted to make sure 
+    
+    that all the required restriction sites are found in the backbone. Indeed, all of them were found but they are very close (402bp).</p>          
+
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic11-learn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>3rd Re-Learn</h4></th></tr></table>
+
+ <p>We have learned that in order to get the desired restricted product. A two satge of digestion should be done in order to avoid a steric hindrance. After sending the colony PCR products for sequencing, it was shown that the cloning of U6PT genes
+   interrupts the sequencing process. Meaning, Sanger sequencing failed after less than 400 bases (fig.10-sequencing results).</p>
+ <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/fig-10-sequencing-results.png" alt="sequencing_results" style="width: 50%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 10 </b>:sequencing results</p></div> 
+
+<p>To further investigate this situation, we set aside five of the six U6PTs, and continued with PcPT, for the purpose of pinpointing the problem more efficiently. </p>
+<p>PcPT was the only U6PT out of the six that was not ordered as a DNA fragment, rather it was amplified from a plasmid using PCR. </p>
+
+<table style="background-color: rgba(255, 255, 255, 0.801);">
+<tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+    height="70" class = "imgcenter" ></th
+    ><th><h4>4th Re-design</h4></th></tr></table>
+    <p> We have re-designed the new genetic U6PT circuit in a way that will allow us to clone the PcPT gene into the same target backbone but after digestion of the mCherry sequence out of the plasmid(fig.11-PcPT genetic circuit)</p>
+    
+    <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/9-untitled-slide.png" alt="sequencing_results" style="width: 40%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 11 </b>:A133-PcPT</p></div> 
+
+
+      Step1: Amplifying the PcPT gene with new restriction sites. <br>
+      Step2: A133 backbone digestion with the new restriction enzymes.<br> 
+      Step3: Ligation of two fragments. <br>
+      Step4: Transformation <br>
+
+      <table>
+        <table style="background-color: rgba(255, 255, 255, 0.801);">
+        <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+            height="70" class = "imgcenter"></th>
+            <th><h4>4th Re-Test</h4></th></tr></table>
+<p>As mentioned previously ,every cloning of a specific fragment was verified using Colony-PCR. However,we have gotten undesierd prodcuts.</p>
+<p>Unfurtionatly,Many steps were not accomplished, and many others were skipped. But we are aware of the fact that the process of engineering a biomanufacturing machine like ours is full of obstacles that we did not have enough time to tackle. However, we've created additional designs and future plans to continue with. To read more about our future plans <a href="{{ url_for('pages', page='notebook') }}#BLIP">click here</a></p>.
+<hr>
+<h3>ximD_ximE plasmid:</h3>
+<p>As mentioned in the<a href="{{ url_for('pages', page='design') }}"> Design page,</a> the second reaction in our synthetic pathway is mediated by two enzymes, ximD and ximE. Both enzymes work together to convert 7-demethylsuberosin (DMS) into decursinol. </p>
+<table>
+  <table style="background-color: rgba(255, 255, 255, 0.801);">
+  <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+      height="70" class = "imgcenter" ></th
+      ><th><h4>1st Design</h4></th>
+      </tr></table>
+      <p>The two genes of interest: ximD and ximE were designed to be cloned into the same plasmid under the regulations of Lac and Tet respectively as shown in fig.12.</p>
+      <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/new/fig-12-initial-ximd-xime.png" alt="cycle" style="width: 30%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 12 </b>:initial map of ximD & ximE plasmid </p></div>
+ 
+<table>
+  <table style="background-color: rgba(255, 255, 255, 0.801);">
+  <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic8-build.png"width="70" 
+      height="70" class = "imgcenter" ></th><th><h4>1st Build</h4></th></tr></table>
+      <p> We started with pET_Duet_PcPT_ximD_ximE plasmid. The building of this circuit was done as shown below:<br>
+        Step1: Reverse PCR to amplify the ximE gene out from the plasmid. This step was done in order to replace the gene of ximE with the same gene but under inducible regulation. 
+        Step2: Reverse PCR with primeSTAR GXL polymerase to amplify the PcPT out from the plasmid. This step was done multiple times using Q5 polymerase, but no successful amplifications were achieved.
+        To solve this problem, we looked for a polymerase with the ability to amplify long amplicons. Eventually, primeSTAR GXL polymerase was the solution. It is the most high-fidelity polymerase that
+        is used for challenging targets like: high GC content, long amplicons and excess template<sup>[<a href="#ref1">1</a>]</sup>. <br>Step3: Ligation of 3 fragments - pET_Duet backbone, ximE, T7 Terminator. </p>
+      
+        <table>
+          <table style="background-color: rgba(255, 255, 255, 0.801);">
+          <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+              height="70" class = "imgcenter"></th>
+              <th><h4>1st Test</h4></th></tr></table>
+              <p>Tests were ran using ODE and statistical models based on Michales Menten equations as described on the <a href="{{ url_for('pages', page='model') }}"> Modeling page.</a></p>
+              Modeling results have shown positive correlation between the concentration of decursinol (the desired product) and the concentration of XimE enzyme (fig.13). </p>
+              <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/fig-12-more-dec.svg" alt="Model" style="width: 50%" class="imgcenter">
+              <div class="figure-text"> <p> <b>Figure 13 </b>: Modeling results([ximD]<[ximE])<p></div> 
+                <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/11-untitled-slide.png" alt="Model" style="width: 40%" class="imgcenter">
+                <div class="figure-text"> <p> <b>Figure 14 </b>: DEC:MAR Vs. XimE Molar Fraction<p></div> 
+  <table>
+    <table style="background-color: rgba(255, 255, 255, 0.801);">
+    <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic11-learn.png"width="70" 
+        height="70" class = "imgcenter" ></th
+        ><th><h4>1st Learn</h4></th></tr></table>
+        <p>XimE should be expressed constitutively and not under any inducible regulation.</p>
+        
+        <table>
+          <table style="background-color: rgba(255, 255, 255, 0.801);">
+          <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic9-desighn.png"width="70" 
+              height="70" class = "imgcenter" ></th
+              ><th><h4>2nd Re-design</h4></th></tr></table>
+              <p>To fulfill a constitutive expression for XimE enzyme, TetR repressor was not cloned into ximD_ximE plasmid as shown in fig.13.</p>
+              <p><b>To sum up</b>, according to the final design for the second plasmid, ximD is expressed inducibiliy under the Lac operator, however ximE is expressed constitutively to achieve maximal biomanufacturing yield of decursinol. This in accordance to our model that predicts higher decursin to marmesin ratio when the molar fraction of XimE increases. </p>
+              <img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/11-untitled-slide.png" alt="cycle" style="width: 40%" class="imgcenter">
+<div class="figure-text"> <p><b>Figure 15 </b>: final ximD & ximE circuit</p></div>
+<table>
+  <table style="background-color: rgba(255, 255, 255, 0.801);">
+  <tr><th><img src="https://static.igem.wiki/teams/4179/wiki/engineering-succes/pic10-test.png"width="70" 
+      height="70" class = "imgcenter" ></th
+      ><th><h4>2nd Re-Test</h4></th></tr></table>
+      <p>Real time qPCR assessment was run, following a transformation step into <i>E. coli</i> BL21 DE3. The purpose of this test is to determine the mRNA levels of each enzyme. XimE enzyme is constitutively expressed However, ximD expression is controled under the Lac regulation. So we added an IPTG molecule to induce the enzyme's expression. The qPCR results are presented in fig.16. </p>
+      <img src="https://static.igem.wiki/teams/4179/wiki/assets/qpcr-bar-plot.png" style="width: 50%" class="imgcenter">
+      <div class="figure-text"> <p><b>Figure 16: </b>qPCR results</p></div>
+<p><b>In the scope of iGEM</b>, it was clear to us that achieving all of our milestones is a challenge due to the lack of time. Functionality tests and other modelling results were planed to be implemented in the designs of our genetic circuit. In our <a href="{{ url_for('pages', page='future') }}#BLOP">future plants </a>page, all of our next steps and future proposed improvmments are presented.</p>
+{% endblock %}
+
+                {% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Jia, H., Guo, Y., Zhao, W., & Wang, K. (2014). Long-range PCR in next-generation sequencing: Comparison of six enzymes and evaluation on the MiSeq sequencer. Scientific Reports, 4. <a href="https://doi.org/10.1038/srep05737">https://doi.org/10.1038/srep05737</a></li></ol>
+ 
+   
+
+
+{% endblock %}

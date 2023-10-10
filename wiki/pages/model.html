@@ -1,0 +1,1306 @@
+{% extends "layout.html" %}
+  
+{% block title %}Model{% endblock %}
+{% block lead %}Our team modeled the decursin biomanufacturing system from micro to macro. 
+We worked on multiple models and employed a stacking approach, where the output of one model was used as the input of another. 
+Thus, we were able to optimize the system for large-scale production of our target metabolite - decursin.{% endblock %}
+
+{% block page_content %}
+
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+
+.tg .tg-0lax {
+	text-align:center !important;
+	vertical-align: top
+}
+.tg-0lax .MathJax {font-size: 1em !important; }
+
+
+.MathJax {font-size: 0.95em !important; }
+
+</style>
+
+<h1>Approach</h1>
+<hr>
+<p>Modeling is an inherent part of the engineering cycle, even more so in the context of biomanufacturing, a discipline that relies on optimization when it comes to assessing feasibility. For our group, modeling was the driving force behind our work. Its importance was emphasized by the feedback we received during our meetings with <a href="{{ url_for('pages', page='human-practices') }}#stakeholders">stakeholders</a>, which inquired regarding the production rates and costs. Thus, helping us identify which aspects needed to be modeled.</p>
+<p>We worked on multiple models and employed a stacking approach, where the output of one model was
+  used as the input of another. This was done to optimize the system for large-scale production of our target
+  metabolite - decursin. Our biomanufacturing process will be the synthesis of decursinol from umbelliferone.
+  Later on, decursinol can be converted chemically and cheaply to decursin. </p>
+<p>Our models can be divided into four categories: </br>
+  <ol type="1">
+    <li><b>Diffusion</b> of umbelliferone <b>(UMB)</b>, a precursor of decursin, into <i>E. coli</i> BL21.</li>
+    <li>The <b>fermentation</b> process and <b>production</b> of the enzymes for the anabolic pathway: Prenyltransferase <b>(PT)</b>, XimD, and XimE.</li>
+    <li><b>Computational approach to site-directed mutagenesis</b> of the XimE protein to improve its affinity to a specific substrate.</li>
+    <li><b>The enzymatic reactions and kinetics </b>of PT, XimE, and XimD to convert UMB to DMS and DMS to decursinol <b>(DEC)</b>.</li>
+  </ol>
+</p>
+
+<img src="https://static.igem.wiki/teams/4179/wiki/model/all-models.svg"  width="70%" class ="imgcenter" >
+      <div class="figure-text"> <p><b>Figure 1: Schematic overview of Angel Root’s models.</b> UMB precursor diffuses into a recombinant <I>E.
+        coli</I> BL21 cell, expressing PT to convert UMB to DMS, and a combination of XimD
+        and XimE to convert DMS into decursinol. Modeling simulations were run for the diffusion element (1),
+        enzyme expression (2), in-silico directed evolution to improve XimE’s specificity (3), and the process’s
+        enzymatic kinetics (4)</p></div>  
+
+<p>Before we set out to design the biomanufacturing process itself, our project started with a single basic
+  assumption: the precursor UMB can diffuse into the cell, where the enzymatic reaction takes place. To
+  examine this assumption, we wanted to model the diffusion process (1). To this end, we turned to the
+  work done by <a href="https://2020.igem.org/Team:CLS_CLSG_UK">iGEM CLS_CLSG_UK 2020</a> and expanded upon their efforts. We made the needed
+  adjustments according to our needs and used the prediction of almost-immediate diffusion as output. We
+  then wanted to establish a way to predict production rates, by focusing on three factors: bacterial population
+  size, enzyme expression rates, and their kinetics. This led us to the development of a fermentation model (2),
+  whose prediction of total protein expression was used as an output. Regarding the kinetics of the enzymes,
+  previous work has shown that XimE and XimD are not substrate-specific<sup>[<a href="#ref1">1</a>]</sup>. To address this, and improve
+  XimE’s catalytic efficiency in the decursin pathway, we employed an approach of using computational
+  tools to model the substrate binding affinity of different mutations (3). The assumption of diffusion-based
+  kinetics (1) and the protein concentration from (2) were used as input for an enzyme kinetics model (4). This
+  model took into account the co-dependence of the enzymes in the pathway using statistical tools and was
+  used to predict production rates. Furthermore, the insights regarding the limiting factor and byproducts
+  resulted in a redesign of our plasmid system and were used to assess its feasibility. Afterward, the final
+  model was fitted to the experimental data from the wet lab, to improve its predictions.
+  All of the graphs displayed here are generated using our MATLAB code, which is open source and available
+  here: <a href="https://gitlab.igem.org/2022/software-tools/technion-israel/-/tree/main/Matlab%20Modeling">Gitlab link</a>.</p>
+
+
+
+
+
+
+<h1 id="diffusion">1. Diffusion of Umbilifferon into <i>E. coli</i> BL21 Model</h1>
+
+<h2>Introduction</h2>
+<hr>
+<p> In the anabolic pathway of DEC, the first metabolite is UMB which should be supplied externally, and
+  be able to diffuse the membrane of <i>E. coli</i> cells to start the process. Therefore, we wanted to show the
+  occurrence of diffusion using known equations and mathematical derivatives.</p>
+<br>
+
+
+<h2>Definitions</h2>
+<hr>
+<p class="text-center" ><b>Table 1: </b>Description of Model Symbols and Values</p>
+
+<center>
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Parameters</th>
+    <th class="tg-0lax">Units</th>
+    <th class="tg-0lax">Description</th>
+    <th class="tg-0lax">Value</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">$ J $</td>
+    <td class="tg-0lax">$ \frac{mol}{sec\cdot m^{2}} $</td>
+    <td class="tg-0lax">Diffusion influx<br></td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ D $</td>
+    <td class="tg-0lax">$ \frac{m^{2}}{sec} $</td>
+    <td class="tg-0lax">Diffusion coefficient</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ C_{out} $</td>
+    <td class="tg-0lax">$ \frac{mg}{L} $</td>
+    <td class="tg-0lax">Umbelliferone concentration outside the cell</td>
+    <td class="tg-0lax">$ 100 $<sup>[<a href="#ref1">1</a>]</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ C_{in} $</td>
+    <td class="tg-0lax">$ \frac{mg}{L} $</td>
+    <td class="tg-0lax">Umbelliferone concentration inside the cell</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ z $</td>
+    <td class="tg-0lax">$ m $</td>
+    <td class="tg-0lax">Thickness of <i>E. coli</i> membrane</td>
+    <td class="tg-0lax"> $ 4\cdot10^{-9} $<sup>[<a href="#ref5">5</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ A $</td>
+    <td class="tg-0lax"> $ m^{2} $</td>
+    <td class="tg-0lax">Surface area of <i>E. coli</i> cell</td>
+    <td class="tg-0lax"> $ 6\cdot10^{-12} $<sup>[<a href="#ref4">4</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$$ \beta $$ </td>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax">Partition coefficient</td>
+    <td class="tg-0lax"> $ 10^{1.896} $<sup>[<a href="#ref6">6</a>]</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ n $</td>
+    <td class="tg-0lax">$ mol $</td>
+    <td class="tg-0lax">Number of umbelliferone moles</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ V $</td>
+    <td class="tg-0lax">$ m^{3} $</td>
+    <td class="tg-0lax">Volume of <i>E. coli</i> cell</td>
+    <td class="tg-0lax"> $ 10^{-18} $<sup>[<a href="#ref4">4</a>]</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ t $</td>
+    <td class="tg-0lax" style="text-align:center;">$ sec $</td>
+    <td class="tg-0lax">Time</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ k $</td>
+    <td class="tg-0lax">$ \frac{m^{2}\cdot kg}{K\cdot sec^{2}} $</td>
+    <td class="tg-0lax">Boltzmann constant</td>
+    <td class="tg-0lax">$1.380649\cdot10^{-23}$<sup>[<a href="#ref7">7</a>]</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ T $</td>
+    <td class="tg-0lax">$ K $</td>
+    <td class="tg-0lax">Temperature</td>
+    <td class="tg-0lax">$ 305 $</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ R $</td>
+    <td class="tg-0lax">$ m $</td>
+    <td class="tg-0lax">Maximum radius of umbelliferone molecule</td>
+    <td class="tg-0lax"> $ 5.06\cdot10^{-10} $ <sup>[<a href="#ref6">6</a>]</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ \eta $</td>
+    <td class="tg-0lax">$ Pa\cdot sec $</td>
+    <td class="tg-0lax">Viscosity of medium</td>
+    <td class="tg-0lax">$ 796\cdot10^{-6} $<sup>[<a href="#ref33">33</a>]</sup></td>
+  </tr>
+</tbody>
+</table>
+</center>
+</br>
+
+<h2>Assumptions:</h2> 
+<hr>
+  <ol type="1">
+    <li>The solutions on both sides of the membrane are homogeneous. By this, we mean that the solute is evenly mixed on either side.</li>
+    <li>The membrane does not change its width.</li>
+    <li>UMB molecule is a spherical particle with a radius of R.</li>
+    <li>UMB is diffusing through a liquid with a low Reynolds number suggesting a laminar flow of the medium.</li>
+    <li>Radius of a molecule (R) is a maximum projection radius describing the worst-case scenario of lower diffusion.</li> 
+     </ol>
+
+<h2>Fick's law for one-dimensional free diffusion<sup>[<a href="#ref3">3</a>]</sup></h2>
+<hr>
+$$ (1.1)\  J=-D\frac{dC}{dx} $$
+$$ (1.2) \  J=\frac{dn}{dt}\cdot\frac{1}{A}\rightarrow\frac{dn}{dt}=-DA\frac{dC}{dx} $$
+<p>By the stated assumptions 1 and 2, the above equations can be rewritten as follows:</p>
+$$ (1.3) \ \frac{dn}{dt}=-DA\frac{(C_{in}-C_{out})}{z} $$
+<p> To consider the membrane permeability it is necessary to consider the partition coefficient, which is the ratio of the solubility of the molecule in lipid and water and derived experimentally. </p>
+$$ (1.4) \ \frac{dn}{dt}=A\frac{\beta D}{z}(C_{out}-C_{in}) $$
+<p> Dividing both sides by V:</p>
+$$ (1.5) \ \frac{dn}{dt}\cdot\frac{1}{V}=A\frac{\beta D}{Vz}(C_{out}-C_{in})\rightarrow\frac{dC}{dt}=A\frac{\beta D}{Vz}(C_{out}-C_{in}) $$
+<br>
+<p> Dividing both sides by $(C_{out}-C_{in})$:</p>
+$$ (1.6) \ \frac{dC}{dt}\cdot\frac{1}{(C_{out}-C_{in})}=A\frac{\beta D}{Vz} $$
+<p> Solving first order equation:</p>
+$$(1.7) \  \int\frac{dC}{(C_{out}-C_{in})}=\int A\frac{\beta D}{Vz}dt $$
+<br>
+<p> Under the assumption that the only variable is $C_{in}$:</p>
+$$ (1.8) \ -ln(C_{out}-C_{in})=A\frac{\beta D}{Vz}\cdot t+a $$
+<br>
+<p> Raising both sides of the equation by the power of exp:</p>
+$$ (1.9) \ (C_{out}-C_{in})=be^{-A\frac{\beta D}{Vz}\cdot t} $$
+<br>
+$$ (1.10) \ C_{in}=-be^{-A\frac{\beta D}{Vz}\cdot t}+C_{out}$$
+<p> When $b=e^{a}$</p>
+<p> At the time 0 sec concentration of umbelliferone inside the cell is 0 $\frac{mol}{m^{3}}$:</p>
+$$(1.11) \  0=-b+C_{out}\rightarrow b=C_{out} $$
+<br>
+<p> Inputing equation (11) into equation (10):</p>
+$$ (1.12) \ C_{in}=C_{out}(-e^{-A\frac{\beta D}{Vz}\cdot t}+1) $$
+<br>
+<p> The value for diffusion coefficient wasn't found, therefore we decided to evaluate it using the Stokes-Einstein Law for diffusion<sup>[<a href="#ref7">7</a>]</sup>:</p>
+$$ (1.13) \  D=\frac{kT}{6\pi\eta R} $$
+<br>
+<p> Inputting equation (13) into equation (12), by using assumption (5):</p>
+$$ (1.14) \ C_{in}=C_{out}(-e^{-A\frac{\beta kT}{6\pi\eta RVz}\cdot t}+1) $$
+<br>
+<p><b>Inputting values into the final equation:</b></p>
+
+$$ (1.15) \ C_{in}=C_{out}(-e^{-12.4754\cdot t}+1) $$
+
+<p>According to the work by Bu, X.L et.al <sup>[<a href="#ref1">1</a>]</sup>, we assume an initial concentration of $100  \frac{mg}{L}$ outside of the
+  cell. Thus $\text{C}_{\text{out}} = 100  \frac{mg}{L}$.</p>
+<h2>Result and Conclusions</h2>  
+<hr>
+<p>Using these values we get the following graph from our simulation:</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/model/umbelliferon-concentration-inside-the-cell-vs-time.svg"  width="60%" class ="imgcenter" >
+      <div class="figure-text"> <p><b>Figure 2: Diffusion of UMB into <i>E. coli</i> BL21. </b>UMB diffusion was simulated using Fick’s law. intracellular and extracellular UMB concentrations reach equilibrium in about 0.2 seconds. Simulation represents a
+        final concentration of 100mg/L.</p></div>  
+<p>The graph shows the concentration of umbelliferone inside the cell in mg/L vs. time in sec. In less than one second the concentration inside the cell reaches the initial concentration outside the cell. Therefore, the model has shown that diffusion occurs at a time scale of less than a second under all our assumptions (fig.2). Consequently we can use this conclusion and neglect the diffusion time in future models and developments.</p>
+
+<h1 id="fer">2. The Fermentation Process and Enzyme Production </h1>
+
+<h2>Introduction</h2>
+<hr>
+<p>We aimed to model the growth behavior of our bacteria in a fermentor. We used this model to predict the maximum amount of protein that will be produced by the bacteria. This amount will be significant in our enzyme kinetics model. To model the fermentation process we use the Monod growth kinetics<sup>[<a href="#ref9">9</a>]</sup>. This theory links substrate (glucose), product (protein), and bacteria concentrations. </p>
+
+
+
+<h2>Definitions</h2>
+<hr>
+<p class="text-center" ><b>Table 2: </b>Description of Model Symbol and Values as Inferred from Literature</p>
+<center>
+
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Symbol</th>
+    <th class="tg-0lax">Units</th>
+    <th class="tg-0lax">Description</th>
+    <th class="tg-0lax">Value</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">$ \mu $</td>
+    <td class="tg-0lax">$ \cfrac{1}{hour} $</td>
+    <td class="tg-0lax">Specific growth rate<br></td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ X $</td>
+    <td class="tg-0lax">$ \cfrac{g_{bacteria}}{liter} $</td>
+    <td class="tg-0lax">Biomass concentration</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ t $</td>
+    <td class="tg-0lax">$ hour $</td>
+    <td class="tg-0lax">Time</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ P $</td>
+    <td class="tg-0lax">$ \cfrac{g_{protein}}{liter} $</td>
+    <td class="tg-0lax">Protein concentration</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ S $</td>
+    <td class="tg-0lax">$ \cfrac{g_{glucose}}{liter} $</td>
+    <td class="tg-0lax">Substrate (glucose) concentration</td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ q_{p} $</td>
+    <td class="tg-0lax">$ \cfrac{g_{protein}}{g_{bacteria}\cdot hr} $</td>
+    <td class="tg-0lax">Specific protein formation<br></td>
+    <td class="tg-0lax"> $-$ </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ m_{s} $</td>
+    <td class="tg-0lax">$ \frac{g_{glucose}}{g_{bacteria}\cdot hr} $</td>
+    <td class="tg-0lax">Maintenance coefficient</td>
+    <td class="tg-0lax">  $ 0.07 $ <sup>[<a href="#ref9">9</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ K $</td>
+    <td class="tg-0lax">$ \frac{1}{hr} $</td>
+    <td class="tg-0lax">Specific protein destruction</td>
+    <td class="tg-0lax"> $ 0.01 $ <sup>[<a href="#ref11">11</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ \mu_{max} $</td>
+    <td class="tg-0lax">$ \frac{1}{hr} $</td>
+    <td class="tg-0lax">Maximum growth rate</td>
+    <td class="tg-0lax"> $ 0.27 $ <sup>[<a href="#ref12">12</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ k_{s} $</td>
+    <td class="tg-0lax">$ \frac{g}{liter} $</td>
+    <td class="tg-0lax">Substrate concentration when $\mu=0.5\mu_{max}$</td>
+    <td class="tg-0lax">  $ 180\cdot10^{-7} $
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ Y_{x/s} $</td>
+    <td class="tg-0lax">$ \cfrac{g_{bacteria}}{g_{glucose}} $</td>
+    <td class="tg-0lax">Yield of bacteria per substrate</td>
+    <td class="tg-0lax"> $ 0.37 $ <sup>[<a href="#ref13">13</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ Y_{p/s} $</td>
+    <td class="tg-0lax">$ \cfrac{g_{protein}}{g_{glucose}} $</td>
+    <td class="tg-0lax">Yield of protein per substrate</td>
+    <td class="tg-0lax"> $ 0.2 $ <sup>[<a href="#ref14">14</a>]</sup> </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">$ Y_{p/x} $</td>
+    <td class="tg-0lax">$ \cfrac{g_{protein}}{g_{bacteria}} $</td>
+    <td class="tg-0lax">Yield of protein per bacteria</td>
+    <td class="tg-0lax"> $ 0.46 $ <sup>[<a href="#ref12">12</a>]</sup> </td>
+  </tr>
+  </tbody>
+  </table>
+  </center>
+
+  <h2><br>Assumptions</h2>
+  <hr>
+
+  <ol type="1">
+    <li>We assume that the most expensive part of the process will be the separation process between the
+      bacteria and decursinol based on our consultation with Prof. Yuval Shoham. Under this assumption,
+      we chose to use a batch process. This will allow a higher concentration of decursinol per liter in the
+      manufacturing process and will reduce production costs</li>
+    <li>Under these conditions we assume the limiting factor will be glucose, as it will eventually run out.</li>
+     </ol>
+
+  
+  <h2>Equations</h2>
+  <hr>
+  <p>We describe our system with a set of ordinary differential equations (ODEs)<sup>[<a href="#ref15">15</a>]</sup>:</p>
+  <p>The following equation describes the change in biomass concentration over time:</p>
+  $$ (2.1) \ \dfrac{dX}{dt}=\mu\cdot X$$
+  <p>We use the Monod equation, which describes the specific growth rate:</p>
+  $$ (2.2) \ \mu=\mu_{max}\cdot\frac{S}{K_{s}+S}$$
+  <p>Then we define the following ODE that describes the change in protein concentration:</p>
+  $$ (2.3) \ \dfrac{dP}{dt}=q_{p}\cdot X-K\cdot P$$
+  <p>Calculate a constant that describes the specific protein formation:</p>
+  $$ (2.4) \ q_{p}=Y_{p/x}\cdot\mu$$
+  <p>The needed energy for glucose-consuming cellular activities can be described in terms of glucose (substrate) consumed per time. 
+    The energy required for cell growth:</p>
+  $$ (2.5) \ \cfrac{\mu\cdot X}{Y_{x/s}}$$
+  <p>The energy required for maintenance of the bacteria:</p>
+  $$ (2.6) \ m_{s}\cdot X$$
+  <p>The energy required for the synthesis of enzymes (product):</p>
+  $$ (2.7) \ \cfrac{q_{p}\cdot X}{Y_{p/s}}$$
+  <p>Adding it all together, the rate of glucose consumption is:</p>
+  $$ (2.8) \ -\cfrac{dS}{dt}=\cfrac{\mu\cdot X}{Y_{x/s}}+m_{s}\cdot X+\cfrac{q_{p}\cdot X}{Y_{p/s}}$$
+  <br>
+  <h2>Results and Conclusions</h2>
+  <hr>
+  
+        
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 30%;
+    padding: 5px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  </style>
+
+
+
+
+  <style>.figure-text { font-size: 12px; color: #787277;}</style>
+  <div class="row justify-content-center">
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/model/bacteria-fermentation-new.svg" alt="Pcpt" style="width: 100%" class="imgcenter">
+    <div class="figure-text"> <p><b>Figure 3: Bacterial concentration vs time. </b>The
+      input for the model is a time span of 10 hours
+      with initial bacterial concentration of zero
+      [g/L]. The plot shows exponential growth up
+      until around four hours.
+      </p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/model/glucose-fermentation-new.svg" alt="Pspt1" style="width:100%" class="imgcenter">
+    <div class="figure-text">  <p><b>Figure 4: Glucose concentration vs time. </b>The input for the model is a time span of ten
+      hours with an initial glucose concentration of
+      10 [g/L]. Glucose is fully consumed at around
+      four hours </p></div></div>
+    <div class="column">
+      <img src="https://static.igem.wiki/teams/4179/wiki/model/protein-fermentation-new.svg" alt="Fcpt1" style="width:100%"class="imgcenter">
+    <div class="figure-text"> <p><b>Figure 5: Protein concentration vs time. </b>The
+      input for the model is a time span of 10 hours
+      with initial protein concentration of zero [g/L].
+      The plot shows exponential increase in protein
+      concentration up until around four hours.
+      After four hours, the protein concentration
+      decreases as no more protein is being
+      produced, and natural degradation takes place.</p></div></div>
+  </div>
+
+
+  <p>As expected, in a batch process the glucose eventually runs out. (fig.4). Once there is no more glucose
+    in the system, bacterial growth stops. That causes protein production to stop as well. Because there are
+    no more new proteins, the relative effect of protein natural degradation increases and a reduction of total
+    protein levels can be seen. The model predicts peaks of bacteria (fig.3) and protein (fig.5) concentrations
+    at around 4 hours after induction. The predicted protein concentration is ~0.86g/L. The predicted protein
+    concentration is on par with data from the literature for the BL21 strain, with an induction time similar to
+    our experiment<sup>[<a href="#ref12">12</a>]</sup> .</p>
+
+
+
+
+  
+<h1>3. Directed Mutagenesis of the XimE Protein</h1>
+<h2></h2>
+
+<p>In order to make the production of decursin cost-effective, throughout the modeling and biosynthetic design, we tried to focus on making the anabolic pathway more efficient. One of the ways used nowadays is directed protein mutagenesis, a robust method to design proteins with desirable functions, in our case greater production of decursin. Therefore, for this purpose computational tools were used to identify mutations that will improve our proteins and would help to shorten the time of future lab work. </p>
+<p>The desirable target in the case of decursin production would be the remodeling of one of the key enzymes in the pathway, XimE. It is the final enzyme in our anabolic pathway, converting <b>epoxidated 7-demethylsuberosin</b>, (Fig.6), into <b>decursinol</b>. Using directed mutagenesis, we would like to achieve greater binding affinity of the substrate, which in turn, under our assumptions, leads to greater production of decursinol. <br>
+  The computational approach of docking aims to predict the binding pose and affinity of a small molecule ligand and protein through scoring algorithms.  
+
+</p><img src="https://static.igem.wiki/teams/4179/wiki/model/xime.svg"  width="70%" class ="imgcenter" >
+  <div class="figure-text"> <p><b>Figure 6: a proposed mechanism for the catalysis. </b>First reaction from left to right: XimD converting 7-demethylsuberosin (DMS) into epoxidated 7-demethylsuberosin (Epoxidated DMS). Second reaction:XimE converting epoxidated 7-demethylsuberosin (Epoxidated DMS) into decursinol (DEC).</p></div>  
+
+<h2>Method and Tools </h2>
+<hr>
+<p>Our workflow consisted of performing structural prediction of a protein with a known single point mutation, conducting molecular docking of predicted mutant proteins of the same type with unchangeable ligand, and eventually analyzing and comparing results to reveal the desired mutation and its further impact on wet lab work. </p>
+<p>First, we found the 3D structure and amino-acid sequence of XimE in the Protein Data Bank (PDB) and manually performed point mutations in desired positions to build the stock of mutant sequences destined for structural predictions. While accessing AlphaFold2 from ChimeraX <sup>[<a href="#ref16">16</a>]</sup>, we retrieved the predicted structures of mutant proteins of the same type (XimE).  AlphaFold<sup>[<a href="#ref17">17</a>]</sup> is a computational approach capable of predicting protein structures to near experimental accuracy, whereas ChimeraX<sup>[<a href="#ref16">16</a>]</sup> runs its script automatically on Google Colab servers. During our trials with docking between target ligand and XimE we noticed great differences in scores between WT protein retrieved from PDB, aka crystallographic structure, and WT protein predicted with AlphaFold, although both have the same amino acid sequence. Therefore, we decided to use the predicted wild-type (WT) protein from AlphaFold for comparison with predicted mutant proteins for our further investigations. </p>
+<p>The next step was protein-ligand docking. It is a method in structural molecular biology, whose goal is to predict the optimal binding mode of a ligand with a protein of known three-dimensional structure. There are various programs that can be used for protein-ligand docking, however, more comfortable the fastest and the most dependable for us appeared to be CB-Dock2 used for blind docking because the protein of interest lacked the verified position of the active site. The program first automatically detects binding sites and customizes the docking box and then employs the latest version (1.2.0) of AutoDock Vina for the docking itself.<sup>[<a href="#ref18">18</a>]</sup><sup>[<a href="#ref19">19</a>]</sup> As a result, the software draws out the list of ranked binding sites of the ligand according to the Vina score, predicted binding affinity calculated in kcal/mol, which in turn can be translated into binding free energy ∆G. </p>
+<p>Finally, we analyzed and compared all the scores and visualized the following interaction between mutant protein and target ligand using PyMol, a molecular visualization system on an open-source foundation. </p>
+<p>You can find all of our files, and artifacts here: <a href="https://gitlab.igem.org/2022/software-tools/technion-israel/-/tree/main/Mutation%20Modeling%20Supplements">Supplements</a> </p>
+
+
+<h2>Position of Mutations  </h2>
+<hr>
+<p>XimE is a dimer made of two identical subunits, hence for the simplicity of the processes we ran the mutations on a single chain (chain a) as indicated in the literature<sup>[<a href="#ref21">21</a>]</sup><sup>[<a href="#ref22">22</a>]</sup><sup>[<a href="#ref23">23</a>]</sup>. </p>
+<p>Before the molecular docking, we needed to choose the suitable amino acids on which the mutation would be performed. To understand the region of the cavity where the ligand binds, we ran a wild-type (WT) simulation with our ligand and received an estimated location. We integrated the amino acids around the selected area with the literature and selected three amino acids that were most examined in mutagenesis experiments. In their paper, Bei-Bei H et al.<sup>[<a href="#ref12">21</a>]</sup> have identified <b>Glutamic acid at position 136 (E136), Histidine at position 102 (H102), and Tyrosine at position 153 (Y153)</b> as possible key residues for the pyran ring formation. Chuchu Jiang et al.<sup>[<a href="#ref22">22</a>]</sup> stated that mutagenesis in E136 or H102 didn’t eliminate the enzyme activity, reinforcing the choice. </p>
+<p>For Y153 we also based on the work of Xu-Liang Bu et al. <sup>[<a href="#ref23">23</a>]</sup> that performed in vitro mutagenesis in Y153.</p>
+<p>Moreover, we performed the initial docking of the WT protein with the target ligand and received the following list of residues participating in the bond as listed in Fig.6. It can be shown that the three selected amino acids are displayed.</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/model/img1-wholeprotein.png"  width="50%" class ="imgcenter" >
+  <div class="figure-text"> <p><b>Figure 7: A proposed mechanism for the catalysis. </b>CB-Dock2 representation of XimE suggested the shown amino acids are involved in epoxidated 7-demethylsuberosin binding. List of residues participating in the bond: Y46, M47, L75, F93, A96, V97, <b>H102</b>, W118, V120, A122, R124, M130, A132,<b> E136</b>, N151, <b>Y153</b>, P157. In bold: selected positions for mutagenesis analysis.</p></div>  
+
+<img src="https://static.igem.wiki/teams/4179/wiki/model/img2-4.png"  width="70%" class ="imgcenter" >
+  <div class="figure-text"> <p><b>Figure 8: Amino acids selected for mutagenesis analysis and their interaction with XimE's substrate, epoxidated 7-demethylsuberosin.</b>(a) H102 residue making bond with ligand. (b) E136 residue making bond with ligand. (c) Y153 residue making bond with ligand.</p></div>  
+
+<h2>Results </h2>
+<hr>
+<p>The resulting scores obtained from CB-Dock2 were compared and summed in the  supplements attached, to view them click <a href="https://gitlab.igem.org/2022/software-tools/technion-israel/-/blob/8625128c3d0d0f2aac0d84b76d07f97da696375c/Mutation%20Modeling%20Supplements/List%20of%20mutations%20and%20Vinascores.xlsx" target="_blank">here</a>. The leading scores from each mutated amino acid are presented below in table 1. </p>
+<p>It can be seen from the table that the initial score of the WT is -6.0 kcal/mol, and the favorable mutations’ scores are lower. This matches expectations as a more negative score indicate a higher affinity between the protein and the ligand<sup>[<a href="#ref24">24</a>]</sup>.  </p>
+<p>The best score was obtained from the mutation H102P, with a score of -9.2 kcal/mol. </p>
+
+
+<p class="text-center" ><b>Table 3: </b>Top Vina scores for the mutagenesis of each of the selected amino acid.</p>
+
+<center>
+
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Mutation </th>
+    <th class="tg-0lax">Vina score [kcal/mol] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">WT</td>
+    <td class="tg-0lax">-6.0</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">Y153R</td>
+    <td class="tg-0lax">-7.8</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">E136P</td>
+    <td class="tg-0lax">-8.4</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">H102P</td>
+    <td class="tg-0lax">-9.2</td>
+  </tr>
+
+</tbody>
+
+</table>
+</center>
+
+</br>
+<center>
+  <img src="https://static.igem.wiki/teams/4179/wiki/model/new-animation-of-two-proteins.gif" width="auto" 
+           class = "imgcenter">
+                          <caption><b>(a)</b></caption>
+  </center>
+<center>
+  <div class="row" class="center">
+      <div class="col-lg-6">
+        <img src="https://static.igem.wiki/teams/4179/wiki/model/picture-1-model.png"    width="70%"  
+        height="auto" class = "imgcenter">
+        <caption><b>(b)</b></caption>
+      </div>
+      <div class="col-lg-6">
+        <img src="https://static.igem.wiki/teams/4179/wiki/model/picture-2-model.png"  width="70%" 
+        height="auto" class = "imgcenter">
+        <caption><b>(c)</b></caption>
+      </div>
+    </div>
+  </center>
+
+  <div class="figure-text"> <p><b>Figure 9: interaction of WT protein and H102P mutant protein with ligand.</b> WT and H102P (mutant) protein aligned together interacting with 7-demethylsuberosin (in blue – WT protein with its ligand in the same color, in yellow – mutant protein with its ligand in the same color, in red – position of mutation, in pink – amino acids of WT protein not aligned, in grey - amino acids of mutant protein not aligned). (a) Rotating two proteins aligned together. (b, c) Closer look of areas not aligned betweeen two proteins. The ligand of mutant protein lays deeper in the cavity.</p></div>  
+
+<p>Proline is a much more rigid amino acid than others, and due to its characteristics, it often improves the stability of the protein as a whole<sup>[<a href="#ref25">25</a>]</sup>, which may ensure a stronger and more stable bond between the XimE and the ligand. </p>
+
+<h2>Conclusion </h2>
+<hr>
+<p>Directed mutagenesis is a significant tool for improving the properties of proteins and the affinity between enzymes and their substrates. By using computational tools, it is possible to investigate a wide variety of mutations resulting in reducing time, manpower, and laboratory equipment. After targeting three amino acids- E136, Y153, and H102 we received different scores, with H102P being the lowest. As Proline is known for stabilizing tertiary structures of proteins it is a possible explanation as to why H102P is the optimal mutation. </p>
+
+<h2>Model Implications</h2>
+<hr>
+<p>The computational approach described here was desirable for us, because of the feasibility of testing the predictions and results in the wet lab. 
+  In our case, we were able to design primers that allow us to generate mutated enzymes based on the model results. By establishing the production rate of decursin as a criterion for comparison, we can assess the results of different mutations to the WT.  
+  The experiments we planned to validate our modeling work would be a good starting point for our future work.
+  </p>
+
+
+<h1>4. The Enzymatic Reactions and Kinetics of PT, XimE, and XimD</h1>
+<h2>Introduction</h2>
+<hr>
+<p>We define the system as an expression system with <b>three</b> enzymes: <b>PT</b>, <b>XimE</b>, and <b>XimD</b>. PT catalyzes the reaction from UMB to DMS and XimE together with XimD catalyzes the reaction from DMS to DEC.
+  To <b>optimize the system for the production of DEC</b>, a precursor of decursin, we needed to model the enzymatic reactions and characterize their dynamics. </p>
+
+
+  <h2>Estimation of Enzyme Concentration</h2>
+<hr>
+<p>Using our <a href="#fer">fermentation model</a> we were able to estimate the <b>total amount</b> of protein produced in the system. According to our <a href="{{ url_for('pages', page='design') }}">design</a>, the bacterial population expresses all <b>three</b> enzymes. The next step was to understand the distribution between the different enzymes that catalyze the enzymatic reactions, this will allow us to calculate the <b>concentration of each enzyme</b> in the system. We used experimental data found by Bei-Bei et al. (2019), which held experiments on a two-enzyme system that expresses only XimE and XimD.</p>
+<p>Now, we can model two different systems, plug-in experimental data from the two-enzyme system, and
+  based on that draw conclusions regarding the three-enzyme system.</p>
+<li><b>The three-enzyme system:</b> a system with an expression of XimE, XimD, and PT.</li></br>
+<li><b>The two-enzyme system:</b> a system with an expression of XimE, and XimD.</li>
+</br>
+<h3>Definitions</h3>
+<hr>
+<p class="text-center" ><b>Table 4: </b>Description of Model Symbol and Values as Inferred from Literature</p>
+<center>
+  
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Symbol</th>
+    <th class="tg-0lax">Units</th>
+    <th class="tg-0lax">Description</th>
+    <th class="tg-0lax">Value</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">$\text{XimD length}$</td>
+    <td class="tg-0lax">$\text{No. of amino acids}$</td>
+    <td class="tg-0lax">Amount of amino acids in a XimD protein </td>
+    <td class="tg-0lax">$474$ <sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\text{XimE length}$</td>
+    <td class="tg-0lax">$\text{No. of amino acids}$</td>
+    <td class="tg-0lax">Amount of amino acids in a XimE protein </td>
+    <td class="tg-0lax">$124$<sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\text{PT length}$</td>
+    <td class="tg-0lax">$\text{No. of amino acids}$</td>
+    <td class="tg-0lax">Amount of amino acids in a PT protein </td>
+    <td class="tg-0lax">$400$<sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+  
+  <tr>
+    <td class="tg-0lax">$N_{A}$</td>
+    <td class="tg-0lax">$ \frac{\text{molecules}}{\text{mol}} $</td>
+    <td class="tg-0lax"> Avogadro constant</td>
+    <td class="tg-0lax">$\sim6.022\cdot10^{23}$</td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$\text{[Total Protein]}$</td>
+    <td class="tg-0lax">$ \frac{mg}{ml} $</td>
+    <td class="tg-0lax">Concentration of protein produced in the cell according to presented fermentation model <sup>[<a href="#ref1">1</a>]</sup></td>
+    <td class="tg-0lax">$0.5$</td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$m_{\text{aa}}$</td>
+    <td class="tg-0lax">$Da$</td>
+    <td class="tg-0lax"> Average weight of an amino acid</td>
+    <td class="tg-0lax">$110$ <sup>[<a href="#ref26">26</a>]</sup></td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$MW_{\text{XimD}}$</td>
+    <td class="tg-0lax">$ Da $</td>
+    <td class="tg-0lax">Molar mass of a single XimD protein molecule</td>
+    <td class="tg-0lax">$51,010$<sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$MW_{\text{XimE}}$</td>
+    <td class="tg-0lax">$ Da $</td>
+    <td class="tg-0lax">Molar mass of a single XimE protein molecule </td>
+    <td class="tg-0lax">$13,637$<sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$m_{\text{PT}}$</td>
+    <td class="tg-0lax">$ Da $</td>
+    <td class="tg-0lax">Mass of a single PT protein molecule</td>
+    <td class="tg-0lax">$44,221$<sup>[<a href="#ref27">27</a>]</sup></td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$v_{\text{cell}}$</td>
+    <td class="tg-0lax">$ \mu m^{3} $</td>
+    <td class="tg-0lax">Volume of a bacterium cell</td>
+    <td class="tg-0lax">$1$<sup>[<a href="#ref29">29</a>]</sup></td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$m_{2,\text{Total XimD}}$</td>
+    <td class="tg-0lax">$ mg $</td>
+    <td class="tg-0lax">Total mass of XimD protein in the two enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+    
+  <tr>
+    <td class="tg-0lax">$m_{2,\text{Total XimE}}$</td>
+    <td class="tg-0lax">$ mg $</td>
+    <td class="tg-0lax">Total mass of XimE protein in the two enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$m_{3,\text{Total XimD}} $</td>
+    <td class="tg-0lax">$ mg $</td>
+    <td class="tg-0lax">Total mass of XimD protein in the three enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$m_{3,\text{Total XimE}}$</td>
+    <td class="tg-0lax">$ mg $</td>
+    <td class="tg-0lax">Total mass of XimE protein in the three enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+  
+  <tr>
+    <td class="tg-0lax">$[\text{XimD}]_{2} $</td>
+    <td class="tg-0lax">$ \mu M $</td>
+    <td class="tg-0lax">Enzyme concentration in an two enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+
+  <tr>
+    <td class="tg-0lax">$ [\text{XimE}]_{2}$</td>
+    <td class="tg-0lax">$ \mu M $</td>
+    <td class="tg-0lax">Enzyme concentration in an two enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  
+  <tr>
+    <td class="tg-0lax">$ [\text{XimD}]_{3}$</td>
+    <td class="tg-0lax">$ \mu M $</td>
+    <td class="tg-0lax">Enzyme concentration in an three enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  
+  <tr>
+    <td class="tg-0lax">$[\text{XimE}]_{3} $</td>
+    <td class="tg-0lax">$ \mu M $</td>
+    <td class="tg-0lax">Enzyme concentration in an three enzyme system</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  
+  <tr>
+    <td class="tg-0lax">$ m_{\text{total protein}}$</td>
+    <td class="tg-0lax">$ mg $</td>
+    <td class="tg-0lax">Total mass of enzymes in a single bacterium</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$N$</td>
+    <td class="tg-0lax">$ - $</td>
+    <td class="tg-0lax">Number of molecules in volume V</td>
+    <td class="tg-0lax">Calculated in model</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$V$</td>
+    <td class="tg-0lax">$ \mu M $</td>
+    <td class="tg-0lax">Total mass of enzymes in a single bacterium</td>
+    <td class="tg-0lax">Volume</td>
+  </tr>
+
+  </tbody>
+  </table>
+  </center>
+</br>
+  <h3>Assumptions</h3>
+  <hr>
+  <ol type="1">
+    <li>The total protein mass in an system with $n$ enzymes is distributed among the proteins introduced in our plasmid systems:$ m_{\text{total protein}}={\displaystyle \sum_{i=1}^{n}m_{\text{total protein i}}}$</li>
+    <li>Our fermentation model suggests peak protein concentration of $0.86\frac{mg}{ml}$, this is supported by the literature: “For cells induced at around $OD6oo = 0.6$ and harvested 3 h later, a typical yield is about $0.5-1mg$ total protein per $ml$ of culture”<sup>[<a href="#ref25">25</a>]</sup>. (OD refers to the cell density). We decided to take a conservative value: $[\text{Total Protein}]=0.5\frac{mg}{ml}$. </li>
+    <li>The ratio between the weights of both proteins is the ratio between their respective lengths.</li>
+    <li>Assume equality between average mass [$Da$] and molar mass $[\frac{g}{mol}]$</li>
+    <li>We use an estimation $\frac{1}{\mu m^{3}}=1nM$ following this approximation:</li>
+    $$C=\frac{N}{AV}=\frac{1}{6\cdot10^{23}\mu m^{3}}\approx\frac{1}{10^{24}mol^{-1}\cdot1\mu m^{3}}=$$
+    $$=\frac{1mol}{10^{24}(10^{-6}m)^{3}}=\frac{1mol}{10^{6}m^{3}}=\frac{1mol}{10^{6}\cdot1000liter}=\frac{1mol}{10^{9}l}=10^{-9}M=1nM$$
+  </ol>
+
+  <h3 id="two-enzyme system">Two Enzyme System: XimE & XimD </h3>
+  <hr>
+  <p>Because our expression system contains two enzymes, it holds that:</p>
+  $$ (4.1)\ m_{\text{total protein}}=[\text{Total Protein}]\cdot v_{\text{cell}}=m_{\text{XimE}}+m_{\text{XimD}}  $$
+  <p>By our assumption, the distribution of mass is equal to the ratio between enzyme lengths:</p>
+  $$ (4.2)\  \frac{m_{2,\text{Total XimD}}}{m_{2,\text{Total XimE}}}=\frac{\text{XimDlength}}{\text{XimE length}}$$
+  <p>This yields:</p>
+  $$ (4.3)\ m_{2,\text{Total XimD}}=\frac{\text{XimD length}}{\text{XimD length}+\text{XimE length}}\cdot m_{\text{total protein}} $$
+  $$ (4.4)\ m_{2,\text{Total XimE}}=\frac{\text{XimE length}}{\text{XimD length}+\text{XimE length}}\cdot m_{\text{total protein}}$$
+  <p>We calculate the number of molecules from each kind to get the concentration of each enzyme in a single bacterium. <br>For XimD: </p>
+  $$ (4.5)\ [\text{XimD}]_{2}=\frac{m_{2,\text{Total XimD}}\cdot\frac{N_{A}}{MW_{\text{XimD}}}}{v_{\text{cell}}}=\frac{4600}{1\mu m^{3}}\underbrace{=}_{\text{(Assumption 5)}}4.6\,\mu M  $$
+  <p>For XimE:</p>
+  $$ (4.6)\  [\text{Xime}]_{2}=\frac{m_{2,\text{Total XimE}}\cdot\frac{N_{A}}{MW_{\text{XimE}}}}{v_{\text{cell}}}=\frac{4400}{1\mu m^{3}}\underbrace{=}_{\text{(Assumption 5)}}4.4\,\mu M $$
+  <h3 id = "3enzyme">Three Enzyme System: PT & XimE & XimD </h3>
+  <hr>
+  <p>In this case: </p>
+  $$ (4.7)\ m_{\text{total protein}}=m_{\text{XimE}}+m_{\text{XimD}}+m_{\text{PT}}=0.5mg  $$
+  <p>In a similar fashion, considering PT Length:XimD Length:XimE Length=3.2:3.8:1, we find:</p>
+  $$ [\text{XimD}]_{3}=2.7\,\mu M $$
+  $$ [\text{XimE}]_{3}=2.8\,\mu M $$
+  $$ [\text{PT}]_{3}=2.7\,\mu M $$
+
+  <h2>Enzyme Kinetics Model</h2>
+  <hr>
+  <p>After estimating the concentration of the enzymes in our system we continued our modeling work to answer two questions, the first being <b>how much of the UMB is converted to DEC</b>. The second would be the temporal aspect: understanding <b>how long the enzymatic reaction will take</b>. Both of these aspects together would allow us to quantify a <b>production rate</b>. This understanding of the key factors in the biomanufacturing process will allow us to create a more optimized biological circuit design, and accordingly provide us with predictions for the cost and time of the production.</p>
+
+  <h2>Michaelis–Menten Kinetics</h2>
+  
+  <h3>Definitions</h3>
+  <hr>
+  <p class="text-center" ><b>Table 5: </b>Description of Model Symbol and Values as Inferred from Literature</p>
+
+  <center>
+    
+    <table class="tg">
+  <thead>
+    <tr>
+      <th class="tg-0lax">Symbol</th>
+      <th class="tg-0lax">Units</th>
+      <th class="tg-0lax">Description</th>
+      <th class="tg-0lax">Value</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td class="tg-0lax">$\text{[XimE]}$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">XimE enzyme concentration</td>
+      <td class="tg-0lax">$2.8 \text{[previous model]}$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$\text{[XimD]}$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">XimD enzyme concentration</td>
+      <td class="tg-0lax">$2.7 \text{[previous model]}$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$\text{[PT]}$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">Prenyltrasnfarase enzyme concentration</td>
+      <td class="tg-0lax">$2.7 \text{[previous model]}$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$v_{\text{UMB}}$</td>
+      <td class="tg-0lax">$\frac{\mu M}{sec}$</td>
+      <td class="tg-0lax">Rate of formation of UMB</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$v_{\text{DMS}}$</td>
+      <td class="tg-0lax">$\frac{\mu M}{sec}$</td>
+      <td class="tg-0lax">Rate of formation of DMS</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$v_{\text{DEC}}$</td>
+      <td class="tg-0lax">$\frac{\mu M}{sec}$</td>
+      <td class="tg-0lax">Rate of formation of DEC</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$v_{\text{MAR}}$</td>
+      <td class="tg-0lax">$\frac{\mu M}{sec}$</td>
+      <td class="tg-0lax">Rate of formation of marmesin</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$k_{m,\text{PT}\cdot\text{UMB}}$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">Michaelis constant</td>
+      <td class="tg-0lax">$20$<sup>[<a href="#ref30">30</a>]</sup></td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$k_{1,\text{cat}}$</td>
+      <td class="tg-0lax">$\frac{1}{sec}$</td>
+      <td class="tg-0lax">Rate of formation DMS from UMB</td>
+      <td class="tg-0lax">$0.435$<sup>[<a href="#ref30">30</a>]</sup></td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$[\text{UMB}]$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">UMB concentration</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$[\text{DMS}]$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">DMS concentration</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$[\text{DEC}]$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">DEC concentration</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+
+    <tr>
+      <td class="tg-0lax">$[\text{MAR}]$</td>
+      <td class="tg-0lax">$\mu M$</td>
+      <td class="tg-0lax">Marmesin concentration</td>
+      <td class="tg-0lax">$-$</td>
+    </tr>
+  
+  </tbody>
+</table>
+</center>
+</br>
+<h3>Assumptions</h3>
+<hr>
+<li>The entirety of the metabolite concentration is consumed in the reaction and converted to the products defined in each reaction.</li>
+<li>[UMB] in the cell is constant, due to the diffusion being immediate as seen in our <a href="#diffusion">diffusion model</a></li>
+</br>
+<h3>Equations</h3>
+<hr>
+<p>We defined the following reaction:</p>
+$$ (4.8)\ \text{PT}+\text{UMB}\overset{k_{1}}{\underset{k_{-1}}{\rightleftarrows}}\text{PT}\cdot\text{UMB}\overset{k_{1cat}}{\rightarrow}\text{PT}+\text{DMS}  $$
+<p>based on the Michaelis-Menten equation<sup>[<a href="#ref30">30</a>]</sup> which states that the rate of a reaction is proportional to the concentrations of the enzyme and the substrate:</p>
+$$ (4.9)\  v=\frac{d[P]}{dt}=\frac{k_{\text{cat}}\cdot[S]\cdot[E]}{k_{m}+[S]} $$
+<p>we reached the following:</p>
+$$ (4.10)\  v_{\text{UMB}}=-\frac{k_{1,\text{cat}}\cdot[\text{UMB}]\cdot[\text{PT}]}{k_{m,\text{PT}\cdot\text{UMB}}+[\text{UMB}]} $$
+
+<h2>Gibbs Distribution Model</h2>
+<hr>
+<p>The penultimate reaction in the biosynthesis transforms DMS to DEC. It is catalyzed by two enzymes co-dependently: flavin-dependent monooxygenase (XimD) and SnoaL-like cyclase (XimE). Together, they catalyze the formation of the pyran ring (6-endo-tet cyclization) necessary for the synthesis of pyranocoumarins such as decursinol.</p>
+<p>In vitro enzymatic assays were used <sup>[<a href="#ref1">1</a>]</sup> to show that XimD alone (without the presence of XimE) catalyzes the formation of furan ring (5-exo-tet cyclization) which produces marmesin <b>(MAR)</b> instead of <b>DEC</b>.</p>
+<p>It is only when both XimE and XimD are present, that the pyran ring is formed and <b>decursinol</b> is produced.</p>
+<p>Microbial host models, expressing both XimE and XimD, clarified that the two reaction paths occur simultaneously. As we wanted to optimize our system for the production of DEC, we wanted the system to prefer the reaction that produces DEC</p>
+<p>A suggested mechanism proposes an unstable epoxide intermediate, that can spontaneously decay to marmesin in the absence of XimE.</p>
+<img src="https://static.igem.wiki/teams/4179/wiki/model/ximeximd.svg"  width="80%" class ="imgcenter" >
+  <div class="figure-text"> <p><b>Figure 10: A proposed mechanism for the reactions of XimE and XimD.</b> (Bei Bei et al.<sup>[<a href="#ref1">1</a>]</sup>). DMS is
+    converted to an epoxide intermediate by XimD, which then in the presence of XimE is converted to DEC.
+    in the absence of XimE, the intermediate is converted MAR.</p></div>  
+
+<h3>Definitions</h3>
+<hr>
+<p class="text-center" ><b>Table 6: </b>Description of Model Symbol and Values as Inferred from Literature</p>
+<center>
+  
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Symbol</th>
+    <th class="tg-0lax">Units</th>
+    <th class="tg-0lax">Description</th>
+    <th class="tg-0lax">Value</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">$N$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Number of molecules</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$c$</td>
+    <td class="tg-0lax">$\mu M$</td>
+    <td class="tg-0lax">Concentration of reaction complex</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+
+  <tr>
+    <td class="tg-0lax">$c_{0}$</td>
+    <td class="tg-0lax">$\mu M$</td>
+    <td class="tg-0lax">Initial concentration</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\beta$</td>
+    <td class="tg-0lax">$\frac{1}{kJ}$</td>
+    <td class="tg-0lax">Thermal influence</td>
+    <td class="tg-0lax">$\frac{1}{k_{B}T}$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$k_{B}$</td>
+    <td class="tg-0lax">$\frac{kJ}{K}$</td>
+    <td class="tg-0lax">Boltzmann constant</td>
+    <td class="tg-0lax">$1.380649\cdot10^{-26}$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$T$</td>
+    <td class="tg-0lax">$K$</td>
+    <td class="tg-0lax">Temperature</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\Delta\varepsilon$</td>
+    <td class="tg-0lax">$kJ$</td>
+    <td class="tg-0lax">Binding energy</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\varepsilon$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">A constant expressing the dependency between XimE and XimD</td>
+    <td class="tg-0lax">In the magnitude of $K_{D,3}$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$Z$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Partition function</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$k_{2,cat}$</td>
+    <td class="tg-0lax">$\frac{1}{s}$</td>
+    <td class="tg-0lax">Rate of formation marmesin from DMS</td>
+    <td class="tg-0lax">$0.1$ <a href="#Estimating model coefficients">(Estimating model coefficients)</a></td>
+  </tr>
+  
+  <tr>
+    <td class="tg-0lax">$k_{3,cat}$</td>
+    <td class="tg-0lax">$\frac{1}{s}$</td>
+    <td class="tg-0lax">Rate of formation DEC from DMS</td>
+    <td class="tg-0lax">$0.44$ <a href="#Estimating model coefficients">(Estimating model coefficients)</a></td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$K_{D,1}$</td>
+    <td class="tg-0lax">$\mu M$</td>
+    <td class="tg-0lax">Dissociation constant of XimD with DMS</td>
+    <td class="tg-0lax">$0.1$ <a href="#Estimating model coefficients">(Estimating model coefficients)</a></td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$K_{D,2}$</td>
+    <td class="tg-0lax">$\mu M$</td>
+    <td class="tg-0lax">Dissociation constant of XimE,XimD system with DMS</td>
+    <td class="tg-0lax">$0.1$ <a href="#Estimating model coefficients">(Estimating model coefficients)</a></td>
+  </tr>
+</tbody>
+</table>
+</center>
+
+<h3></br>Statistical Equations</h3>
+<hr>
+<p>First, we defined the following reaction:</p>
+$$ (4.11)\ \text{XimD}+\text{DMS}\overset{k_{2cat}}{\rightarrow}\text{MAR}  $$
+$$ (4.12)\  \text{XimD}+\text{DMS}+\text{XimE}\overset{k_{3cat}}{\rightarrow}\text{DEC}+\text{MAR} $$
+<p>We use a state variable description approach of protein-substrate binding. <sup>[<a href="#ref31">31</a>]</sup></p>
+<p>Each substrate molecule can be bound to each one of the two enzymes (XimD and XimE). This gives us four optional states:</p>
+<ol type="1">
+  <li>No reaction: free DMS without XimD or XimE</li>
+  <li>Exclusively XimD: XimD is bound to DMS and catalyzes DMS to MAR</li>
+  <li>XimD and XimE: Both catalyze the reaction by binding to the DMS and catalyze DMS to DEC</li>
+  <li>Exclusively XimE: Does not have a catalytic activity alone (because it binds to an intermediate created by XimD). Therefore, we express this dependency between the enzymes with a new parameter called $\varepsilon\sim K_{D,3}>>K_{D,1}$</li>
+</ol>
+<p>Thus, we define a partition function. This function takes into account every state that our system could be in:</p>
+$$ (4.13)\ Z=1+\frac{[\text{XimD}]}{K_{D,1}}+\frac{[\text{XimD}][\text{XimE}]}{K_{D,1}\cdot K_{D,3}}\varepsilon+\frac{[\text{XimE}]}{K_{D,3}}  $$
+<p>While we perform the following reduction:$ \frac{\varepsilon}{K_{D,1}\cdot K_{D,3}}=\frac{1}{K_{D,2}}$</p>
+<P>According to the Gibbs model<sup>[<a href="#ref3">3</a>]</sup>, the average number of molecules in a bounded state is:</P>
+$$ (4.14)\ N=c\frac{\frac{1}{c_{0}}e^{-\beta\Delta\varepsilon}}{Z} $$
+<p>To make our model depend on a single parameter, we define the following notation: </p>
+$$ (4.15)\ \frac{1}{\frac{1}{c_{0}}e^{-\beta\Delta\varepsilon}}=c_{0}e^{\beta\Delta\epsilon}=K_{D}  $$
+<p>We define the rate of a reaction as the number of molecules in bound state times the catalytic rate constant:</p>
+$$ (4.16)\ v=\frac{d[P]}{dt}=k_{cat}\cdot N  $$
+<p>And plug (4.6) and (4.7) into (4.8) to receive:</p>
+$$ (4.17)\ v=\frac{k_{cat}\cdot c}{K_{D}\cdot Z}  $$
+<p>Then, the change in the concentration of the metabolites follows:</p>
+$$ (4.18)\ v_{\text{DMS}}=\frac{k_{1,\text{cat}}\cdot[\text{UMB}]\cdot[\text{PT}]}{k_{m,\text{PT}\cdot\text{UMB}}+[\text{UMB}]}-\frac{k_{2,\text{cat}}}{K_{D,2}}\frac{[\text{DMS}]\cdot[\text{XimD}]\cdot[\text{XimE}]}{Z}-\frac{k_{3,\text{cat}}}{K_{D,1}}\frac{\cdot[\text{DMS}]\cdot[\text{XimD}]}{Z} $$
+$$ (4.19)\  v_{\text{DEC}}=\frac{d[\text{DEC]}}{dt}=\frac{k_{2,\text{cat}}}{K_{D,2}}\frac{[\text{DMS}]\cdot[\text{XimD}]\cdot[\text{XimE}]}{Z} $$
+$$ (4.20)\ v_{\text{MAR}}=\frac{d[\text{MAR]}}{dt}=\frac{k_{3,\text{cat}}}{K_{D,1}}\frac{\cdot[\text{DMS}]\cdot[\text{XimD}]}{Z}  $$
+<p>Where the change in DMS concentration is defined as: </p>
+$$ (4.21)\ v_{\text{DMS}}=-v_{\text{UMB}}-v_{\text{DEC}}-v_{\text{MAR}} $$
+
+<h2 id="Estimating model coefficients">Estimating Model Coefficients</h2>
+<hr>
+<p>To estimate the coefficients, we use the results found by Bei-Bei et al<sup>[<a href="#ref30">30</a>]</sup>: 
+
+  Cloning of XimD and XimE under two pET plasmids resulted in a DEC:MAR ratio of 1:1.
+  
+  Assuming the ratio of $\frac{dp}{dt}$ correlates with the final concentration, we get: </p>
+$$ (4.22)\ 1=\frac{[\text{DEC}]_{\text{final}}}{[\text{MAR}]_{\text{final}}}\implies1=\frac{v_{\text{DEC}}}{v_{\text{MAR}}}=\frac{\frac{k_{2},cat}{K_{D,2}}}{\frac{k_{3,cat}}{K_{D,1}}}\cdot[\text{XimE}]_{\text{basal}}\implies\frac{\frac{k_{2},cat}{K_{D,2}}}{\frac{k_{3,cat}}{K_{D,1}}}=\frac{1}{[\text{XimE}]_{2}} $$
+<P>Define:</P>
+$$\frac{k_{2,cat}}{K_{D,2}}=k_{\text{eff,2}}$$
+$$\frac{k_{3,cat}}{K_{D,1}}=k_{\text{eff,3}}$$
+<p>As mentioned before:</p>
+$$ \frac{k_{3,cat}}{K_{D,1}}=k_{\text{eff},3}=4.4\frac{k_{2,cat}}{K_{D,2}}=4.4k_{\text{eff},2} $$
+<p>Therefore:</p>
+$$\frac{k_{3,cat}}{K_{D,1}}=k_{\text{eff,3}}=4.4\frac{k_{2,cat}}{K_{D,2}}=4.4k_{\text{eff,2}}$$
+<p>For that reason we chose arbitrary values while maintaining 2 conditions:</p>
+
+<ol type="1">
+  <li>The ratio $\frac{k_{\text{eff,3}}}{k_{\text{eff,2}}}=4.4$</li>
+  <li>We keep the values to be in the same order of magnitude as $k_{1,\text{cat}}$</li>
+  </ol>
+
+<h2>Results and Conclusions</h2>
+<hr>
+<p>Using these values we get the following graph from our simulation:</p>
+
+<div class="row">
+  <div class="col">
+      <img src="https://static.igem.wiki/teams/4179/wiki/model/production-of-decursinol-new.svg" alt="Snow" width="90%">
+  </div>
+  <div class="col">
+          <img src= "https://static.igem.wiki/teams/4179/wiki/model/ratio-of-decursin-marmesin-vs-xime-molar-fraction.svg" alt="link" width="80%">
+</div>
+</div>
+<div class="row">
+  <div class="col">
+      <center>(a)</center>
+  </div>
+  <div class="col">
+      <center>(b)</center>
+  </div>
+  <div class="figure-text"> <p><b>Figure 11: Production of metabolites in the three-enzyme system. </b>(a) Production of DEC vs time.
+    UMB is converted to DMS, which is then immediately converted to DEC and MAR. The final
+    DEC:MAR ratio is 0.64. The enzyme conrentration is as described in the <a href="#3enzyme">three enzyme system.</a> (b) Ratio of
+    DEC:MAR vs XimE concentration. XimE molar fraction is calculated out of the total protein molecules
+    in the system. The XimE percent stands for the amount of XimE molecules out of 100 protein molecules.
+    As the molar fraction of XimE rises, the ratio increases in favor of decursin.</p></div>  
+</div>
+
+
+<p>Figure 11a shows, that the entirety of our precursor, UMB is converted to the products, and results in
+  saturation of DEC and MAR. The model also <b>shows the feasibility of the process</b>, the calculated
+  production rate of DEC is 0.3 grams per liter per hour. The model predicts that the expression of the three
+  enzymes under the same promoter will result in a higher concentration of the byproduct marmesin
+  compared to the target product decursinol (fig.11a). Moreover, we observe that when the molar fraction of
+  XimE increases, a higher concentration of decursinol is obtained compared to marmesin (fig.11b). This
+  prediction <b>prompted us to modify the design of our plasmid</b>, we included a constitutive expression of
+  XimE and an inducible expression of the other two enzymes. By controlling the expression levels of
+  XimD & PT, we ensure a surplus of XimE. There is no correlation between [DEC] [MAR] and [XimD].
+  The ratio between the metabolites is proportional to the concentration of XimE.</p>
+
+
+<h2>Fitting the model to experimental data</h2>
+<h3>Definitions</h3>
+<p class="text-center" ><b>Table 6: </b>Description of this Section Symbols and Values as Taken from qPCR Results</p>
+
+<center>
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Symbol</th>
+    <th class="tg-0lax">Units</th>
+    <th class="tg-0lax">Description</th>
+    <th class="tg-0lax">Value</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td class="tg-0lax">$\text{XimE}_{\text{Copy number}}$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Number of XimE transcripts</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\text{XimD}_{\text{Copy number}}$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Number of XimD transcripts</td>
+    <td class="tg-0lax">$-$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\text{XimE}_{\text{CT}}$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Cycle number in which XimE cDNA level reached threshold of 0.3</td>
+    <td class="tg-0lax">$18.9810$</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">$\text{XimD}_{\text{CT}}$</td>
+    <td class="tg-0lax">$-$</td>
+    <td class="tg-0lax">Cycle number in which XimD cDNA level reached threshold of 0.3</td>
+    <td class="tg-0lax">$16.2080$</td>
+  </tr>
+</tbody>
+</table>
+</center>
+  <h3></br>Assumptions</h3>
+  <hr>
+  <li>RNA level (measured by qPCR) is equivalent to the protein levels.</li>
+
+  <h3></br>Equations</h3>
+  <hr>
+  <p>According to our <a href="{{ url_for('pages', page='design') }}">design</a>, we have a plasmid containing XimD and XimE under T7 promoters (ximE_ximD). The expression of XimD is regulated by the Lac repressor while the expression of XimE is constitutive. We measured the expression levels in our two-enzyme system in the wet lab. This was done by running a qPCR of samples containing our engineered bacteria under the induction of IPTG. For detailed results please refer to our <a href="{{ url_for('pages', page='results') }}">results</a>. To calculate the ratio between the expression levels of XimD and XimE, we used the threshold defined for the qPCR process. For each gene, we calculated a cycle threshold (CT) value in which it reached the threshold of fluorescence. At these CT values, the cDNA level is equal. </p>
+  <p>Thus:</p>
+  $$ (4.23)\  \text{XimE}_{\text{Copy number}}\cdot2^{\text{XimE}_{\text{CT}}}=\text{XimD}_{\text{Copy number}}\cdot2^{\text{XimD}_{\text{CT}}}$$
+  $$ (4.24)\  \frac{\text{XimD}_{\text{Copy number}}}{\text{XimE}_{\text{Copy number}}}=\frac{2^{\text{XimE}_{\text{CT}}}}{2^{\text{XimD}_{\text{CT}}}}=\frac{2^{18.9810}}{2^{16.2080}}\approx6.8$$
+  <p>6.8 is the molar ratio between XimD and XimE when IPTG is present. To get mass ratio we will multiply 6.8 with the ratio between the mass of a single XimD and the mass of a single XimE:</p>
+  $$ (4.25)\  \text{XimD}:\text{XimD}=6.8\frac{\text{mol}}{\text{mol}}\cdot\frac{MW_{\text{XimD}}}{MW_{\text{XimE}}}=6.8\cdot\frac{51,010}{13,637}\approx25.4$$
+  <p>consequently, we deduce that XimD:XimE is 25.4:1 when IPTG is present. We redo the process detailed in the <a href="#two-enzyme system">two-enzyme system</a>, and get:</p>
+  $$[XimE]_{2}=0.23\mu M$$
+  $$[XimD]_{2}=5.5\mu M$$
+  <p>We ran the model again with the new concentrations. However, now we are modeling a two enzymes system which means we remove equation 4.10 from our ODE system.</p>
+    <img src="https://static.igem.wiki/teams/4179/wiki/model/production-of-decursinol-after-qpcr-and-hplc.svg"  width="40%" class ="imgcenter" >
+  <div class="figure-text"> <p><b>Figure 12: Production of DEC vs time with the concentrations calculated from qPCR results.</b> The predicted production of DEC and MAR in the two-enzyme system (ximE_ximD) results in a DEC:MAR ratio of 0.05</p></div>  
+  <p>Figure 12 shows a very high concentration of the unwanted product MAR. These wet lab results greatly emphasize to us the importance of creating a construct where the concentration of XimE will be as high as possible. We discuss ways to achieve this goal in the <a href="#model implications.">model implications.</a></p>
+
+
+  <h1 id="model implications.">Model Implications</h1>
+  <hr>
+
+  <p>After studying the results of the different models, we can proceed and test the predictions in the wet lab.
+    To test our predictions regarding how different concentrations of XimE and XimD affect the end products
+    of the manufacturing.
+  </br>We planned several plasmid designs, which can be compared according to the final concentrations of the
+  end products.
+  </br>Each design allows for different expression rates of the XimE and XimD enzymes:</p>
+
+  <ol type="1">
+    <li>XimE: By replacing the RBS of XimE, with an RBS designed to have a higher expression rate with the RBS calculator <sup>[<a href="#ref32">32</a>]</sup>, we expect to have a higher final concentration of decursinol. This can also lead to the development of the model to take the RBS strength into account. </li>
+    <li>XimD: By replacing either the promoter or RBS of XimD with a weaker candidate, we can asses our
+      prediction regarding the lack of correlation between $\frac{[\text{DEC}]}{[\text{MAR}]}$ and $[\text{XimD}]$. </li>
+    <li>Varying concentrations of inducers: by including a repression system, we could use the different inducer concentrations to conduct experiments with varying enzyme concentrations under the same plasmid. This will provide a high-throughput method of testing our model.</li> 
+  </ol>
+
+  <p>In the scope of iGEM, we focused on approach 3, which was the first one to be implemented in our <a href="{{ url_for('pages', page='design') }}">design</a>.
+
+
+
+
+{% endblock %}
+         
+{% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Bu, X. L., He, B. B., Weng, J. Y., Jiang, C. C., Zhao, Y. L., Li, S. M., ... & Xu, M. J. (2020). Constructing microbial hosts for the production of benzoheterocyclic derivatives. ACS Synthetic Biology, 9(9), 2282-2290.</li>
+    <li id="ref2">Cocaine diffusion model of iGEM team CLS_CLSG_UK 2020: <a herf="https://2020.igem.org/Team:CLS_CLSG_UK/Cocaine_diffusion" class="hyperlink" target="_blank">https://2020.igem.org/Team:CLS_CLSG_UK/Cocaine_diffusion</a></li>
+    <li id="ref3">Wesselingh J. A., Krishna R. Mass transfer. - London : Ellis Horwood, 1990. - C. 77.</li>
+    <li id="ref4">Gilbert, R. (2009). Physical biology of the cell, by Rob Phillips, Jane Kondev and Julie Theriot. Page 31
+    <li id="ref5">Huang, K. C., Mukhopadhyay, R., Wen, B., Gitai, Z., & Wingreen, N. S. (2008). Cell shape and cell-wall organization in Gram-negative bacteria. Proceedings of the National Academy of Sciences, 105(49), 19282-19287.</li>
+    <li id="ref6">maximum radius of Umbelliferone molecule and partition coefficient. chemicalize.  <a href="https://chemicalize.com/app/calculation" class="hyperlink" target="_blank">https://chemicalize.com/app/calculatione</a></li>
+    <li id="ref7">Benz, S. P., Pollarolo, A., Qu, J., Rogalla, H., Urano, C., Tew, W. L., ... & White, D. R. (2011). An electronic measurement of the Boltzmann constant. Metrologia, 48(3), 142.</li>
+    <li id="ref8">Zmpitas, J., & Gross, J. (2021). Modified Stokes–Einstein Equation for Molecular Self-Diffusion Based on Entropy Scaling. Industrial & Engineering Chemistry Research, 60(11), 4453-4459.</li>
+    <li id="ref9">monod growth model - Vallino, J. J., C. S. Hopkinson, and J. E. Hobbie. "Modeling bacterial utilization of dissolved organic matter: optimization replaces Monod growth kinetics." Limnology and Oceanography 41.8 (1996): 1591-1609.</li>
+    <li id="ref10">Pirt, S. J. (1965). The maintenance energy of bacteria in growing cultures. Proceedings of the Royal Society of London. Series B. Biological Sciences, 163(991), 224-231.</li>
+    <li id="ref11">Maurizi, M. (1992). Proteases and protein degradation in Escherichia coli. Experientia, 48(2), 178-201.</li>
+    <li id="ref12">Matias, S. C. B., de Azevedo, B., da Costa Filho, J. D. B., Lima, M. M., Moura, A. D., Martins, D. R. A., ... & Dos Santos, E. S. (2022). Enhancing the expression of multi-antigen chimeric TGAGS/BST protein from Toxoplasma gondii in Escherichia coli BL 21 Star during batch cultivation. Protein Expression and Purification, 106173.</li>
+    <li id="ref13">Wurm, D. J., Veiter, L., Ulonska, S., Eggenreich, B., Herwig, C., & Spadiut, O. (2016). The <i>E. coli</i> pET expression system revisited—mechanistic correlation between glucose and lactose uptake. Applied microbiology and biotechnology, 100(20), 8721-8729.</li>
+    <li id="ref14">Mauri, M., Gouzé, J. L., De Jong, H., & Cinquemani, E. (2020). Enhanced production of heterologous proteins by a synthetic microbial community: Conditions and trade-offs. PLoS computational biology, 16(4), e1007795.</li>
+    <li id="ref15">Hong, J. (1989). Yield coefficients for cell mass and product formation. Biotechnology and bioengineering, 33(4), 506-507.</li>
+    <li id="ref16">Alphafold – run from chimerax. Biochemistry Computational Research Facility (BCRF). (2022, July 25). Retrieved October 6, 2022, from https://bcrf.biochem.wisc.edu/2022/03/04/alphafold-run-from-chimerax/</li> 
+    <li id="ref17">Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., ... & Hassabis, D. (2021). Highly accurate protein structure prediction with AlphaFold. Nature, 596(7873), 583-589.</li>
+    <li id="ref18">Liu, Y., Yang, X., Gan, J., Chen, S., Xiao, Z. X., & Cao, Y. (2022). CB-Dock2: improved protein–ligand blind docking by integrating cavity detection, docking and homologous template fitting. Nucleic Acids Research.</li>
+    <li id="ref19">Liu, Y., Grimm, M., Dai, W. T., Hou, M. C., Xiao, Z. X., & Cao, Y. (2020). CB-Dock: a web server for cavity detection-guided protein-ligand blind docking. Acta Pharmacologica Sinica, 41(1), 138-144</li>
+    <li id="ref20">Boittier, E. D., Tang, Y. Y., Buckley, M. E., Schuurs, Z. P., Richard, D. J., & Gandhi, N. S. (2020). Assessing molecular docking tools to guide targeted drug discovery of CD38 inhibitors. International journal of molecular sciences, 21(15), 5183.</li>
+    <li id="ref21">He, B. B., Zhou, T., Bu, X. L., Weng, J. Y., Xu, J., Lin, S., ... & Xu, M. J. (2019). Enzymatic pyran formation involved in xiamenmycin biosynthesis. ACS Catalysis, 9(6), 5391-5399.</li>
+    <li id="ref22">Jiang, C., He, B. B., Zhao, R. L., Xu, M. J., Houk, K. N., & Zhao, Y. L. (2021). Computational Exploration of How Enzyme XimE Converts Natural S-Epoxide to Pyran and R-Epoxide to Furan. ACS Catalysis, 11(13), 7928-7942.</li>
+    <li id="ref23">Norris, R., Casey, F., FitzGerald, R. J., Shields, D., & Mooney, C. (2012). Predictive modelling of angiotensin converting enzyme inhibitory dipeptides. Food Chemistry, 133(4), 1349-1354.</li>
+    <li id="ref24">Fu, H., Grimsley, G. R., Razvi, A., Scholtz, J. M., & Pace, C. N. (2009). Increasing protein stability by improving beta‐turns. Proteins: Structure, Function, and Bioinformatics, 77(3), 491-498.</li>
+    <li id="ref25">Mierendorf, R. C., Morris, B. B., Hammer, B., & Novy, R. E. (1998). Expression and purification of recombinant proteins using the pET system. In Molecular diagnosis of infectious diseases (pp. 257-292). Humana Press, Totowa, NJ.</li> 
+    <li id="ref26">Amino Acid Structure | Amino Acid Abbreviations | Molecular Weight, https://worldwide.promega.com/resources/tools/amino-acid-chart-amino-acid-structure.</li>
+    <li id="ref27">The UniProt Consortium. (2021). UniProt: the universal protein knowledgebase in 2021. Nucleic acids research, 49.D1: D480-D489.</li>
+    <li id="ref28">Reddy, C. S., Kim, S. C., Hur, M., Kim, Y. B., Park, C. G., Lee, W. M., ... & Koo, S. C. (2017). Natural Korean medicine Dang-Gui: Biosynthesis, effective extraction and formulations of major active pyranocoumarins, their molecular action mechanism in cancer, and other biological activities. Molecules, 22(12), 2170.</li>
+    <li id="ref29">Kubitschek, H. E., & Friske, J. (1986). Determination of bacterial cell volume with the Coulter Counter. Journal of bacteriology, 168(3), 1466-1467.</li>
+    <li id="ref30">He, B. B., Zhou, T., Bu, X. L., Weng, J. Y., Xu, J., Lin, S., ... & Xu, M. J. (2019). Enzymatic pyran formation involved in xiamenmycin biosynthesis. ACS Catalysis, 9(6), 5391-5399.</li>
+    <li id="ref31">Phillips, R., Kondev, J., Theriot, J., Garcia, H. G., & Orme, N. (2012). Physical biology of the cell. Garland Science.</li>
+    <li id="ref32">Reis, A. C., & Salis, H. M. (2020). An automated model test system for systematic development and improvement of gene expression models. ACS synthetic biology, 9(11), 3145-3156.</li>
+      <li id="ref33"> Kestin, J., Sokolov, M., & Wakeham, W. A. (1978). Viscosity of liquid water in the range− 8 C to 150 C. Journal of physical and chemical reference data, 7(3), 941-948.</li>
+
+
+</ol>
+
+
+
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+     src="{{ url_for('static', filename='assets/js/MathJax.js') }}">
+</script>
+
+{% endblock %}

@@ -1,0 +1,641 @@
+{% set ref = 'no' %}
+{% extends "layout.html" %}
+  
+{% block title %}Protocols{% endblock %}
+{% block lead %}In this page you can find every protocol we used during our work on the project.
+We did our best to make the protocols accessible to anybody who's interested, including rewriting a lot of them and when necessary addapting them to iGEM standarts (safety wise).
+We hope you'll find them usefull!{% endblock %}
+
+{% block page_content %}
+
+<link href="{{ url_for('static', filename='assets/css/fontawesome/css/all.css') }}" rel="stylesheet" />
+
+<!-- Cloning -->
+
+<h2>Cloning</h2></br>
+<div class="col-md-offset-6 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            DNA extraction 
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/1-dna-extraction-miniprep-based-on-mn-kit.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading2">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            Digestion-with-restriction-enzymes
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/2-digestion-with-restriction-enzymes.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading3">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            Purification of Gel/PCR Product(Wizard)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/3-wizard-purification.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading4">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                            Purification of Gel/PCR Product(GeneAid)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/4-geneaid-protocol.pdf" width="800px" height="1200px" />
+                     <!--the link above leads to a protocol in hebrew! i translated and uploaded into the wiki but it doesn't get updated in here-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading100">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse100" aria-expanded="false" aria-controls="collapse100">
+                            CIP
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse100" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading100">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/phosphorylation-pnk-and-cip-2.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading5">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                            Ligation protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/5-ligation-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading6">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                            Chemical transformation (HEAT SHOCK)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/6-chemical-transformation.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading7">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                            Colony PCR (Based on HYLABS Kit)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/7-colony-pcr-based-on-hylabs-kit.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading8">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                            Colony PCR (Based on BioGate Kit)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/8-colony-pcr-with-biogate-kit.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading9">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                            AGAROSE GEL ELECTROPHORESIS
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/9-agarose-gel.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading10">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                            GLYCEROL STOCK preparation
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading10">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/10-glycerol-stock-preparation.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading11">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                            Starter preparation
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading11">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/11-starter-prep-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading12">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                            PCR
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading12">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/12-pcr-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading13">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                            sending to sequencing
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading13">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/13-sending-to-seq.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Measurement -->
+
+
+</br></br><h2>Measurement</h2></br>
+<div class="col-md-offset-6 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading14">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="true" aria-controls="collapse2">
+                            Splitting cells 1:10 protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse14" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading14">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-a-splitting-cells.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading15">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                            Counting Chamber Protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading15">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-b-counting-chamber.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading16">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                            Seedind calibration protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading16">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-c-seeding-calibration.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading17">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false" aria-controls="collapse17">
+                            PEI calibration
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading17">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-d-pei-calibration.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading18">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse18" aria-expanded="false" aria-controls="collapse18">
+                            Stable Integration Protocols
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse18" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading18">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-e-stable-integration-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading19">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse19" aria-expanded="false" aria-controls="collapse19">
+                            Flow cytometer
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse19" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading19">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-f-flowcytometer.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading20">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse20" aria-expanded="false" aria-controls="collapse20">
+                            Medium preperation
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse20" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading20">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-g-medium-preperation.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                    
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading21">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse21" aria-expanded="false" aria-controls="collapse21">
+                            CHO Transfection
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse21" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading21">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-h-cho-transfection.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                    
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading22">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse22" aria-expanded="false" aria-controls="collapse22">
+                            Seeding to 6 well plate
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading22">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-i-seeding-to-6-well-plate.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading23">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse23" aria-expanded="false" aria-controls="collapse23">
+                            96 well plate - Splitting Cells 1:10
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse23" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading23">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-j-splitting-96-well-plate.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading24">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse24" aria-expanded="false" aria-controls="collapse24">
+                            Luciferase screening centrifuge
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse24" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading24">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-k1-luciferase-screening-centrifuge.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                                        
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading25">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse25" aria-expanded="false" aria-controls="collapse25">
+                            Luciferase screening no Luciferase
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse25" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading25">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-k2-luciferase-screening-no-luciferin.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                                                    
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading26">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse26" aria-expanded="false" aria-controls="collapse26">
+                            Luciferase screening 
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse26" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading26">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-k3-luciferase-screening.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                                                                
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading27">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse27" aria-expanded="false" aria-controls="collapse27">
+                            Luciferase assay stock preparations
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse27" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading27">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-l-luciferase-assay-stock-preperations.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+<!-- Proof of concept -->
+
+
+</br></br><h2>Proof of concept</h2></br>
+<div class="col-md-offset-6 col-md-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading28">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse28" aria-expanded="true" aria-controls="collapse28">
+                            Pampa protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse28" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading28">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/28pampa-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading29">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse29" aria-expanded="false" aria-controls="collapse29">
+                            Annexin protocol
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse29" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading29">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/29-anexin-use-to-show-cell-apoptosis.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading32">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse32" aria-expanded="false" aria-controls="collapse32">
+                            HPLC run of standards
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse32" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading32">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/32hplc-run-of-standards.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading33">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse33" aria-expanded="false" aria-controls="collapse33">
+                            Induction of enzymes
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse33" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading33">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/33induction-of-enzymes.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading34">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse34" aria-expanded="false" aria-controls="collapse34">
+                            Lyophilization of samles
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse34" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading34">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/34lyophilization-of-samples.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading35">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse35" aria-expanded="false" aria-controls="collapse35">
+                            Metabolite extraction from cultures
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse35" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading35">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/35metabolite-extraction-from-cultures.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                        
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading36">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse36" aria-expanded="false" aria-controls="collapse36">
+                            DNase
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse36" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading36">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/36-dnase-protocol.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                    
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading37">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse37" aria-expanded="false" aria-controls="collapse37">
+                            Primer express
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse37" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading37">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/37-primer-express.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading38">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse38" aria-expanded="false" aria-controls="collapse38">
+                            Reverse Transcription (cDNA)
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse38" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading38">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/38reverse-transcription-cdna.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+                                                            
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading39">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse39" aria-expanded="false" aria-controls="collapse39">
+                            qPCR
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse39" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading39">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/39-rna-dnase-cdna-protocol-2019.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading40">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse40" aria-expanded="false" aria-controls="collapse40">
+                            RNA Isolation with Ambion Kit 
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse40" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading40">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/40-trizol-max-bacterial-rna-isolation-kit.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading41">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse41" aria-expanded="false" aria-controls="collapse41">
+                            Luciferase screening 
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse41" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading41">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-m-luciferase-screening-decursin.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading42">
+                    <h3 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse42" aria-expanded="false" aria-controls="collapse42">
+                            Luciferase screening 2 
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse42" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading42">
+                    <div class="panel-body">
+                        <embed src="https://static.igem.wiki/teams/4179/wiki/protocols/protocol-n-oracell-concentration-and-time-calibration.pdf" width="800px" height="1200px" />
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

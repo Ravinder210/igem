@@ -1,0 +1,355 @@
+{% extends "layout.html" %}
+  
+{% block title %}Project Description{% endblock %}
+{% block lead %}	
+When coming up with an idea for the project, our brainstorming sessions consisted of 12 team members with 12 different
+ ideas and opinions. However, one guideline that was unanimous for all members was the desire for the project to be
+  inspired by - and dedicated for - the community. Eventually, after extensive research and countless consultation
+   sessions with experts, we chose our project: biomanufacturing decursin to treat chemotherapy-induced alopecia.
+    As for the Hows and Whys, read our description page.{% endblock %}
+
+{% block page_content %}
+
+      <h2> Inspiration </h2>
+      <hr>
+      <p>
+Our team is composed of 12 different individuals. As a group, we reached out to <b>our community</b>  looking for ways in which <b>synthetic biology</b> could be used to solve real life problems. Through listening to peoples' needs, we stumbled upon one story that inspired us. It's the story of our teammate's neighbor who was battling cancer and was receiving chemotherapy treatments, that lead her to lose her hair. She expressed the distress she was going through as a result, and this is how  we started researching the medical condition of <b>chemotherapy  induced hair loss (CIA).</b> In the scope of iGEM, we wanted to alleviate the side effect cancer patients go through and we looked up the leading candidates for a solution. After a long research and consulting with several experts we found decursin, marking the start of our project.
+      </p>
+      <br>
+
+
+
+      <h2>Background</h2>
+      <hr>
+      <p>
+
+        Decursin is a pyranocoumarin extracted from the Angelica gigas plant, a medicinal herb<sup>[<a href="#ref1">1</a>]</sup>  widely used in Asia. Studies have shown
+         that decursin is of <b>high medicinal importance</b><sup>[<a href="#ref2">2</a>]</sup>, specifically for the treatment of chemotherapy induced alopecia<sup>[<a href="#ref3">3</a>]</sup>.  
+
+      <p><b>Alopecia</b> is one of the most traumatic side effects of chemotherapy treatments<sup>[<a href="#ref4">4</a>]</sup>. CIA carries emotional distress, influencing body image and leading to anxiety and even depression<sup>[<a href="#ref5">5</a>]</sup>. </p>
+     
+        <p>Unfortunately, the impact of CIA on patients is often overlooked and misunderstood. Thus, this side effect of cancer is not 
+          researched sufficiently<sup>[<a href="#ref6">6</a>]</sup>. Today there are few other solutions that exist, such as cooling caps, Minoxidil, and wigs<sup>[<a href="#ref7">7</a>]</sup>.
+           When we reached out to cancer patients, we came to realize that the current solutions for CIA are not enough. See our Survey <a href="{{ url_for('pages', page='human-practices') }}#Survey">Human Practices page</a>.</p>
+
+       <br>  <b> Inspired by this - we present: </b>
+      </p>
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/angel-roots-logo.png"  style="width: 45%" class="imgcenter" >
+
+      <br><br>
+
+      <h2>The problem</h2>
+      <hr>
+      <p>
+        Nowdays, decursin production faces many challenges: 
+      </p>
+
+<center>
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/hover-me.svg" width="20%">
+      <br>
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/expensive.svg" onmouseover="this.src='https://static.igem.wiki/teams/4179/wiki/description/expensive-1.svg'" 
+      onmouseout="this.src='https://static.igem.wiki/teams/4179/wiki/description/expensive.svg'" alt="Baraah"  width="20%">
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/time-consuming.svg" onmouseover="this.src='https://static.igem.wiki/teams/4179/wiki/description/time-consuming-1.svg'" 
+      onmouseout="this.src='https://static.igem.wiki/teams/4179/wiki/description/time-consuming.svg'" alt="Baraah"  width="20%">
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/polluting.svg" onmouseover="this.src='https://static.igem.wiki/teams/4179/wiki/description/polluting-1.svg'" 
+      onmouseout="this.src='https://static.igem.wiki/teams/4179/wiki/description/polluting.svg'" alt="Baraah"  width="20%">
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/rare.svg" onmouseover="this.src='https://static.igem.wiki/teams/4179/wiki/description/rare-1.svg'" 
+      onmouseout="this.src='https://static.igem.wiki/teams/4179/wiki/description/rare.svg'" alt="Baraah"  width="20%">
+    </center>
+
+    <h2>Our Solution</h2>
+    <hr>
+    
+    <style>
+      div {
+        text-align: justify;
+        text-justify: inter-word;
+      }
+      </style>
+
+     <p>Nowdays, synthetic biology is used for the anabolic engineering of microorganisms to produce different plant metabolites
+       successfully. When compared to chemical synthesis, heterologous expression of the pathway provides a <b>sustainable solution</b>. 
+       Thanks to recent studies<sup>[<a href="#ref11">11</a>]</sup>, we now have knowledge regarding the specific pathway used for the synthesis of pyranocoumarins 
+       such as decursin. Using this knowledge, we set out to <b>engineer bacteria that would be optimized to produce decursinol in large 
+        scale</b>. This will open the possibility for medicinal applications to be further explored<sup>[<a href="#ref9">9</a>]</sup>.</p> 
+
+      <p>To advance research in this field, we wanted not only to <b>manufacture</b> decursin in microorganisms, but also to provide broad
+         solutions for the <b>quantification</b> of the produced decursin and the <b>efficacy</b> of decursin on cells and skin-like materials.
+          Focusing our efforts on <b>three fronts</b> allowed us to provide <b>a complete framework</b> of tools, results and protocols.
+           This framework could be used by future teams that work on decursin related projects, or research similar metabolites.</p>
+
+
+    <style> .sentertext{text-align: center;}</style>
+      <div class="sentertext"> 
+      <h3> Angel Roots Framework </h3>
+    </div>
+
+      <img src="https://static.igem.wiki/teams/4179/wiki/description/description-triangular.svg" style="width:65%" class = "imgcenter" >
+
+     
+    <br><br>
+
+      <h3>Biomanufacturing of Decursin </h3>
+      <p>
+        It is the use of synthetic biology for the synthesis of the genes in the anabolic pathway from phenylalanine to decursin. In our project we used <I>Escherichia coli</I> (<I>E. coli</I>) BL21 DE3.</p>
+
+    
+
+<p>
+  Xiuhong Ji et al., 2008<sup>[<a href="#ref9">9</a>]</sup> successfully established the biosynthetic pathway of decursin in Angelica gigas, starting from the 
+  amino acid phenylalanine. We chose to clone part of the <a href="#opening"> decursin pathway</a>, by designing two genetic
+   circuits encoding for three enzymes that catalyze the two penultimate reactions in the anabolic pathway. In our system, the fifth 
+   metabolite, umbelliferone, undergoes prenylation and results in 7-demethylsuberosin. From there a cyclization reaction produces 
+   decursinol. Finally, the reaction from decursinol to decursin is carried out chemically as an esterification reaction, 
+   with no enzyme needed to mediate it.
+  </p>
+
+
+        <p>
+          The decision behind choosing the fifth metabolite as a starting point was based on the prices of the metabolites 
+          in the pathway. Umbelliferone is among the cheaper precursors along the pathway today.<a href="" data-bs-toggle="modal" data-bs-target="#myModal">
+  Click here</a>  to see decursin pathways prices.</p>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content"> 
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Prices of the decursin pathway metabolites</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <style type="text/css">
+          .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+          }
+          
+          .tg td {
+            border-color: #b03b94  ;
+            border-style: solid;
+            border-width: 1px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 5px;
+            word-break: normal;
+          }
+          
+          .tg th {
+            border-color: #b03b94  ;
+            border-style: solid;
+            border-width: 1px;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            overflow: hidden;
+            padding: 10px 5px;
+            word-break: normal;
+          }
+          
+          .tg .tg-0lax {
+            text-align:center !important;
+            vertical-align: top
+          }
+          .tg-0lax .MathJax {font-size: 1.3em !important; }
+          </style>
+<center>
+  <table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Order in pathway</th>
+    <th class="tg-0lax">Metabolite</th>
+    <th class="tg-0lax">Company</th>
+    <th class="tg-0lax">Price[$/mg]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Phenylalanine </td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/search/phenylalanine?focus=products&page=1&perpage=30&sort=relevance&term=phenylalanine&type=product" target="_blank">Sigma Aldrich</a><br></td>
+    <td class="tg-0lax">3.63</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">2</td>
+    <td class="tg-0lax">Cinnamic acid</td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/search/cinnamic-acid?focus=products&page=1&perpage=30&sort=relevance&term=cinnamic%20acid&type=product" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax">4.16</td>
+  </tr>
+
+  <tr>
+    <td class="tg-0lax">3</td>
+    <td class="tg-0lax">p-coumaric acid</td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/search/p-coumaric-acid?focus=products&page=1&perpage=30&sort=relevance&term=p-coumaric%20acid&type=product" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax">0.015</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">4</td>
+    <td class="tg-0lax">2,4-dihydroxy cinnamic acid</td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/product/aldrich/663158" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax">0.1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><b>5</b></td>
+    <td class="tg-0lax"><b>Umbelliferone</b></td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/search/umbelliferon?focus=products&page=1&perpage=30&sort=relevance&term=umbelliferon&type=product" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax"><b>0.004</b></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">6</td>
+    <td class="tg-0lax"> 7-Demethylsuberosin </td>
+    <td class="tg-0lax"><a href="https://www.medchemexpress.com/demethylsuberosin.html" target="_blank">MCE</a></td>
+    <td class="tg-0lax">9.4</td>
+
+    
+  </tr>
+  <tr>
+    <td class="tg-0lax">7</td>
+    <td class="tg-0lax">Decursinol</td>
+    <td class="tg-0lax"><a href=" https://www.sigmaaldrich.com/US/en/search/decursinol?focus=products&page=1&perpage=30&sort=relevance&term=decursinol&type=product" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax"> 49</td>
+
+  </tr>
+  <tr>
+    <td class="tg-0lax">8</td>
+    <td class="tg-0lax">Decursin</td>
+    <td class="tg-0lax"><a href="https://www.sigmaaldrich.com/US/en/search/decursin?dym=7-demethyl%20sub%20ero%20sin&focus=products&page=1&perpage=30&sort=relevance&term=decursin&type=product" target="_blank">Sigma Aldrich</a></td>
+    <td class="tg-0lax">104</td>
+
+   
+  </tr>
+
+</tbody>
+</table>
+</center>
+      </div>
+
+    </div>
+  </div>
+</div>
+         
+         
+      </p>
+
+     
+    <br> <br>   
+      <h3>Measurement - OraCell - a Biosensor for Detection and Quantification of Decursin </h3>
+      <p>
+        Biomanufacturing projects often require multiple expensive quantification assays (HPLC, NMR).
+        To tackle this issue, we propose using gene expression as an indicator for the presence of specific metabolites.
+        In our case, decursin is known to interfere with the Hippo signaling pathway among others.
+        We attempt to create a new high-throuput measurement method, by introducing reporter genes to downstream of said pathway in mammlian cells.
+        This method could lower research costs and time, alongside providing insights to the Hippo pathway - a complex tumor suppressor<sup>[<a href="#ref12">12</a>]</sup> which is not specific only to decursin. 
+        This makes this assay potentially useful for other teams in the field of manufacturing as well as therapeutics.</p>
+  
+      </p>
+      <p>  <a href="{{ url_for('pages', page='Measurement') }}">Click here </a>to find out more about the OraCell Assay! </p>
+<br>
+      <h3>Efficacy - Applications of Decursin </h3>
+      <p>
+        The research of the possible therapeutic applications for treatment of CIA (Chemotherapy-induced Alopecia) in humans, by 
+        testing the permeability of decursin through skin-like materials.  <a href="{{ url_for('pages', page='proof-of-concept') }}#pampaderect"> Click here</a> to read about it!
+      </p>
+
+      
+
+
+
+<style> .parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 1px red solid;
+}
+.image2 {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  border: 1px green solid}
+
+</style>
+
+      <br>
+      <br>
+      <h2 id="opening"> The Decursin Pathway </h2>
+      <hr>
+    
+
+
+      <p>Decursin is a secondary metabolite found originally in Angelica gigas roots<sup>[<a href="#ref9">9</a>]</sup>. The biological pathways of 
+        this metabolite are not fully characterized and studied yet. However, Reddy et al. appraised for the first time a possible anabolic pathway for this metabolite, that begins with phenylalanine as a precurser, and contains seven 
+        reactions (fig.1)<sup>[<a href="#ref10">10</a>]</sup>. We chose to start our biosynthetic 
+        pathway with umbelliferone - the fifth metabolite in the process (fig1.E), which has the optimal price comparing it with other
+         metabolites in this pathway. </p>
+         
+         <img  src="https://static.igem.wiki/teams/4179/wiki/description/combined3.png" style="width: 100%;" class="imgcenter">
+         <center class="figure-text"><b>Figure 1</b>: Decursin pathway</center>
+
+          <p>The conversion of umbelliferone to 7-demethylsuberosin, the sixth metabolite (fig1.F) is mediated by
+             Umbelliferone 6-prenyltransferase (U6PT) enzyme. </p>
+
+           <p>DMS is then converted to decursinol (fig1.G) through an oxidative ring closure. It was assumed that the enzyme that 
+                  is responsible for this reaction is Cytochrome P-450, which is a wide eukaryotic enzyme family<sup>[<a href="#ref9">9</a>]</sup> <sup>[<a href="#ref10">10</a>]</sup>.</p>
+
+
+         <p>The last reaction from decursinol to decursin (fig1.H) is a non-enzymatic intramolecular esterification reaction
+                     at the C-3 position of decursinol<sup>[<a href="#ref9">9</a>]</sup>. The implementation of this pathway in prokaryotic organisms has yet to be fully implemented. </p>
+
+     
+           <h3>Our Biomanufacturing System </h3>
+          
+            <hr>
+            <p>Cloning of the enzymes in each step will be carried out on different plasmids, with different antibiotic resistance and origin of replication, for potentially transforming both plasmids into the same bacteria.  
+The first gene used is U6PT, which is responsible for the prenylation of umbelliferone, turning it into DMS<sup>[<a href="#ref14">14</a>]</sup>. The second and third genes are XimD and XimE which mediates the cyclization reaction yielding decursinol<sup>[<a href="#ref15">14</a>]</sup>. </p>
+
+
+<p> <a href="{{ url_for('pages', page='design') }}">Click here </a> to learn more about our system design. </p>
+      
+
+
+
+{% endblock %}
+
+      
+{% block references %}
+      
+<ol class="reftext"> 
+    <li id="ref1">Zhang, J., Li, L., Jiang, C., Xing, C., Kim, S. H., & Lü, J. (2012). Anti-cancer and other bioactivities of Korean Angelica gigas Nakai (AGN) and its major pyranocoumarin compounds. Anti-cancer agents in medicinal chemistry, 12(10), 1239-1254. <a href="https://doi.org/10.2174/187152012803833071" target="_blank"> https://doi.org/10.2174/187152012803833071</a></li>
+    <li id="ref2">Kiyonga, A. N., An, J. H., Lee, K. Y., Lim, C., Suh, Y. G., Chin, Y. W., & Jung, K. (2019). Rapid and Efficient Separation of Decursin and Decursinol Angelate from Angelica gigas Nakai using Ionic Liquid, (BMIm)BF4, Combined with Crystallization. Molecules (Basel, Switzerland), 24(13), 2390.<a href="https://doi.org/10.3390/molecules24132390" target="_blank">https://doi.org/10.3390/molecules24132390</a></li>
+    <li id="ref3">Kim, M. H., Park, S. J., & Yang, W. M. (2021). Network Pharmacology Study and Experimental Confirmation Revealing the Ameliorative Effects of Decursin on Chemotherapy-Induced Alopecia. Pharmaceuticals (Basel, Switzerland), 14(11), 1150.<a href=" https://doi.org/10.3390/ph14111150" target="_blank">  https://doi.org/10.3390/ph14111150</a></li>
+    <li id="ref4">Trüeb R. M. (2009). Chemotherapy-induced alopecia. Seminars in cutaneous medicine and surgery, 28(1), 11-14. <a href="https://doi.org/10.1016/j.sder.2008.12.001" target="_blank">https://doi.org/10.1016/j.sder.2008.12.001</a></li>
+    <li id="ref5">Choi, E. K., Kim, I. R., Chang, O., Kang, D., Nam, S. J., Lee, J. E., ... & Cho, J. (2014). Impact of chemotherapy-induced alopecia distress on body image, psychosocial well-being, and depression in breast cancer patients. Psycho-Oncology, 23(10), 1103-1110.</li>
+    <li id="ref6">Haque, E., Alabdaljabar, M. S., Ruddy, K. J., Haddad, T. C., Thompson, C. A., Lehman, J. S., & Hashmi, S. K. (2020). Management of chemotherapy-induced alopecia (CIA): a comprehensive review and future directions. Critical Reviews in Oncology/Hematology, 156, 103093.</li>
+    <li id="ref7">Yeager, C. E., & Olsen, E. A. (2011). Treatment of chemotherapy-induced alopecia. Dermatologic therapy, 24(4), 432-442.</li>
+    <li id="ref8">Sigma  Retrieved October 3, 2022, from <a href="https://www.sigmaaldrich.com/NL/en/product/sigma/sml0786?gclid=Cj0KCQjwyt-ZBhCNARIsAKH1176_PfbFoii-r4Gj7L0CHfNBOxnYuuQAd81No8mwyswxgiKjf1eZ14EaAuC8EALw_wcB&gclsrc=aw.ds" target="_blank">  https://www.sigmaaldrich.com/NL/en/product/sigma/sml0786?gclid=Cj0KCQjwyt-ZBhCNARIsAKH1176_PfbFoii-r4Gj7L0CHfNBOxnYuuQAd81No8mwyswxgiKjf1eZ14EaAuC8EALw_wcB&gclsrc=aw.ds</a></li>
+    <li id="ref9">Ji, X., Huh, B., & Kim, S. U. (2008). Determination of biosynthetic pathway of decursin in hairy root culture of Angelica gigas. Applied Biological Chemistry, 51(4), 258-262.</li>
+    <li id="ref10">Reddy, C. S., Kim, S. C., Hur, M., Kim, Y. B., Park, C. G., Lee, W. M., ... & Koo, S. C. (2017). Natural Korean medicine Dang-Gui: Biosynthesis, effective extraction and formulations of major active pyranocoumarins, their molecular action mechanism in cancer, and other biological activities. Molecules, 22(12), 2170.</li>
+    <li id="ref11">He, B. B., Zhou, T., Bu, X. L., Weng, J. Y., Xu, J., Lin, S., ... & Xu, M. J. (2019). Enzymatic pyran formation involved in xiamenmycin biosynthesis. ACS Catalysis, 9(6), 5391-5399.</li>
+    <li id="ref12"> Sebio, A., & Lenz, H. J. (2015). Molecular Pathways: Hippo Signaling, a Critical Tumor Suppressor. Clinical cancer research : an official journal of the American Association for Cancer Research, 21(22), 5002-5007.  <a href="https://doi.org/10.1158/1078-0432.CCR-15-0411" target="_blank">https://doi.org/10.1158/1078-0432.CCR-15-0411</a></li>
+    <li id="ref13"> Ko, MJ., Kwon, MR. & Chung, MS. Pilot-scale subcritical-water extraction of nodakenin and decursin from Angelica gigas Nakai. Food Sci Biotechnol 29, 631–639 (2020).<a href="https://doi.org/10.1007/s10068-019-00698-2" target="_blank">https://doi.org/10.1007/s10068-019-00698-21</a> </li>
+    <li id="ref14">Karamat, F., Olry, A., Munakata, R., Koeduka, T., Sugiyama, A., Paris, C., Hehn, A., Bourgaud, F., & Yazaki, K. (2014). A coumarin-specific prenyltransferase catalyzes the crucial biosynthetic reaction for furanocoumarin formation in parsley. Plant Journal, 77(4), 627–638. https://doi.org/10.1111/tpj.12409</li>
+    <li id="ref15">Bu, X. L., He, B. B., Weng, J. Y., Jiang, C. C., Zhao, Y. L., Li, S. M., ... & Xu, M. J. (2020). Constructing microbial hosts for the production of benzoheterocyclic derivatives. ACS Synthetic Biology, 9(9), 2282-2290.</li>
+  </li>
+    </a></li>  
+  </li>
+
+    
+</ol>
+
+{% endblock %}

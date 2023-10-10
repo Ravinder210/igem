@@ -1,0 +1,947 @@
+{% extends "layout-master.html" %}
+
+{% block page_body %}
+    <style>
+        @import url('//fonts.googleapis.com/css?family=Lato:300:400');
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans';
+        }
+
+        h1 {
+            font-family: 'Open Sans';
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-size: 48px;
+        }
+        p {
+            font-family: 'Open Sans';
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .header1 {
+            position: relative;
+            text-align: center;
+            background: linear-gradient(60deg, rgb(52, 31, 133) 0%, #0073e6 100%);
+            color: white;
+        }
+        .logo1 {
+            width: 50px;
+            fill: white;
+            padding-right: 15px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .inner-header {
+            height: 75vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .flex1 {
+            /*Flexbox for containers*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .waves {
+            position: relative;
+            width: 100%;
+            height: 15vh;
+            margin-bottom: -7px; /*Fix for safari gap*/
+            min-height: 100px;
+            max-height: 150px;
+        }
+
+        .content1 {
+            position: relative;
+            height: 20vh;
+            text-align: center;
+            background-color: white;
+        }
+
+        /* Animation */
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(0.55,.5,0.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+        .parallax > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+        .parallax > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+        .parallax > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+        @keyframes move-forever {
+            0% {
+                transform: translate3d(-90px, 0, 0);
+            }
+            100% {
+                transform: translate3d(85px, 0, 0);
+            }
+        }
+        /*Shrinking for mobile*/
+        @media(max-width: 768px) {
+            .waves {
+                height: 40px;
+                min-height: 40px;
+            }
+            .content {
+                height: 30vh;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+        .custom-row {
+            padding-top: 5px;
+            padding-bottom: 15px;
+        }
+
+        .custom-image {
+            padding-left: 5px;
+        }
+
+        body {
+            background: #EEF4FF;
+            margin: 0;
+
+            color: #333;
+        }
+
+        .spacer {
+            width: 100%;
+            height: 50vh;
+            background: #ddd;
+        }
+
+
+        .gallery h1 {
+            font-size: clamp(2em, 4vw, 6em);
+        }
+
+        .gallery p {
+            font-size: clamp(0.5em, 1.5vw, 2em);
+            line-height: 1.4;
+        }
+
+
+        .gallery {
+            display: flex;
+            /* outline:1px solid red; */
+        }
+
+        .left {
+            width: 70%;
+        }
+
+        .right {
+            height: 100vh;
+            /* outline:1px solid purple; */
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .desktopContent {
+            margin: auto;
+            width: 90%;
+        }
+
+        .desktopContentSection {
+            min-height: 100vh;
+            /* outline:1px solid green; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .desktopPhotos {
+            width: 30vw;
+            height: 30vw;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .desktopPhoto {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .red {
+            background: crimson;
+        }
+
+        .green {
+            background: MediumSeaGreen;
+        }
+
+        .blue {
+            background: dodgerblue;
+        }
+
+        .pink {
+            background: deepPink;
+        }
+
+
+        /* small screen / mobile layout */
+        .mobileContent {
+            display: none;
+            width: 80vw;
+        }
+
+        .mobilePhoto {
+            width: 80vw;
+            height: 80vw;
+            margin-top: 5em;
+            border-radius: 6vw;
+        }
+
+
+        /* defines styles for screens up to 599px wide */
+        @media screen and(max-width: 599px) {
+            .left {
+                display: none;
+            }
+
+            .right {
+                height: auto;
+                width: 100%;
+                align-items: center;
+            }
+
+            .desktopPhotos {
+                display: none;
+            }
+
+            .mobileContent {
+                display: block;
+            }
+
+
+        }
+
+
+        #start,
+        #end {
+            display: flex;
+            
+            align-items: center;
+ 
+            width: 100%;
+            height: 200px;
+        }
+
+        #cont {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+        }
+
+        .slide {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            height: 100vh;
+            opacity: 0;
+        }
+
+        .slide > div {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .slide h4 {
+            
+            font-weight: 500;
+            font-size: 35px;
+            line-height: 125%;
+            color: #ffffff;
+        }
+
+        .slide p {
+            font-weight: 300;
+            font-size: 25px;
+            line-height: 125%;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .imgContainer {
+
+
+            width: 150mm;
+            height: 120mm;
+
+        }
+
+
+        .container1 {
+            width: 100%;
+
+
+        }
+
+        .center-image {
+            width: 300px; /* Adjust the image size as needed */
+
+        }
+
+        .problem {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+
+        .left-text {
+            color: #000000;
+
+        }
+        .left-text2 {
+            color: #ffffff00;
+
+
+        }
+
+        .right-text {
+            right: 0;
+        }
+
+        .animated-element {
+            width: 400px;
+            margin-bottom: 160px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: -400px;
+        }
+
+
+        .animated-element2 {
+            width: 500px;
+            margin-bottom: 100px;
+      
+            display: inline-block;
+    vertical-align: top;
+          
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: 1500px;
+        }
+
+        .animated-element3 {
+            width: 500px;
+            margin-bottom: 160px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: -400px;
+        }
+
+        .animated-element4 {
+            width: 500px;
+            margin-bottom: 100px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: 1400px;
+        }
+
+
+        .animated-element5 {
+            width: 500px;
+            margin-bottom: 100px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: 1400px;
+        }
+
+
+        .animated-element6 {
+            width: 400px;
+            margin-bottom: 160px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: -400px;
+        }
+
+
+        .animated-element7 {
+            width: 500px;
+            margin-bottom: 100px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: 1400px;
+        }
+
+        .animated-element8 {
+            width: 500px;
+            margin-bottom: 160px;
+            flex: content;
+            flex-direction: row;
+            display: inline-block;
+    vertical-align: top;
+            color: rgb(0, 0, 0);
+            position: relative;
+            left: -400px;
+        }
+
+        
+        .parent-div {
+    width: 100%;
+    font-size: x-large;
+    font-weight: bold;
+
+  }
+
+        .solution-div{
+            height: 80vh;
+            text-align: center;
+            justify-content: center;
+            padding-top: 9em;
+            font-size: x-large;
+            font-weight: 670;
+         
+            margin-left: 2em;
+            margin-right: 2em;
+        }
+        
+        .solution1{
+            margin-bottom: 2em;
+
+            
+        }
+
+        .solution2{
+            width: 70%;
+            margin: auto;
+            font-weight: 500;
+           
+
+            
+        }
+    </style>
+
+    <body>
+
+        <section>
+            <!--Hey! This is the original version
+            of Simple CSS Waves-->
+
+
+            <div
+                class="header1">
+
+                <!--Content before waves-->
+                <div
+                    class="inner-header flex1">
+                    <!--Just the logo.. Don't mind this-->
+                    <svg version="1.1" class="logo1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" xml:space="preserve">
+                        <path fill="#FFFFFF" stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M57,283"/>
+                        <g><path fill="#fff" d="M250.4,0.8C112.7,0.8,1,112.4,1,250.2c0,137.7,111.7,249.4,249.4,249.4c137.7,0,249.4-111.7,249.4-249.4
+                              C499.8,112.4,388.1,0.8,250.4,0.8z M383.8,326.3c-62,0-101.4-14.1-117.6-46.3c-17.1-34.1-2.3-75.4,13.2-104.1
+                              c-22.4,3-38.4,9.2-47.8,18.3c-11.2,10.9-13.6,26.7-16.3,45c-3.1,20.8-6.6,44.4-25.3,62.4c-19.8,19.1-51.6,26.9-100.2,24.6l1.8-39.7		c35.9,1.6,59.7-2.9,70.8-13.6c8.9-8.6,11.1-22.9,13.5-39.6c6.3-42,14.8-99.4,141.4-99.4h41L333,166c-12.6,16-45.4,68.2-31.2,96.2	c9.2,18.3,41.5,25.6,91.2,24.2l1.1,39.8C390.5,326.2,387.1,326.3,383.8,326.3z"/>
+                        </g>
+                    </svg>
+                    <h1>Biosurf</h1>
+                </div>
+
+                <!--Waves Container-->
+                <div>
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7"/>
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff"/>
+                        </g>
+                    </svg>
+                </div>
+                <!--Waves end-->
+
+            </div>
+            <!--Header ends-->
+
+            <!--Content starts-->
+            <div class="content1 flex1"></div>
+            <!--Content ends-->
+        </section>
+
+        <section>
+            <div class="container1">
+                <div style="text-align: center; width: 100%; padding-bottom: 200px;">
+                    <p class="problem">The Problem</p>
+                </div>
+                <!-- <img src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt="Your Image" class="center-image"></div> -->
+       
+                <div class="parent-div" >
+                    <div class='animated-element'>
+               
+                        <h3>Heavy metals and oil from 
+                            industry effluents are intoxicating
+                            our soil and water bodies 
+                            </h3>
+
+                    </div>
+                
+                            
+                    <div class='animated-element2'>
+                               
+                        <img style="width: 350px;height: 200px;"  src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt="Your Image" >
+
+
+                    </div>
+
+                </div>
+                <div class="parent-div">
+                    <div class='animated-element3'>
+                                   
+                        <img style="width: 350px;height: 200px;"  src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt="Your Image" >
+
+
+                    </div>
+
+
+                    <div class='animated-element4'>
+                                              
+                                                    <h3>Diseases due to heavy metal 
+                                                        exposure are a pandemic,
+                                                        That is silently eating the world
+                                                        </h3>
+
+                    </div>
+                </div>
+         
+
+
+        
+                <div class="parent-div" >
+                    <div class='animated-element6'>
+                       
+                        <h3>62.5%
+                            Of Developmental Intellectual Disability
+                            caused by lead exposure
+                            ~ IHME, 2019
+                            </h3>
+
+                    </div>
+                
+                            
+                    <div class='animated-element5'>
+                  
+                        <img style="width: 350px;height: 200px;"  src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt="Your Image" >
+
+
+                    </div>
+
+                </div>
+                <div class="parent-div">
+                    <div class='animated-element8'>
+                               
+                        <img style="width: 350px;height: 200px;"  src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt="Your Image" >
+
+
+                    </div>
+
+
+                    <div class='animated-element7'>
+                                          
+                                                    <h3>The effects of heavy metal poisoning
+                                                        are visible too late; 
+                                                        Direct elimination of metals from the body is inconvenient.
+                                                        Treatment only focuses on managing symptoms 
+                                                        </h3>
+
+                    </div>
+                </div>
+         
+                                   <div>
+                 
+                </div>  
+                                                </section>
+
+
+                                                <section >
+                                                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 30" preserveAspectRatio="none" shape-rendering="auto">
+                                                        <defs>
+                                                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                                                        </defs>
+                                                        <g class="parallax">
+                                                            <use xlink:href="#gentle-wave" x="48" y="3" fill="#0073e6"/>
+                                                            <!-- <use xlink:href="#gentle-wave" x="48" y="3" fill="#4da6ff"/>
+                                                            <use xlink:href="#gentle-wave" x="48" y="5" fill="#3399ff"/>
+                                                            <use xlink:href="#gentle-wave" x="48" y="7" fill="#0073e6"/> -->
+                                                        
+                                                        </g>
+                                                    </svg>
+
+                                                    <div style="background-color: #0073e6; height: 700px;  ">
+                                                    <div style="text-align: center; padding-top: 100px;" id="start">
+                                                        <h2 class="fade-text" style="color: white; padding: 0px 90px ;">We embarked on a mission, building on last year's foundation: crafting a comprehensive solution to combat heavy metal pollution effectively
+
+                                                         
+                                                            </h2>
+                                                        </div>
+                                                            <div style="background-color: #0073e6 ; text-align: center;" id="start">
+                                                        <h3 class="fade-text2" style="color: white; padding: 0px 90px ;"> Facing the challenges of existing chemical treatments both their harsh environmental impact and economic constraints</h3>
+                                                    </div>
+                                                        <div style="background-color: #0073e6 ;text-align: center;" id="start">
+                                                        <h3 class="fade-text3" style="color: white; padding: 0px 90px ;">We introduced a biochemical approach last year in the                                         
+                                                            form of lead binding protein expression to effectively remediate
+                                                             the metal from our surroundings.
+                                                            </h3>
+                                                    </div>
+
+                                                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 30" preserveAspectRatio="none" shape-rendering="auto">
+                                                        <defs>
+                                                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                                                        </defs>
+                                                        <g class="parallax">
+                                           
+                                                            <use xlink:href="#gentle-wave" x="48" y="3" fill="#000000"/>
+                                                            <!-- <use xlink:href="#gentle-wave" x="48" y="3" fill="#000000"/>
+                                                            <use xlink:href="#gentle-wave" x="48" y="5" fill="#000000"/>
+                                                            <use xlink:href="#gentle-wave" x="48" y="7" fill="#000000"/> -->
+                                                    
+                                                        
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                    <div id="cont">
+                                                        <div style="width: 100%; text-align: center; padding-top: 120px; ">
+                                                        <h2 style="color: rgb(255, 255, 255); padding-left: 200px;padding-right: 200px; ">After deeper analysis, we identified three <span style="color: yellow;">significant shortcomings</span> in current biochemical solutions</h2></div>
+                                            
+                                                        <div  class='slide slide-1'>
+                                                            <div style="padding-right: 200px; padding-top: 200px;">
+                                                                <h4>Limited specificity to a single metal ion.</h4>
+                                                  
+                                                            </div>
+                                                            <img style="padding-top: 200px;" class="imgContainer" src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt=""/>
+                                                        </div>
+                                                        <div class='slide slide-2'>
+                                                            <div style="padding-top: 200px;">
+                                                                <h4>Inefficacy in extracting organometallic complexes, the predominant form of many heavy metals.
+                                                                </h4>
+                                                         
+                                                            </div>
+                                                            <img style="padding-top: 200px;" class="imgContainer" src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(2).png?raw=true" alt=""/>
+                                                        </div>
+                                                        <div class='slide slide-3'>
+                                                            <div style="padding-top: 200px;" >
+                                                                <h4>Direct exposure of genetically modified organisms to the environment.
+                                                                </h4>
+                                                
+                                                            </div>
+                                                            <img style="padding-top: 200px;" class="imgContainer" src="https://github.com/Ravinder210/igem-image/blob/main/Untitled%20design%20(3).png?raw=true" alt=""/>
+                                                        </div>
+                                                       
+                                                       
+                                                    </div>
+
+                                                    
+                        
+                                                   
+                                                </section>
+<section>
+    <div class="solution-div">
+        <div class="solution1">
+            We identified a product that could counter these issues while being useful for universal heavy metal remediation - <span style="color: #3EC70B;"> Biosurfactants!</span>
+
+
+
+        </div>
+        <div class="solution2">
+            Thus we embark on a journey to open doors for enhancing their production by producing them in a model organism like ecoli.
+        </div>
+    </div>
+</section>
+
+                                                <div class="gallery">
+
+                                                    
+                                                    <div class="left">
+                                                        <div class="desktopContent">
+                                                            <div class="desktopContentSection">
+                                                                <h1>Red</h1>
+                                                                <p>Red is a color often associated with strong emotions such as passion, love, and anger.</p>
+                                                            </div>
+                                                            <div class="desktopContentSection">
+                                                                <h1>Green</h1>
+                                                                <p>Green is a color that is often associated with nature, growth, and harmony.</p>
+                                                            </div>
+                                                            <div class="desktopContentSection">
+                                                                <h1>Pink</h1>
+                                                                <p>Pink is a color that is often associated with femininity, romance, and sweetness.</p>
+                                                            </div>
+                                                            <div class="desktopContentSection">
+                                                                <h1>Blue</h1>
+                                                                <p>Blue is a color that is often associated with calmness, trust, and reliability.
+                                                                </p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        class="right">
+
+                                                        <!-- mobile content -->
+                                                        <div class="mobileContent">
+                                                            <div class="mobilePhoto red"></div>
+                                                            <h1>Red</h1>
+                                                            <p>Red is a color often associated with strong emotions such as passion, love, and anger.</p>
+
+                                                            <div class="mobilePhoto green"></div>
+                                                            <h1>Green</h1>
+                                                            <p>Green is a color that is often associated with nature, growth, and harmony.</p>
+
+                                                            <div class="mobilePhoto pink"></div>
+                                                            <h1>Pink</h1>
+                                                            <p>Pink is a color that is often associated with femininity, romance, and sweetness.</p>
+
+                                                            <div class="mobilePhoto blue"></div>
+                                                            <h1>Blue</h1>
+                                                            <p>Blue is a color that is often associated with calmness, trust, and reliability.</p>
+                                                        </div>
+
+                                                        <!-- desktop content -->
+
+                                                        <div class="desktopPhotos">
+                                                            <div class="desktopPhoto red"></div>
+                                                            <div class="desktopPhoto green"></div>
+                                                            <div class="desktopPhoto pink"></div>
+                                                            <div class="desktopPhoto blue"></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                                                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+                                                <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+                                                <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+
+                                                <script>
+
+                                                    gsap.registerPlugin(ScrollTrigger);
+                                                    let tll = gsap.timeline({
+                                                        scrollTrigger: {
+                                                            trigger: '.animated-element2',
+                                                            start: "top 95%",
+                                                            end: "top 20%",
+                                                            toggleAction: 'play pause reverse pause',
+                                                            scrub: 1,
+                                                            markers: false
+                                                        }
+                                                    });
+
+                                                    tll.to('.animated-element', {x: 500, });
+                                                    tll.to('.animated-element3', {x: 500, });
+
+                                                    let tll2 = gsap.timeline({
+                                                        scrollTrigger: {
+                                                            trigger: '.animated-element2',
+                                                            start: "top 85%",
+                                                            end: "top 10%",
+                                                            toggleAction: 'play pause reverse pause',
+                                                            scrub: 1,
+                                                            markers: false
+                                                        }
+                                                    });
+
+                                                    tll2.to('.animated-element2', {x: -1000, });
+                                                    tll2.to('.animated-element4', {x: -1000, });
+                                                </script>
+                                                     
+                                                     <script>
+
+                                                        gsap.registerPlugin(ScrollTrigger);
+                                                        let tll3 = gsap.timeline({
+                                                            scrollTrigger: {
+                                                                trigger: '.animated-element8',
+                                                                start: "top 99%",
+                                                                end: "top 60%",
+                                                                toggleAction: 'play pause reverse pause',
+                                                                scrub: 1,
+                                                                markers: true
+                                                            }
+                                                        });
+    
+                                                        tll3.to('.animated-element6', {x: 500});
+                                                        tll3.to('.animated-element8', {x: 500 });
+    
+                                                        let tll4 = gsap.timeline({
+                                                            scrollTrigger: {
+                                                                trigger: '.animated-element8',
+                                                                start: "top 95%",
+                                                                end: "top 70%",
+                                                                toggleAction: 'play pause reverse pause',
+                                                                scrub: 1,
+                                                                markers: true
+                                                            }
+                                                        });
+    
+                                                        tll4.to('.animated-element5', {x: -1000,  });
+                                                        tll4.to('.animated-element7', {x: -1000 });
+                                                    </script>
+
+
+                                                <script>
+                                                    // gsap.registerPlugin(ScrollTrigger);
+
+                                                    const leftText = document.querySelector('.left-text');
+                                                    const rightText = document.querySelector('.right-text');
+                                                    const image1 = document.querySelector('.center-image')
+
+                                                    // Animate the left and right text using GSAP
+
+
+                                                    // gsap.to('.center-image',{
+                                                    //     x: '550px',
+                                                    //     duration:5,
+
+
+                                                    // })
+
+                                                </script>
+                                                  <script>
+                                                    gsap.registerPlugin(ScrollTrigger);
+                                                    gsap.set(".fade-text", {opacity: 0});
+                                                    gsap.set(".fade-text2", {opacity: 0});
+                                                    gsap.set(".fade-text3", {opacity: 0});
+
+                                                    let t = gsap.timeline({
+                                                        scrollTrigger: {
+                                                            trigger: ".fade-text",
+                                                            start: "top 40%",
+                                                            scrub: 3,
+                                                            pin: false,
+                                                            end: "bottom  2%",
+                                                            markers: false
+                                                        }
+                                                    }).to(".fade-text", {opacity: 1}).to(".fade-text2", {opacity: 1, duration:10}, ).to(".fade-text3", {opacity: 1, duration:10});
+                                                  </script>
+                                                <script>
+                                                    gsap.registerPlugin(ScrollTrigger);
+                                                    gsap.set(".slide-1", {opacity: 1});
+
+                                                    let tl = gsap.timeline({
+                                                        scrollTrigger: {
+                                                            trigger: "#cont",
+                                                            start: "top top",
+                                                            scrub: 1,
+                                                            pin: true,
+                                                            end: "bottom+=1000px",
+                                                            markers: false
+                                                        }
+                                                    }).to(".slide-1", {opacity: 0}).to(".slide-2", {opacity: 1}).to(".slide-2", {opacity: 0}).to(".slide-3", {opacity: 1}).to(".slide-3", {opacity: 0});
+                                                </script>
+
+
+                                                <script>
+                                                    const details = gsap.utils.toArray(".desktopContentSection:not(:first-child)")
+                                                    const photos = gsap.utils.toArray(".desktopPhoto:not(:first-child)")
+
+
+                                                    gsap.set(photos, {yPercent: 101})
+
+                                                    const allPhotos = gsap.utils.toArray(".desktopPhoto")
+
+
+                                                    // create
+                                                    let mm = gsap.matchMedia();
+
+                                                    // add a media query. When it matches, the associated function will run
+                                                    mm.add("(min-width: 600px)", () => { // this setup code only runs when viewport is at least 600px wide
+                                                        console.log("desktop")
+
+                                                        ScrollTrigger.create({trigger: ".gallery", start: "top top", end: "bottom bottom", pin: ".right"})
+
+                                                        // create scrolltrigger for each details section
+                                                        // trigger photo animation when headline of each details section
+                                                        // reaches 80% of window height
+                                                        details.forEach((detail, index) => {
+
+                                                            let headline = detail.querySelector("h1")
+                                                            let animation = gsap.timeline().to(photos[index], {yPercent: 0}).set(allPhotos[index], {autoAlpha: 0})
+                                                            ScrollTrigger.create({
+                                                                trigger: headline,
+                                                                start: "top 80%",
+                                                                end: "top 50%",
+                                                                animation: animation,
+                                                                scrub: true,
+                                                                markers: false
+                                                            })
+                                                        })
+
+
+                                                        return() => {
+                                                            // optional
+                                                            // custom cleanup code here (runs when it STOPS matching)
+                                                            console.log("mobile")
+                                                        };
+                                                    });
+                                                </script>
+
+
+                                                <div class="container">
+                                                    {% block page_content %}{% endblock %}
+                                                </div>
+
+                                            {% endblock %}
+                                        </body>
+                                    </html>
